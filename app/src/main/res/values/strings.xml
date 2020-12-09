@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">MyMimosa</string>
+    <string name="tab_text_1">FORMS</string>
+    <string name="tab_text_2">CHECKLIST</string>
+    <string name="tab_text_3">REQUESTS</string>
+    <string name="tab_text_4">APPROVAL</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="approver_hos_array">
+        <item>Select Approver HOS</item>
+        <item>Tristone Muhunde</item>
+        <item>Rodwell Mazambara</item>
+        <item>Tristone Muhunde</item>
+        <item>Rodwell Mazambara</item>
+        <item>Tristone Muhunde</item>
+        <item>Rodwell Mazambara</item>
+        <item>Tristone Muhunde</item>
+        <item>Rodwell Mazambara</item>
+        <item>Tristone Muhunde</item>
+        <item>Rodwell Mazambara</item>
+        <item>Tristone Muhunde</item>
+    </string-array>
+
+    <string-array name="approver_hr_array">
+        <item>Select Approver HR</item>
+        <item>Tristone Muhunde</item>
+        <item>Rodwell Mazambara</item>
+        <item>Tristone Muhunde</item>
+        <item>Rodwell Mazambara</item>
+        <item>Tristone Muhunde</item>
+        <item>Rodwell Mazambara</item>
+        <item>Tristone Muhunde</item>
+        <item>Rodwell Mazambara</item>
+        <item>Tristone Muhunde</item>
+        <item>Rodwell Mazambara</item>
+        <item>Tristone Muhunde</item>
+    </string-array>
+
+    <string-array name="deductions_criteria_array">
+        <item>Select deduction Criteria</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+</resources>
