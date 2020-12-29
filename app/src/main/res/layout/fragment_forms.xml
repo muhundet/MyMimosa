@@ -49,11 +49,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="HR"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-
                     android:layout_margin="10dp"/>
 
                 <TextView
@@ -82,7 +82,7 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
 
-                    android:src="@drawable/hr_icon"
+                    android:src="@drawable/she"
                     android:padding="10dp"/>
 
                 <TextView
@@ -90,7 +90,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="SHE "
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -130,7 +131,7 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
 
-                    android:src="@drawable/hr_icon"
+                    android:src="@drawable/harareoffice"
                     android:padding="10dp"/>
 
                 <TextView
@@ -138,7 +139,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="HARARE OFFICE"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -173,14 +175,15 @@
                     android:layout_height="64dp"
 
                     android:padding="10dp"
-                    android:src="@drawable/hr_icon" />
+                    android:src="@drawable/ict" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="ICT SERVICES"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -230,7 +233,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="OTHER FORMS"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"

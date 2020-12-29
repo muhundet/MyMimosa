@@ -3,24 +3,29 @@
     package="zw.co.mimosa.mymimosa">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/mimosa_logo_no_motto"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/mimosa_logo_no_motto"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.MyMimosa">
-        <activity android:name=".ui.hr.LeaveActivity2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".ui.hr.AdvanceActivity" />
-        <activity android:name=".ui.hr.LeaveActivity" />
+        android:theme="@style/Theme.MyMimosa"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.hr.acting_allowance.ActingAllowanceActivity2" />
+        <activity android:name=".ui.hr.acting_allowance.ActingAllowanceActivity" />
+        <activity android:name=".ui.hr.educational_assistance.EducationalAssistanceActivity2" />
+        <activity android:name=".ui.hr.educational_assistance.EducationalAssistanceActivity" />
+        <activity android:name=".ui.hr.leave_and_advance.LeaveActivity2" />
+        <activity android:name=".ui.hr.leave_and_advance.AdvanceActivity" />
+        <activity android:name=".ui.hr.leave_and_advance.LeaveActivity" />
         <activity android:name=".ui.hr.HrDashboardActivity" />
         <activity
             android:name=".MainActivity"
@@ -30,14 +35,26 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyMimosa.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

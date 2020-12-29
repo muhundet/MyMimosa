@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyMimosa</string>
+    <string name="app_name">MyMimosa©</string>
     <string name="tab_text_1">FORMS</string>
     <string name="tab_text_2">CHECKLIST</string>
     <string name="tab_text_3">REQUESTS</string>
@@ -8,37 +8,90 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="approver_hos_array">
-        <item>Select Approver HOS</item>
-        <item>Tristone Muhunde</item>
-        <item>Rodwell Mazambara</item>
-        <item>Tristone Muhunde</item>
-        <item>Rodwell Mazambara</item>
-        <item>Tristone Muhunde</item>
-        <item>Rodwell Mazambara</item>
-        <item>Tristone Muhunde</item>
-        <item>Rodwell Mazambara</item>
-        <item>Tristone Muhunde</item>
-        <item>Rodwell Mazambara</item>
-        <item>Tristone Muhunde</item>
+        <item>Select HOS Approver </item>
+        <item>Annie Mangwanda</item>
+        <item> Belinda Muzvidziwa</item>
+        <item> Brian Nyamubapasi</item>
+        <item> Brighton Daka</item>
+        <item> Bryan Matingwina</item>
+        <item> Chida Mundiri</item>
+        <item> Christopher Mushaike</item>
+        <item> Cyprian Mpofu</item>
+        <item> Didimalang Phuthi</item>
+        <item> Dumisani Sisale</item>
+        <item> Edgar Gwatumba</item>
+        <item> Edias Mudzovaniswa</item>
+        <item> Edmore Ngoribo</item>
+        <item> Edmore Tafirenyika</item>
+        <item> Emmanuel Chiguba</item>
+        <item> Evans Mtombeni</item>
+        <item> Faith Maipisi</item>
+        <item> Forward Manyanga</item>
+        <item> Freedom Chikona</item>
+        <item> Fungai Makoni</item>
+        <item> Gabriel Mwale</item>
+        <item> George Mawere</item>
+        <item> Ignatius Mahwite</item>
+        <item> Jill Mkharo</item>
+        <item> Jonathan Mhango</item>
+        <item> Lloyd Shamu</item>
+        <item> Lovelet Musakambewa</item>
+        <item> Loyd Shrichena</item>
+        <item> Lungile Munemo</item>
+        <item> Memory Mugova</item>
+        <item> Mnyasha Gumbie</item>
+        <item> Munyaradzi Chiyanike</item>
+        <item> Munyaradzi Munyaka</item>
+        <item> Nelson Mukuri</item>
+        <item> Nickie Andrews</item>
+        <item> Norkay Khuleya</item>
+        <item> Nowell Mafongoya</item>
+        <item> Obert Mukaratiwa</item>
+        <item> Pagaravanhu Rwatirera</item>
+        <item> Patrick Mutakiwa</item>
+        <item> Peter Chitsiku</item>
+        <item> Peter Mtombeni</item>
+        <item> Raphael Dumbura</item>
+        <item> Rindai Zabanyana</item>
+        <item> Robson Kabike</item>
+        <item> Simbarashe Takavingei</item>
+        <item> Stephen Ndiyamba</item>
+        <item> Talent Nyazaya</item>
+        <item> Tapiwa Chisango</item>
+        <item> Tapiwa Mutandavari</item>
+        <item> Tapiwa Zireva</item>
+        <item> Tazvitya Chikwakwata</item>
+        <item> Tendaishe Mushiri</item>
+        <item> Tendekai Madzivire</item>
+        <item> Timothy Kanyongo</item>
+        <item> Tinashe Mutanda</item>
+        <item> Tinayo Guveya</item>
+        <item> Tivongeshe Dewa</item>
+        <item> Tonderai Kwari</item>
+        <item> Vengai Mutangara</item>
+        <item> Webster Muchesa</item>
+        <item> Wilbert Manyika</item>
+        <item> YemuraiAbigail Mahachi</item>
+        <item> Tariro Bunu</item>
+        <item> Lloyd Mugadza</item>
+        <item> Bekithemba Nyathi</item>
     </string-array>
 
     <string-array name="approver_hr_array">
-        <item>Select Approver HR</item>
-        <item>Tristone Muhunde</item>
-        <item>Rodwell Mazambara</item>
-        <item>Tristone Muhunde</item>
-        <item>Rodwell Mazambara</item>
-        <item>Tristone Muhunde</item>
-        <item>Rodwell Mazambara</item>
-        <item>Tristone Muhunde</item>
-        <item>Rodwell Mazambara</item>
-        <item>Tristone Muhunde</item>
-        <item>Rodwell Mazambara</item>
-        <item>Tristone Muhunde</item>
+        <item>Select Approver HR Official</item>
+        <item>Benson Virimai</item>
+        <item>Forward Manyanga</item>
+        <item>George Mawere</item>
+        <item>Jessica Chonzi</item>
+        <item>Jessie Nenguwo</item>
+        <item>Kudzai Denya</item>
+        <item>Nowell Mafongoya</item>
+        <item>Smartfin Techu</item>
+        <item>Godknows Zhou</item>
     </string-array>
 
     <string-array name="deductions_criteria_array">
-        <item>Select deduction Criteria</item>
+        <item>Deduction Criteria(months)</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -46,4 +99,231 @@
         <item>5</item>
         <item>6</item>
     </string-array>
+
+    <string-array name="section_array">
+        <item>"SELECT YOUR SECTION</item>
+        <item>Blore Shaft Services</item>
+        <item>Buses Maintenance</item>
+        <item>Business Assurance</item>
+        <item>Civils</item>
+        <item>Clinic</item>
+        <item>Commercial Administraion</item>
+        <item>Contracts</item>
+        <item>Contracts Administration</item>
+        <item>Critical Development North</item>
+        <item>Crushing and Screening</item>
+        <item>Engineering General</item>
+        <item>Environment</item>
+        <item>Estates</item>
+        <item>Geology</item>
+        <item>HRD</item>
+        <item>ICT</item>
+        <item>Laboratory</item>
+        <item>Loss Control</item>
+        <item>Materials Handling General</item>
+        <item>Materials Handling North</item>
+        <item>Materials Handling South</item>
+        <item>Metallurgy</item>
+        <item>Mining North General</item>
+        <item>Mining North Section 1</item>
+        <item>Mining North Section 2</item>
+        <item>Mining North Section 3</item>
+        <item>Mining North Section 4</item>
+        <item>Mining North Section 5</item>
+        <item>Mining North Section 6</item>
+        <item>Mining North Services</item>
+        <item>Mining Planning</item>
+        <item>Mining South General</item>
+        <item>Mining South Section 1</item>
+        <item>Mining South Section 2</item>
+        <item>Mining South Section 3</item>
+        <item>Mining South Section 4</item>
+        <item>Mining South Section 5</item>
+        <item>Mining South Section 6</item>
+        <item>Mining South Services</item>
+        <item>Planning</item>
+        <item>Planning Services</item>
+        <item>Plant Engineering</item>
+        <item>Plant General</item>
+        <item>Projects</item>
+        <item>Proto</item>
+        <item>Risk</item>
+        <item>Roadways</item>
+        <item>SHE General</item>
+        <item>Supply Chain</item>
+        <item>Survey</item>
+        <item>Systems</item>
+        <item>Tailings Dam</item>
+        <item>Technical Projects</item>
+        <item>Technical Services General</item>
+        <item>Transport</item>
+        <item>Upper Ores 1</item>
+        <item>Upper Ores 2</item>
+        <item>Ventilation</item>
+        <item>Finance</item>
+        <item>Administration</item>
+        <item>Harare Office</item>
+        <item>HR Core Process</item>
+        <item>HR Central</item>
+        <item>Rigs</item>
+        <item>Mine Machines</item>
+    </string-array>
+
+    <string-array name="line_approver_array">
+        <item>Select Line Approver</item>
+        <item>Abercon Mbedzi</item>
+        <item>  Abigail Mahachi</item>
+        <item>  Adolph Madondo</item>
+        <item>  Alimon Kutadza</item>
+        <item>  Amin Jaidi</item>
+        <item>  Andrew Ndukwana</item>
+        <item>  Arthur Samuriwo</item>
+        <item>  Bernard Musona</item>
+        <item>  Brian Socha</item>
+        <item>  Brian Tagwira</item>
+        <item>  Chosen Chouraya</item>
+        <item>  Chrispen Maramba</item>
+        <item>  Chrispen Mudeyi</item>
+        <item>  Christian Magwaza</item>
+        <item>  Cleopatra Furusa</item>
+        <item>  Clifford Chipangamate</item>
+        <item>  Clifford Madara</item>
+        <item>  Dansten Vhondo</item>
+        <item>  Davison Nyachowe</item>
+        <item>  Dhariyosi Shoko</item>
+        <item>  Edson Mavhondo</item>
+        <item>  Edward Mhuka</item>
+        <item>  Edward Muchongweni</item>
+        <item>  Edwell Sanyamandwe</item>
+        <item>  Edwin Marodza</item>
+        <item>  Elliot Mutsikamahwe</item>
+        <item>  Everson Magiga</item>
+        <item>  Forgiveness Mudzingwa</item>
+        <item>  Francis Mupinyuri</item>
+        <item>  Freddy Chikwiri</item>
+        <item>  Gary Brown Mushaya</item>
+        <item>  Gift Tsoriyo</item>
+        <item>  Gilbert Madondo</item>
+        <item>  Godfrey Tawona</item>
+        <item>  Godfrey Zinyemba</item>
+        <item>  Innocent Mapuranga</item>
+        <item>  Innocent Nyangara</item>
+        <item>  Jimson Tauyanago</item>
+        <item>  Johanne Muza</item>
+        <item>  John Zijena</item>
+        <item>  Joseph Banda</item>
+        <item>  Kudzaishe Mbenje</item>
+        <item>  Kudzanai Waston Chande</item>
+        <item>  Kwaramba Tinofa</item>
+        <item>  Lackson Dzingirayi</item>
+        <item>  Litshaba Sibanda</item>
+        <item>  Lovemore Mlambo</item>
+        <item>  Luckson Chidenyika</item>
+        <item>  Lyton Muvandiri</item>
+        <item>  Marshall Diwa</item>
+        <item>  Marvin Zvomuya</item>
+        <item>  Masimba Chakombera</item>
+        <item>  Mathias Sithole</item>
+        <item>  Maxwell Mpofu</item>
+        <item>  Misheck Mavere</item>
+        <item>  Morgan Shumba</item>
+        <item>  Mtokozisi Sibanda</item>
+        <item>  Munyaradzi Munyaka</item>
+        <item>  Nicolas Zvaita</item>
+        <item>  Njabulo Bhika</item>
+        <item>  Nyenyai Taisireva</item>
+        <item>  Oliver Madzivadondo</item>
+        <item>  Onsimo Mbizvo</item>
+        <item>  Patrick Makotose</item>
+        <item>  Paul Ncube</item>
+        <item>  Peter Mutorogodo</item>
+        <item>  Praise Matutu</item>
+        <item>  Rangarirai Munemo</item>
+        <item>  Richard Mapondo</item>
+        <item>  Ronald Chitsiku</item>
+        <item>  Shelter Mutamba</item>
+        <item>  Shephered Mushawatu</item>
+        <item>  Simbarashe Matenda</item>
+        <item>  Solomon Ndhlovu</item>
+        <item>  Stephen Chingosho</item>
+        <item>  Tapera Dube</item>
+        <item>  Taurai Rukupe</item>
+        <item>  Tawanda Takavada</item>
+        <item>  Tendaishe Mushiri</item>
+        <item>  Tinashe Dingaan</item>
+        <item>  Tinashe Watungwa</item>
+        <item>  Tinaye Bhebhe</item>
+        <item>  Two Kufahakurambwi</item>
+        <item>  Wilfred Mawoneke</item>
+        <item>  Wilson Munyaka</item>
+        <item>  Yokonia Zakeyo</item>
+        <item>  Zebedee Gurajena</item>
+    </string-array>
+
+    <string-array name="approver_hod_array">
+        <item>--Select Approver--</item>
+        <item>Peter Mtombeni</item>
+        <item>  George Mawere</item>
+        <item>  Didimalang Phuthi</item>
+        <item>  Edmore Tafirenyika</item>
+        <item>  Wilbert Manyika</item>
+        <item>  Bryan Matingwina</item>
+        <item>  Lloyd Shamu</item>
+        <item>  Emmanuel Chiguba</item>
+        <item>  Brighton Daka</item>
+        <item>  Stephen Ndiyamba</item>
+        <item>  Fungai Makoni</item>
+        <item>  Norkay Khuleya</item>
+    </string-array>
+
+    <string-array name="child_level_array">
+        <item>--Select Child Level--</item>
+        <item>Grade 1</item>
+        <item>  Grade 2</item>
+        <item>  Grade 3</item>
+        <item>  Grade 4</item>
+        <item>  Grade 5</item>
+        <item>  Grade 6</item>
+        <item>  Grade 7</item>
+        <item>  Form 1</item>
+        <item>  Form 2</item>
+        <item>  Form 3</item>
+        <item>  Form 4</item>
+        <item>  Form 5</item>
+        <item>  Form 6</item>
+        <item>  Tertiary</item>
+    </string-array>
+
+    <string-array name="grade_array">
+        <item>--Select Grade--</item>
+        <item>NEC 1</item>
+        <item>NEC 2</item>
+        <item>  NEC 3</item>
+        <item>  NEC 4</item>
+        <item>  NEC 5</item>
+        <item>  NEC 6</item>
+        <item>  NEC 7</item>
+        <item>  NEC 9</item>
+        <item>  NEC 10</item>
+        <item>  NEC 11</item>
+        <item>  NEC 12</item>
+        <item>  B</item>
+        <item>  E</item>
+        <item>  F</item>
+        <item>  G</item>
+        <item>  H</item>
+        <item>  I</item>
+        <item>  J</item>
+        <item>  K</item>
+        <item>  L</item>
+        <item>  M</item>
+        <item>  N</item>
+        <item>  O</item>
+        <item>  P</item>
+        <item>  Q</item>
+        <item>  R</item>
+        <item>  S</item>
+        <item>  U</item>
+    </string-array>
+
 </resources>

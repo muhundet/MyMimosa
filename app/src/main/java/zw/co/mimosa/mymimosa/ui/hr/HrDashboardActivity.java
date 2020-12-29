@@ -19,10 +19,12 @@ public class HrDashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hr_dashboard);
         mRecyclerViewHrMenu = findViewById(R.id.rvHrMenu);
         HrMenuModel hmm = new HrMenuModel("LEAVE AND TEMPORARY EARNINGS FORM");
-        HrMenuModel hmm1 = new HrMenuModel("LEAVE AND TEMPORARY EARNINGS FORM");
+        HrMenuModel hmm1 = new HrMenuModel("EDUCATIONAL ASSISTANCE FORM");
+        HrMenuModel hmm2 = new HrMenuModel("ACTING ALLOWANCE FORM");
         ArrayList<HrMenuModel> hrMenuModels = new ArrayList<>();
         hrMenuModels.add(hmm);
         hrMenuModels.add(hmm1);
+        hrMenuModels.add(hmm2);
         HrFormRecyclerAdapter adapter = new HrFormRecyclerAdapter(this, hrMenuModels);
         mRecyclerViewHrMenu.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerViewHrMenu.setAdapter(adapter);

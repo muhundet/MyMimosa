@@ -43,6 +43,6 @@ public void onDateSet(android.widget.DatePicker view, int year, int month, int d
         endDate.setText(year + "/0" + actualMonth + "/" + dayOfMonth );
         }else
         endDate.setText( year + "/" + actualMonth + "/" + dayOfMonth);
-        Toast.makeText(getContext(), "End Date Set " , Toast.LENGTH_LONG).show();
+
         }
 }

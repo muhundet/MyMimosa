@@ -1,17 +1,11 @@
 package zw.co.mimosa.mymimosa.data.remote;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonParser;
-
-
-import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import zw.co.mimosa.mymimosa.data.InputData;
-import zw.co.mimosa.mymimosa.data.LeaveRequest;
+import zw.co.mimosa.mymimosa.data.leave_data.LeaveRequest;
 
 public interface APIService {
 
@@ -20,4 +14,5 @@ public interface APIService {
     @POST("/api/v3/requests/")
 //    @FormUrlEncoded
     Call<LeaveRequest> saveLeaveDataModel(@Body LeaveRequest leaveRequest);
+
 }

@@ -43,7 +43,7 @@ public class DateRepaidPicker extends DialogFragment
             endDate.setText(year + "/0" + actualMonth + "/" + dayOfMonth );
         }else
             endDate.setText( year + "/" + actualMonth + "/" + dayOfMonth);
-        Toast.makeText(getContext(), "End Date Set " , Toast.LENGTH_LONG).show();
+
     }
 }
 

@@ -10,7 +10,6 @@ public class LoggedInUserAccessUtility {
 
     }
 
-
     public static LoggedInUserAccessUtility getInstance()
     {
         if (instance == null)

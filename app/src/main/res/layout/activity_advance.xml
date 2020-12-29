@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.hr.AdvanceActivity">
+    tools:context=".ui.hr.leave_and_advance.AdvanceActivity">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_advance_submit"
@@ -12,59 +12,39 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="SUBMIT"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_advance_approver_hr" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/advance_designation"
+        android:id="@+id/ea_designation"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="190dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:hint="Designation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/advance_section"
-        app:layout_constraintTop_toBottomOf="@+id/advance_department">
+        app:layout_constraintStart_toEndOf="@+id/advance_amount"
+        app:layout_constraintTop_toBottomOf="@+id/ea_department">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_advance_designation"
+            android:enabled="false"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_advance_designation"/>
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/advance_section"
+        android:id="@+id/ea_department"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="190dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:hint="Section"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/advance_mine_number">
-
-        <com.google.android.material.textfield.TextInputEditText
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_advance_section"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/advance_department"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="190dp"
-        android:layout_height="72dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -72,39 +52,42 @@
         android:layout_marginRight="8dp"
         android:hint="Department"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/advance_mine_number"
-        app:layout_constraintTop_toBottomOf="@+id/advance_surname">
+        app:layout_constraintStart_toEndOf="@+id/ea_mine_number"
+        app:layout_constraintTop_toBottomOf="@+id/ea_surname">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_advance_department"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/et_advance_department"/>
+            android:enabled="false"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/advance_mine_number"
+        android:id="@+id/ea_mine_number"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="190dp"
-        android:layout_height="72dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:hint="Mine Number"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/advance_firstname">
+        app:layout_constraintTop_toBottomOf="@+id/ea_firstname">
 
         <com.google.android.material.textfield.TextInputEditText
 
+            android:id="@+id/et_advance_mine_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/et_advance_mine_number"/>
+            android:enabled="false"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/advance_firstname"
+        android:id="@+id/ea_firstname"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="190dp"
-        android:layout_height="72dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -113,16 +96,17 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_advance_first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/et_advance_first_name"/>
+            android:enabled="false"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/advance_surname"
+        android:id="@+id/ea_surname"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="190dp"
-        android:layout_height="72dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -130,19 +114,20 @@
         android:layout_marginRight="8dp"
         android:hint="Surname"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/advance_firstname"
+        app:layout_constraintStart_toEndOf="@+id/ea_firstname"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_advance_last_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/et_advance_last_name"/>
+            android:enabled="false"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/advance_amount"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -151,55 +136,58 @@
         android:layout_marginRight="8dp"
         android:hint="Advance amount"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/advance_section">
+        app:layout_constraintTop_toBottomOf="@+id/ea_mine_number">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_advance_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/et_advance_amount"/>
+            android:inputType="number"
+            android:maxLength="4" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/advance_date_of_last_advance"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:hint="Date of Last advance"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/advance_amount">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_advance_date_of_last_advance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/et_advance_date_of_last_advance" />
+            android:focusable="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/advance_date_repaid"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:focusable="false"
         android:hint="Date repaid"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/advance_date_of_last_advance">
+        app:layout_constraintStart_toEndOf="@+id/advance_date_of_last_advance"
+        app:layout_constraintTop_toBottomOf="@+id/ea_designation">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_advance_date_repaid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/et_advance_date_repaid"/>
+            android:focusable="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -214,89 +202,70 @@
         android:layout_marginRight="8dp"
         android:hint="Reason for advance payment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/advance_date_repaid">
+        app:layout_constraintTop_toBottomOf="@+id/advance_date_of_last_advance">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_advance_reason"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_advance_reason"/>
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Duration of monthly deductions"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/advance_reason" />
 
     <Spinner
         android:id="@+id/spinner_deductions"
-        android:layout_width="202dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/advance_reason" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Approver HOS"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_advance_section"
+        android:background="@drawable/spinner_border"/>
 
     <Spinner
         android:id="@+id/spinner_advance_approver_hos"
-        android:layout_width="196dp"
-        android:layout_height="25dp"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_deductions" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Approver HOD"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_deductions"
+        android:background="@drawable/spinner_border"/>
 
     <Spinner
         android:id="@+id/spinner_advance_approver_hr"
-        android:layout_width="197dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_advance_approver_hos" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_advance_approver_hos"
+        android:background="@drawable/spinner_border"/>
+
+    <Spinner
+        android:id="@+id/spinner_advance_section"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/advance_reason"
+        android:background="@drawable/spinner_border"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

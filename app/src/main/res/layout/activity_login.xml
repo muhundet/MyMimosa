@@ -10,17 +10,11 @@
 
     <ImageView
         android:id="@+id/image_logo_login"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:ignore="VectorDrawableCompat" />
-    <TextView
-        android:id="@+id/tv_login_greeting"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MIMOSA APP"
-        android:textSize="20dp"
-        android:textColor="@color/black"/>
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/mimosa_logo"
+        tools:ignore="VectorDrawableCompat" />
+
 
     <TextView
         android:id="@+id/tv_login_to_continue"

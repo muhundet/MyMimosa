@@ -10,7 +10,10 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import zw.co.mimosa.mymimosa.R;
 
@@ -43,6 +46,8 @@ public class StartDatePicker extends DialogFragment
             startDate.setText(year + "/0" + actualMonth + "/" + dayOfMonth );
         }else
             startDate.setText( year + "/" + actualMonth + "/" + dayOfMonth);
-        Toast.makeText(getContext(), "Start Date Set " , Toast.LENGTH_LONG).show();
+
+
+      //  Toast.makeText(getContext(), "Start Date Set " , Toast.LENGTH_LONG).show();
     }
 }
