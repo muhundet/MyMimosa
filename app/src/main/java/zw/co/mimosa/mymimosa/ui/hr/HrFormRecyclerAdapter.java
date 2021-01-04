@@ -8,10 +8,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.os.Build;
+import android.text.InputType;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,14 +27,22 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.ArrayList;
 
 import zw.co.mimosa.mymimosa.R;
+import zw.co.mimosa.mymimosa.data.acting_allowance_data.ActingAllowanceRequest;
 import zw.co.mimosa.mymimosa.database.OpenHelper;
+import zw.co.mimosa.mymimosa.ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationHelper;
+import zw.co.mimosa.mymimosa.ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationMine;
+import zw.co.mimosa.mymimosa.ui.harare_office.petty_cash_authorisation_harare_office.PettyCashAuthorisationHarare;
+import zw.co.mimosa.mymimosa.ui.harare_office.petty_cash_authorisation_harare_office.PettyCashAuthorisationHarareHelper;
 import zw.co.mimosa.mymimosa.ui.hr.acting_allowance.ActingAllowanceActivity;
+import zw.co.mimosa.mymimosa.ui.hr.acting_allowance.ActingAllowanceActivity2;
 import zw.co.mimosa.mymimosa.ui.hr.acting_allowance.ActingAllowanceHelper;
 import zw.co.mimosa.mymimosa.ui.hr.educational_assistance.EducationalAssistanceActivity;
 import zw.co.mimosa.mymimosa.ui.hr.educational_assistance.EducationalAssistanceHelper;
 import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.AdvanceActivity;
 import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.LeaveActivity;
 import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.LeaveFormHelper;
+import zw.co.mimosa.mymimosa.ui.medical_services.covid_return.CovidReturnToWork;
+import zw.co.mimosa.mymimosa.ui.medical_services.covid_return.CovidReturnToWorkHelper;
 import zw.co.mimosa.mymimosa.utilities.LoggedInUserAccessUtility;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
@@ -108,6 +119,7 @@ public class HrFormRecyclerAdapter extends RecyclerView.Adapter<HrFormRecyclerAd
         final String[] emailId = new String[1];
         final String[] firstName = new String[1];
         final String[] lastName = new String[1];
+        final String[] covidTemplate = new String[1];
 
         @Override
         public void onClick(View v) {
@@ -301,7 +313,79 @@ public class HrFormRecyclerAdapter extends RecyclerView.Adapter<HrFormRecyclerAd
                     intentActingAllowance.putExtra("FIRSTNAME", firstName[0]);
                     intentActingAllowance.putExtra("LASTNAME", lastName[0]);
                     mContext.startActivity(intentActingAllowance);
+                    break;
 
+                case 3:
+                    luau = LoggedInUserAccessUtility.getInstance();
+                    empIdFromLUAU = luau.getEmployeeId();
+                    getUserFromDatabase(empIdFromLUAU);
+                    setUserFieldsToPettyCashAuthorisation();
+                    Intent intentPettyCashAuthorisation = new Intent(mContext, PettyCashAuthorisationMine.class);
+                    intentPettyCashAuthorisation.putExtra("DEPARTMENTID", departmentName[0]);
+                    intentPettyCashAuthorisation.putExtra("EMPID", empId[0]);
+                    intentPettyCashAuthorisation.putExtra("JOBTITLE", jobTitle[0]);
+                    intentPettyCashAuthorisation.putExtra("EMAILID", emailId[0]);
+                    intentPettyCashAuthorisation.putExtra("FIRSTNAME", firstName[0]);
+                    intentPettyCashAuthorisation.putExtra("LASTNAME", lastName[0]);
+                    mContext.startActivity(intentPettyCashAuthorisation);
+                    break;
+
+                case 4:
+                    luau = LoggedInUserAccessUtility.getInstance();
+                    empIdFromLUAU = luau.getEmployeeId();
+                    getUserFromDatabase(empIdFromLUAU);
+                    setUserFieldsToPettyCashAuthorisation();
+                    Intent intentPettyCashAuthorisationHarare = new Intent(mContext, PettyCashAuthorisationHarare.class);
+                    intentPettyCashAuthorisationHarare.putExtra("DEPARTMENTID", departmentName[0]);
+                    intentPettyCashAuthorisationHarare.putExtra("EMPID", empId[0]);
+                    intentPettyCashAuthorisationHarare.putExtra("JOBTITLE", jobTitle[0]);
+                    intentPettyCashAuthorisationHarare.putExtra("EMAILID", emailId[0]);
+                    intentPettyCashAuthorisationHarare.putExtra("FIRSTNAME", firstName[0]);
+                    intentPettyCashAuthorisationHarare.putExtra("LASTNAME", lastName[0]);
+                    mContext.startActivity(intentPettyCashAuthorisationHarare);
+                    break;
+
+                case 5:
+
+//                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+//                builder.setTitle("Covid Screening Type");
+//                builder.setPositiveButton("Return", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int whichButton) {
+//                        covidTemplate[0] = "COVID-19 SCREENING FORM- Return To Work Description";
+////                        dialog.dismiss();
+//                    }
+//                });
+//                builder.setNeutralButton("Driver", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int whichButton) {
+//                        covidTemplate[0] = "COVID-19 SCREENING FORM- Return To Work Description";
+////                        dialog.dismiss();
+//                    }
+//                });
+//
+//                builder.setNegativeButton("Routine",
+//                        new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                covidTemplate[0] = "COVID-19 SCREENING FORM- Return To Work Description";
+////                                dialog.dismiss();
+//                            }
+//                        });
+//                AlertDialog covidAlert = builder.create();
+//                covidAlert.show();
+
+                    luau = LoggedInUserAccessUtility.getInstance();
+                    empIdFromLUAU = luau.getEmployeeId();
+                    getUserFromDatabase(empIdFromLUAU);
+                    setUserFieldsToCovidReturnToWork();
+                    Intent intentCovidReturnToWork = new Intent(mContext, CovidReturnToWork.class);
+                    intentCovidReturnToWork.putExtra("DEPARTMENTID", departmentName[0]);
+                    intentCovidReturnToWork.putExtra("EMPID", empId[0]);
+                    intentCovidReturnToWork.putExtra("JOBTITLE", jobTitle[0]);
+                    intentCovidReturnToWork.putExtra("EMAILID", emailId[0]);
+                    intentCovidReturnToWork.putExtra("FIRSTNAME", firstName[0]);
+                    intentCovidReturnToWork.putExtra("LASTNAME", lastName[0]);
+                    mContext.startActivity(intentCovidReturnToWork);
+                    break;
             }
 
         }
@@ -393,6 +477,26 @@ public class HrFormRecyclerAdapter extends RecyclerView.Adapter<HrFormRecyclerAd
             eah.setDepartment(departmentName[0]);
             eah.setDesignation(jobTitle[0]);
             eah.setEmailId(emailId[0]);
+        }
+
+        private void setUserFieldsToPettyCashAuthorisation() {
+            PettyCashAuthorisationHarareHelper pcam = PettyCashAuthorisationHarareHelper.getPettyCashAuthorisationInstance();
+            pcam.setFirstname(firstName[0]);
+            pcam.setSurname(lastName[0]);
+            pcam.setEmployeeId(empId[0]);
+            pcam.setDepartment(departmentName[0]);
+            pcam.setDesignation(jobTitle[0]);
+            pcam.setEmailId(emailId[0]);
+        }
+
+        private void setUserFieldsToCovidReturnToWork() {
+            CovidReturnToWorkHelper creturn = CovidReturnToWorkHelper.getCovidReturnToWorkHelperInstance();
+            creturn.setFirstname(firstName[0]);
+            creturn.setSurname(lastName[0]);
+            creturn.setEmployeeId(empId[0]);
+            creturn.setDepartment(departmentName[0]);
+            creturn.setDesignation(jobTitle[0]);
+            creturn.setEmailId(emailId[0]);
         }
     }
 }

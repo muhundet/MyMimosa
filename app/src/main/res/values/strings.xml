@@ -326,4 +326,21 @@
         <item>  U</item>
     </string-array>
 
+    <string-array name="management_accounting_array">
+        <item>Innocent Mavi</item>
+        <item>Linda Nyamukonda</item>
+        <item>Rumbidzai Kanyongo</item>
+        <item>Douglas Tsorai</item>
+        <item>Regis Mutizwa</item>
+    </string-array>
+
+    <string-array name="cost_centre_array">
+        <item>21MA01</item>
+        <item>21MA02</item>
+        <item>21MA03</item>
+        <item>21MA04</item>
+        <item>21MA05</item>
+    </string-array>
+
+
 </resources>
