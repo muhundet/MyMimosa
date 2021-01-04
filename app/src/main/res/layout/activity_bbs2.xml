@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/TextViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:text="@string/value"
+        android:textSize="10pt"
+        android:textStyle="bold"/>
+
+    <CheckBox
+        android:id="@+id/chkExcellence"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_excellence" />
+
+    <CheckBox
+        android:id="@+id/chkGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_goal" />
+
+    <CheckBox
+        android:id="@+id/chkOwnership"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_ownership" />
+
+    <CheckBox
+        android:id="@+id/chkEmpowerment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_empowerment" />
+    <CheckBox
+        android:id="@+id/chkRecognition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_recognition" />
+    <CheckBox
+        android:id="@+id/chkMotivation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_motivation" />
+    <CheckBox
+        android:id="@+id/chkCommunication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_communication" />
+    <CheckBox
+        android:id="@+id/chkCustomer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_customer" />
+    <CheckBox
+        android:id="@+id/chkSustainability"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_sustainability" />
+    <CheckBox
+        android:id="@+id/chkEfficiency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_efficiency" />
+
+    <CheckBox
+        android:id="@+id/chkTeamwork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_teamwork" />
+    <CheckBox
+        android:id="@+id/chkIntegrity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_integrity" />
+    <CheckBox
+        android:id="@+id/chkPrayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_prayer" />
+    <CheckBox
+        android:id="@+id/chkInnovation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_innovation" />
+    <CheckBox
+        android:id="@+id/chkTransparency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_transparency" />
+
+    <CheckBox
+        android:id="@+id/chkAccountability"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_accountability" />
+
+    <CheckBox
+        android:id="@+id/chkWellness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_wellness" />
+
+    <CheckBox
+        android:id="@+id/chkCare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_care" />
+
+        <Button
+            android:id="@+id/Button"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:text="@string/Button" />
+
+
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
