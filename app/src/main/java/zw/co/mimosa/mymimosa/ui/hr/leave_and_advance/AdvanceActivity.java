@@ -10,9 +10,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,12 +23,17 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -50,6 +57,8 @@ public class AdvanceActivity extends AppCompatActivity {
             inputLayoutDesignation,inputLayoutAdvanceAmount,
             inputLayoutDateOfLastAdvance, inputLayoutDateRepaid, inputLayoutAdvanceReason;
     Spinner spinnerSection, spinnerDeductions, spinnerApproverHos, spinnerApproverHr;
+
+    ProgressBar pgBarSubmit;
 
     LeaveFormHelper leaveFormHelper = LeaveFormHelper.getLeaveFormHelperInstance();
     long lastAdvanceDateLong, repaidDateLong;
@@ -85,6 +94,8 @@ public class AdvanceActivity extends AppCompatActivity {
         spinnerDeductions = findViewById(R.id.spinner_deductions);
         spinnerApproverHos = findViewById(R.id.spinner_advance_approver_hos);
         spinnerApproverHr = findViewById(R.id.spinner_advance_approver_hr);
+
+        pgBarSubmit = findViewById(R.id.progress_bar_advance_submit);
 
         etAdvanceAmount.requestFocus();
         InputMethodManager imm = (InputMethodManager) this.getSystemService(INPUT_METHOD_SERVICE);
@@ -136,7 +147,7 @@ public class AdvanceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (!validateAdvanceAmount() | !validateDateOfLastAdvance() | !validateDateRepaid() | !validateAdvanceReason() | !validateSpinnerSection() | !validateSpinnerDeductions() | !validateSpinnerApproverHos() | ! validateSpinnerApproverHr()) {
+                if (validateAdvanceAmount() && validateDateOfLastAdvance() && validateDateRepaid() && validateAdvanceReason() && validateSpinnerSection() && validateSpinnerDeductions() && validateSpinnerApproverHos() && validateSpinnerApproverHr()) {
 
                     LeaveFormHelper lfh = LeaveFormHelper.getLeaveFormHelperInstance();
                     lfh.setSection(spinnerSection.getSelectedItem().toString());
@@ -208,7 +219,7 @@ public class AdvanceActivity extends AppCompatActivity {
         String checkspaces = "Aw{1,20}z";
 
         if (val.isEmpty()) {
-            inputLayoutAdvanceAmount.setError("Days acrued can not be empty");
+            inputLayoutAdvanceAmount.setError("Days acrued can notbe empty");
             return false;
         } else if (val.length() > 100) {
             inputLayoutAdvanceAmount.setError("Days acrued is too large!");
@@ -230,7 +241,7 @@ public class AdvanceActivity extends AppCompatActivity {
         String checkspaces = "Aw{1,20}z";
 
         if (val.isEmpty()) {
-            inputLayoutDateOfLastAdvance.setError("Days acrued can not be empty");
+            inputLayoutDateOfLastAdvance.setError("Days acrued cannot be empty");
             return false;
         } else if (val.length() > 100) {
             inputLayoutDateOfLastAdvance.setError("Days acrued is too large!");
@@ -252,7 +263,7 @@ public class AdvanceActivity extends AppCompatActivity {
         String checkspaces = "Aw{1,20}z";
 
         if (val.isEmpty()) {
-            inputLayoutDateRepaid.setError("Days acrued can not be empty");
+            inputLayoutDateRepaid.setError("Days acrued cannot be empty");
             return false;
         } else if (val.length() > 100) {
             inputLayoutDateRepaid.setError("Days acrued is too large!");
@@ -274,7 +285,7 @@ public class AdvanceActivity extends AppCompatActivity {
         String checkspaces = "Aw{1,20}z";
 
         if (val.isEmpty()) {
-            inputLayoutAdvanceReason.setError("Days acrued can not be empty");
+            inputLayoutAdvanceReason.setError("Reasin for advance cannot be empty");
             return false;
         } else if (val.length() > 100) {
             inputLayoutAdvanceReason.setError("Days acrued is too large!");
@@ -293,11 +304,11 @@ public class AdvanceActivity extends AppCompatActivity {
 
     private boolean validateSpinnerSection() {
         if (spinnerDeductions.getSelectedItemPosition() == 0) {
-            Toast.makeText(this, "Please Select deduction criteria", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please Select your section", Toast.LENGTH_SHORT).show();
             Log.d("TAG", "validateSpinnerSection:Nothing selected ");
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -305,9 +316,9 @@ public class AdvanceActivity extends AppCompatActivity {
         if (spinnerDeductions.getSelectedItemPosition() == 0) {
             Toast.makeText(this, "Please Select deduction criteria", Toast.LENGTH_SHORT).show();
             Log.d("TAG", "validateSpinnerHOS:Nothing selected ");
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -315,9 +326,9 @@ public class AdvanceActivity extends AppCompatActivity {
         if (spinnerApproverHos.getSelectedItemPosition() == 0) {
             Toast.makeText(this, "Please Select Approver HOS", Toast.LENGTH_SHORT).show();
             Log.d("TAG", "validateSpinnerHOS:Nothing selected ");
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -325,9 +336,9 @@ public class AdvanceActivity extends AppCompatActivity {
         if (spinnerApproverHr.getSelectedItemPosition() == 0) {
             Toast.makeText(this, "Please Select Approver HR", Toast.LENGTH_SHORT).show();
             Log.d("TAG", "validateSpinnerHOS:Nothing selected ");
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -346,7 +357,6 @@ public class AdvanceActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String jsonStr = gson.toJson(advanceRequest);
 
-
         @Override
         protected String doInBackground(URL... urls) {
             AndroidNetworking.post("https://servicedesk.mimosa.co.zw:8090/api/v3/requests")
@@ -356,9 +366,9 @@ public class AdvanceActivity extends AppCompatActivity {
                     .setTag(this)
                     .setPriority(Priority.MEDIUM)
                     .build()
-                    .getAsJSONArray(new JSONArrayRequestListener() {
+                    .getAsJSONObject(new JSONObjectRequestListener() {
                         @Override
-                        public void onResponse(JSONArray response) {
+                        public void onResponse(JSONObject response) {
                             // do anything with response
                             System.out.println("response");
 
@@ -380,10 +390,12 @@ public class AdvanceActivity extends AppCompatActivity {
 
                         @Override
                         public void onError(ANError error) {
-
                             Log.d("TAG", "onError errorCode : " + error.getErrorCode());
                             Log.d("TAG", "onError errorBody : " + error.getErrorBody());
                             Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
+                            saveJson();
+                            pgBarSubmit.setVisibility(View.INVISIBLE);
+                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
                                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(AdvanceActivity.this);
 //                                dialogBuilder.setMessage("Your application was not sent because of bad network, the system will resend when network is detected. No need to redo the request.")
@@ -405,6 +417,19 @@ public class AdvanceActivity extends AppCompatActivity {
             return result;
         }
 
+        private void saveJson(){
+            try {
+                File file = new File(AdvanceActivity.this.getFilesDir(), "TestAdvance.json");
+                FileWriter fileWriter = new FileWriter(file);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                bufferedWriter.write(jsonStr);
+                bufferedWriter.close();
+                System.out.println("json file saved success in: " + file.getPath());
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
         @Override
         protected void onPostExecute(String result) {
 
@@ -422,7 +447,9 @@ public class AdvanceActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+            pgBarSubmit.setVisibility(View.VISIBLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         }
     }
 

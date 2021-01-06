@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="zw.co.mimosa.mymimosa">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -19,7 +20,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMimosa"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.medical_services.covid_return.CovidReturnToWork"></activity>
+
+        <receiver android:name=".utilities.NetworkStateChecker">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".ui.medical_services.MedicalServicesDashboardActivity"></activity>
+        <activity android:name=".ui.medical_services.covid_return.CovidReturnToWork" />
         <activity android:name=".ui.harare_office.petty_cash_authorisation_harare_office.PettyCashAuthorisationHarare" />
         <activity android:name=".ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationMine" />
         <activity android:name=".ui.hr.acting_allowance.ActingAllowanceActivity2" />

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,8 +16,11 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -54,6 +58,7 @@ public class EducationalAssistanceActivity2 extends AppCompatActivity {
     Button btnSubmit, btnAttachDocuments;
     Spinner spinnerEAApprover;
     TextView tvAttachmentRecorder;
+    ProgressBar pgBarSubmit;
     EducationalAssistanceHelper educationalAssistanceHelper = EducationalAssistanceHelper.getEducationalAssistanceInstance();
     public EducationalAssistanceRequest educationalAssistanceRequest;
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -82,6 +87,8 @@ public class EducationalAssistanceActivity2 extends AppCompatActivity {
         spinnerEAApprover = findViewById(R.id.spinner_ea_approver);
 
         tvAttachmentRecorder = findViewById(R.id.tvAttachmentRecorder);
+
+        pgBarSubmit = findViewById(R.id.progress_bar_ea_submit);
 
         btnSubmit = findViewById(R.id.button_ea_submit);
         btnAttachDocuments = findViewById(R.id.button_attach_documents);
@@ -119,13 +126,13 @@ public class EducationalAssistanceActivity2 extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (!validateCurrency() | (!validateInvoiceValue() | !validateReceiptValue())) {
-                int selectedId = radioGroupCurrency.getCheckedRadioButtonId();
-                radioButtonCurrency= findViewById(selectedId);
-                educationalAssistanceHelper.setApprover(spinnerEAApprover.getSelectedItem().toString());
+                if (validateCurrency() && validateAttachments () && validateSpinnerApproverHr() && (validateInvoiceValue() | validateReceiptValue())) {
+                    int selectedId = radioGroupCurrency.getCheckedRadioButtonId();
+                    radioButtonCurrency = findViewById(selectedId);
+                    educationalAssistanceHelper.setApprover(spinnerEAApprover.getSelectedItem().toString());
 //                educationalAssistanceHelper.setApproverStage1(spinnerEAApprover.getSelectedItem().toString());
-                educationalAssistanceHelper.setEAApprovers();
-                System.out.println();
+                    educationalAssistanceHelper.setEAApprovers();
+                    System.out.println();
                     String template = "Educational Assistance Form";
                     String requester = educationalAssistanceHelper.getFirstname() + " " + educationalAssistanceHelper.getSurname();
                     String subject = "Educational Assistance for " + educationalAssistanceHelper.getFirstname() + " " + educationalAssistanceHelper.getSurname() + " (from android device)";
@@ -163,6 +170,7 @@ public class EducationalAssistanceActivity2 extends AppCompatActivity {
                     educationalAssistanceRequest = new EducationalAssistanceRequest(request);
                     new EducationalAssistanceQueryTask().execute();
 //                }
+                }
             }
         });
 
@@ -234,7 +242,9 @@ public class EducationalAssistanceActivity2 extends AppCompatActivity {
         String checkspaces = "Aw{1,20}z";
 
         if (val.isEmpty()) {
-            inputLayoutInvoiceValue.setError("Invoice value cannot be empty");
+            etInvoiceValue.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etInvoiceValue, InputMethodManager.SHOW_IMPLICIT);
             return false;
         } else if (val.length() > 20) {
             inputLayoutInvoiceValue.setError("Invoice value is too large!");
@@ -256,7 +266,9 @@ public class EducationalAssistanceActivity2 extends AppCompatActivity {
         String checkspaces = "Aw{1,20}z";
 
         if (val.isEmpty()) {
-            inputLayoutReceiptValue.setError("Receipt value cannot be empty");
+            etReceiptvalue.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etReceiptvalue, InputMethodManager.SHOW_IMPLICIT);
             return false;
         } else if (val.length() > 20) {
             inputLayoutReceiptValue.setError("Receipt value is too large!");
@@ -283,6 +295,27 @@ public class EducationalAssistanceActivity2 extends AppCompatActivity {
         }
     }
 
+    private boolean validateAttachments() {
+        if (attachmentCounter<1) {
+            Toast.makeText(this, "Make sure you have attached at least a supporting document", Toast.LENGTH_SHORT).show();
+            Log.d("TAG", "validateAttachment:Nothing selected ");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerApproverHr() {
+        if (spinnerEAApprover.getSelectedItemPosition() == 0) {
+            Toast.makeText(this, "Please Select Approver", Toast.LENGTH_SHORT).show();
+            Log.d("TAG", "validateSpinnerApprover:Nothing selected ");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
     public class EducationalAssistanceQueryTask extends AsyncTask<URL, Void, String> {
         String result;
         Gson gson = new Gson();
@@ -303,7 +336,7 @@ public class EducationalAssistanceActivity2 extends AppCompatActivity {
                 // cursor.close();
                 return s;
             }
-            // cursor.close();
+
             return null;
         }
 
@@ -334,26 +367,10 @@ public class EducationalAssistanceActivity2 extends AppCompatActivity {
                                 status_code=response_jobj.get("status_code").toString();
                                 System.out.println("This is the id: " +status_code);
 
-//                                if(isInvoiceAttachment && isReceiptAttachment) {
-//                                    File fileInvoice = new File(educationalAssistanceHelper.getInvoiceFilePath());
-//                                    File fileReceipt = new File(educationalAssistanceHelper.getReceiptFilePath());
-//                                    File fileIReceipt1 = new File(educationalAssistanceHelper.getReceiptFilePath());
-//                                    File[] files = new File[2];
-//                                    files[0] = fileInvoice;
-//                                    files[1] = fileReceipt;
-
-
-
-//                                    List<File> list = new ArrayList<>();
-//                                    list.add(fileInvoice); //adds number 5 to the list
-////                                    int number = list.get(0)
-//                                    list.add(fileReceipt);
-
                                     for(int i = 0; i<list.size();i++) {
                                         AndroidNetworking.upload("https://servicedesk.mimosa.co.zw:8090/api/v3/attachment")
                                                 .addHeaders("TECHNICIAN_KEY", "5775EFB0-AAB8-437A-8888-A330875F2B8D")
                                                 .addMultipartFile("image", list.get(i))
-//                                                .addMultipartFile("image1", fileIReceipt)
                                                 .addMultipartParameter("OPERATION_NAME", "ADD_ATTACHMENT")
                                                 .addMultipartParameter("input_data", "{\n" +
                                                         "\t\"attachment\": {\n" +
@@ -382,79 +399,10 @@ public class EducationalAssistanceActivity2 extends AppCompatActivity {
                                                     }
                                                 });
                                     }
-//                                } else if(isInvoiceAttachment && !isReceiptAttachment){
-//                                    File fileInvoice = new File(educationalAssistanceHelper.getInvoiceFilePath());
-//                                    AndroidNetworking.upload("https://servicedesk.mimosa.co.zw:8090/api/v3/attachment")
-//                                            .addHeaders("TECHNICIAN_KEY", "5775EFB0-AAB8-437A-8888-A330875F2B8D")
-//                                            .addMultipartFile("image", fileInvoice)
-//                                            .addMultipartParameter("OPERATION_NAME", "ADD_ATTACHMENT")
-//                                            .addMultipartParameter("input_data", "{\n" +
-//                                                    "\t\"attachment\": {\n" +
-//                                                    "\t\t\"request\": {\n" +
-//                                                    "\t\t\t\"id\": \"" + result + "\"\n" +
-//                                                    "\t\t}\n" +
-//                                                    "\t}\n" +
-//                                                    "}")
-//                                            .setPriority(Priority.HIGH)
-//                                            .build()
-//                                            .setUploadProgressListener(new UploadProgressListener() {
-//                                                @Override
-//                                                public void onProgress(long bytesUploaded, long totalBytes) {
-//                                                    // do anything with progress
-//                                                }
-//                                            })
-//                                            .getAsJSONObject(new JSONObjectRequestListener() {
-//                                                @Override
-//                                                public void onResponse(JSONObject response) {
-//                                                    System.out.println("Attachment" + response.toString());
-//                                                }
-//
-//                                                @Override
-//                                                public void onError(ANError error) {
-//                                                    System.out.println("Attachment " + error.toString());
-//                                                }
-//                                            });
-//                                    System.out.println("Only invoice attachments");
-//                                } else if(!isInvoiceAttachment && isReceiptAttachment){
-//                                    File fileReceipt = new File(educationalAssistanceHelper.getReceiptFilePath());
-//                                    AndroidNetworking.upload("https://servicedesk.mimosa.co.zw:8090/api/v3/attachment")
-//                                            .addHeaders("TECHNICIAN_KEY", "5775EFB0-AAB8-437A-8888-A330875F2B8D")
-//                                            .addMultipartFile("image1", fileReceipt)
-//                                            .addMultipartParameter("OPERATION_NAME", "ADD_ATTACHMENT")
-//                                            .addMultipartParameter("input_data", "{\n" +
-//                                                    "\t\"attachment\": {\n" +
-//                                                    "\t\t\"request\": {\n" +
-//                                                    "\t\t\t\"id\": \"" + result + "\"\n" +
-//                                                    "\t\t}\n" +
-//                                                    "\t}\n" +
-//                                                    "}")
-//                                            .setPriority(Priority.HIGH)
-//                                            .build()
-//                                            .setUploadProgressListener(new UploadProgressListener() {
-//                                                @Override
-//                                                public void onProgress(long bytesUploaded, long totalBytes) {
-//                                                    // do anything with progress
-//                                                }
-//                                            })
-//                                            .getAsJSONObject(new JSONObjectRequestListener() {
-//                                                @Override
-//                                                public void onResponse(JSONObject response) {
-//                                                    System.out.println("Attachment" + response.toString());
-//                                                }
-//
-//                                                @Override
-//                                                public void onError(ANError error) {
-//                                                    System.out.println("Attachment " + error.toString());
-//                                                }
-//                                            });
-//                                    System.out.println("Only receipt attachments");
-//                                }else{
-//                                    System.out.println("No attachment selected");
 //                                }
                             }catch(Exception e){
                                 e.printStackTrace();
                             }
-//                           System.out.println(jobject_str + " request");
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(EducationalAssistanceActivity2.this);
                             builder.setMessage("You have successfully applied for Educational Assistance. Your request ID is: "+result)
@@ -523,11 +471,17 @@ public class EducationalAssistanceActivity2 extends AppCompatActivity {
                 tvResponse.setText(result);
             }
 
+            pgBarSubmit.setVisibility(View.INVISIBLE);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            pgBarSubmit.setVisibility(View.VISIBLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         }
     }
 }

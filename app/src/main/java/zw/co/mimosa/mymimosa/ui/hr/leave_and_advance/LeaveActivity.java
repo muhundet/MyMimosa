@@ -139,7 +139,7 @@ public class LeaveActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validateTypeOfLeave() | !validateSpinnerSection()) {
+                if (validateTypeOfLeave() && validateSpinnerSection()) {
                     int selectedId = radioTypeOfLeave.getCheckedRadioButtonId();
                     radioButtonTypeOfleave = findViewById(selectedId);
                     LeaveFormHelper lfh = LeaveFormHelper.getLeaveFormHelperInstance();
@@ -224,9 +224,9 @@ public class LeaveActivity extends AppCompatActivity {
         if (radioTypeOfLeave.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "Please Select Leave Type", Toast.LENGTH_SHORT).show();
             Log.d("TAG", "validateTypeOfLeave:Nothing selected ");
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -234,9 +234,9 @@ public class LeaveActivity extends AppCompatActivity {
         if (spinnerSection.getSelectedItemPosition() == 0) {
             Toast.makeText(this, "Please Select Your Section", Toast.LENGTH_SHORT).show();
             Log.d("TAG", "validateSpinnerSection:Nothing selected ");
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 

@@ -326,6 +326,70 @@
         <item>  U</item>
     </string-array>
 
+    <string-array name="acting_grade_array">
+        <item>--Select Acting Grade--</item>
+        <item>NEC 1</item>
+        <item>NEC 2</item>
+        <item>  NEC 3</item>
+        <item>  NEC 4</item>
+        <item>  NEC 5</item>
+        <item>  NEC 6</item>
+        <item>  NEC 7</item>
+        <item>  NEC 9</item>
+        <item>  NEC 10</item>
+        <item>  NEC 11</item>
+        <item>  NEC 12</item>
+        <item>  B</item>
+        <item>  E</item>
+        <item>  F</item>
+        <item>  G</item>
+        <item>  H</item>
+        <item>  I</item>
+        <item>  J</item>
+        <item>  K</item>
+        <item>  L</item>
+        <item>  M</item>
+        <item>  N</item>
+        <item>  O</item>
+        <item>  P</item>
+        <item>  Q</item>
+        <item>  R</item>
+        <item>  S</item>
+        <item>  U</item>
+    </string-array>
+
+    <string-array name="current_grade_array">
+        <item>--Select Current Grade--</item>
+        <item>NEC 1</item>
+        <item>NEC 2</item>
+        <item>  NEC 3</item>
+        <item>  NEC 4</item>
+        <item>  NEC 5</item>
+        <item>  NEC 6</item>
+        <item>  NEC 7</item>
+        <item>  NEC 9</item>
+        <item>  NEC 10</item>
+        <item>  NEC 11</item>
+        <item>  NEC 12</item>
+        <item>  B</item>
+        <item>  E</item>
+        <item>  F</item>
+        <item>  G</item>
+        <item>  H</item>
+        <item>  I</item>
+        <item>  J</item>
+        <item>  K</item>
+        <item>  L</item>
+        <item>  M</item>
+        <item>  N</item>
+        <item>  O</item>
+        <item>  P</item>
+        <item>  Q</item>
+        <item>  R</item>
+        <item>  S</item>
+        <item>  U</item>
+    </string-array>
+
     <string-array name="management_accounting_array">
         <item>Innocent Mavi</item>
         <item>Linda Nyamukonda</item>
@@ -342,156 +406,156 @@
         <item>21MA05</item>
     </string-array>
 
-        <string name="First_Name">First Name</string>
-        <string name="Surname">Surname</string>
-        <string name="Button">Next</string>
-        <string name="Duration">For how long (in minutes)</string>
-        <string name="Employee_Number">Employee Number</string>
-        <string name="Place">Where did you see it?</string>
-        <string name="Date">When did you see it?</string>
-        <string name="Department">Department</string>
-        <string name="Dept">Select Department</string>
-        <string name="Department1">Assets Management - Electrical</string>
-        <string name="Department2">Assets Management - Mechanical</string>
-        <string name="Department3">Commercial Administration</string>
-        <string name="Department4">Commercial Systems</string>
-        <string name="Department5">Contracts Administration</string>
-        <string name="Department6">Corporate Affairs</string>
-        <string name="Department7">Costing</string>
-        <string name="Department8">Enterprise Risk Management</string>
-        <string name="Department9">Estates</string>
-        <string name="Department10">Finance and Administration</string>
-        <string name="Department11">Geology and Survey</string>
-        <string name="Department12">Harare Office</string>
-        <string name="Department13">Human Resources</string>
-        <string name="Department14">Human Resources Developments</string>
-        <string name="Department15">ICT</string>
-        <string name="Department16">Loss Control</string>
-        <string name="Department17">Materials Handling and Logistics</string>
-        <string name="Department18">Medical Services</string>
-        <string name="Department19">Metallurgical Services</string>
-        <string name="Department20">Mine Machines</string>
-        <string name="Department21">Mine Planning</string>
-        <string name="Department22">Mining</string>
-        <string name="Department23">Mining North</string>
-        <string name="Department24">Mining South</string>
-        <string name="Department25">Mobile Equipment</string>
-        <string name="Department26">Plant</string>
-        <string name="Department27">Projects and Planning</string>
-        <string name="Department28">SHE - Surface</string>
-        <string name="Department29">SHE - Underground</string>
-        <string name="Department30">Supply Chain</string>
-        <string name="Department31">Transport</string>
-        <string name="Section">Select Section</string>Administration
-        <string name="Section1">Administration</string>
-        <string name="Section2">Blore Shaft Services</string>
-        <string name="Section3">Buses Maintenance</string>
-        <string name="Section4">Business Assurance</string>
-        <string name="Section5">Civils</string>
-        <string name="Section6">Clinic</string>
-        <string name="Section7">Commercial Administration</string>
-        <string name="Section8">Contracts</string>
-        <string name="Section9">Contracts Administration</string>
-        <string name="Section10">Critical Development North</string>
-        <string name="Section11">Critical Development South</string>
-        <string name="Section12">Crushing and Screening</string>
-        <string name="Section13">Engineering General</string>
-        <string name="Section14">Environment</string>
-        <string name="Section15">Estates</string>
-        <string name="Section16">Finance</string>
-        <string name="Section17">Geology</string>
-        <string name="Section18">Harare Office</string>
-        <string name="Section19">HR Central</string>
-        <string name="Section20">HR Core Process</string>
-        <string name="Section21">HRD</string>
-        <string name="Section22">ICT</string>
-        <string name="Section23">Laboratory</string>
-        <string name="Section24">Loss Control</string>
-        <string name="Section25">Materials Handling General</string>
-        <string name="Section26">Materials Handling North</string>
-        <string name="Section27">Materials Handling South</string>
-        <string name="Section28">Metallurgy</string>
-        <string name="Section29">Mine Machines</string>
-        <string name="Section30">Mining North General</string>
-        <string name="Section31">Mining North Section 1</string>
-        <string name="Section32">Mining North Section 2</string>
-        <string name="Section33">Mining North Section 3</string>
-        <string name="Section34">Mining North Section 4</string>
-        <string name="Section35">Mining North Section 5</string>
-        <string name="Section36">Mining North Section 6</string>
-        <string name="Section37">Mining North Services</string>
-        <string name="Section38">Mining Planning</string>
-        <string name="Section39">Mining South General</string>
-        <string name="Section40">Mining South Section 1</string>
-        <string name="Section41">Mining South Section 2</string>
-        <string name="Section42">Mining South Section 3</string>
-        <string name="Section43">Mining South Section 4</string>
-        <string name="Section44">Mining South Section 5</string>
-        <string name="Section45">Mining South Section 6</string>
-        <string name="Section46">Mining South Services</string>
-        <string name="Section47">Planning</string>
-        <string name="Section48">Planning Services</string>
-        <string name="Section49">Plant Engineering</string>
-        <string name="Section50">Plant General</string>
-        <string name="Section51">Projects</string>
-        <string name="Section52">Proto</string>
-        <string name="Section53">Rigs</string>
-        <string name="Section54">Risk</string>
-        <string name="Section55">Roadways</string>
-        <string name="Section56">SHE General</string>
-        <string name="Section57">Supply Chain</string>
-        <string name="Section58">Survey</string>
-        <string name="Section59">Systems</string>
-        <string name="Section60">Tailings Dam</string>
-        <string name="Section61">Technical Projects</string>
-        <string name="Section62">Technical Services General</string>
-        <string name="Section63">Transport</string>
-        <string name="Section64">Upper Ores 1</string>
-        <string name="Section65">Upper Ores 2</string>
-        <string name="Section66">Ventilation</string>
-        <string name="i_saw_this_on">I saw this on:</string>
-        <string name="at_what_time">At what time:</string>
-        <string name="values">Values - (Tick Values under Observation - Refer to pact)</string>
-        <string name="chk_excellence">Excellence</string>
-        <string name="chk_goal">Goal Oriented</string>
-        <string name="chk_ownership">Ownership</string>
-        <string name="chk_empowerment">Empowerment</string>
-        <string name="chk_recognition">Recognition</string>
-        <string name="chk_motivation">Motivation</string>
-        <string name="chk_communication">Communication</string>
-        <string name="chk_customer">Customer Driven</string>
-        <string name="chk_sustainability">Sustainability</string>
-        <string name="chk_efficiency">Efficiency</string>
-        <string name="chk_teamwork">Teamwork</string>
-        <string name="chk_integrity">Integrity</string>
-        <string name="chk_prayer">Prayer</string>
-        <string name="chk_innovation">Innovation</string>
-        <string name="chk_transparency">Transparency</string>
-        <string name="chk_accountability">Accountability</string>
-        <string name="chk_wellness">Wellness</string>
-        <string name="chk_care">Care</string>
-        <string name="value">VALUES (Tick values under observation - Refer to pact)</string>
-        <string name="TextView">TextView</string>
-        <string name="adherence_to_standard_operating_procedures_and_she_standards">Adherence to standard operating procedures and SHE standards</string>
-        <string name="observable_behaviours">Observable Behaviours</string>
-        <string name="Safe">Safe</string>
-        <string name="Unsafe">Unsafe</string>
-        <string name="demonstrating_hard_work_within_stipulated_start_and_finish_time">Demonstrating hard work within stipulated start and finish time</string>
-        <string name="helping_each_other_brother_s_keeper">Helping each other (brother\'s keeper)</string>
-        <string name="doing_the_right_thing_always_with_or_without_the_supervisor">Doing the right thing always with or without the supervisor</string>
-        <string name="continuous_improvement_of_systems_and_adoption_of_advanced_technology">Continuous improvement of systems and adoption of advanced technology</string>
-        <string name="utilisation_of_resources_efficiently_and_responsibly">Utilisation of resources efficiently and responsibly</string>
-        <string name="communicating_information_effectively_openly_and_efficiently_within_team_members">Communicating information effectively, openly and efficiently within team members</string>
-        <string name="observer_and_observed_engagement">Observer and observed engagement</string>
-        <string name="upholding_professional_ethics">Upholding professional ethics</string>
-        <string name="demonstrating_genuine_concern_to_peers_and_others">Demonstrating genuine concern to peers and others</string>
-        <string name="recognising_superior_performance_and_celebrating_milestones">Recognising superior performance and celebrating milestones</string>
-        <string name="minimising_breakdowns_and_downtime">Minimising breakdowns and downtime</string>
-        <string name="seeking_divine_intervention">Seeking divine intervention</string>
-        <string name="other">Other</string>
-        <string name="what_did_you_see">What did you see?</string>
-        <string name="comment">Comment?</string>
-        <string name="submit">Submit</string>
+    <string name="First_Name">First Name</string>
+    <string name="Surname">Surname</string>
+    <string name="Button">Next</string>
+    <string name="Duration">For how long (in minutes)</string>
+    <string name="Employee_Number">Employee Number</string>
+    <string name="Place">Where did you see it?</string>
+    <string name="Date">When did you see it?</string>
+    <string name="Department">Department</string>
+    <string name="Dept">Select Department</string>
+    <string name="Department1">Assets Management - Electrical</string>
+    <string name="Department2">Assets Management - Mechanical</string>
+    <string name="Department3">Commercial Administration</string>
+    <string name="Department4">Commercial Systems</string>
+    <string name="Department5">Contracts Administration</string>
+    <string name="Department6">Corporate Affairs</string>
+    <string name="Department7">Costing</string>
+    <string name="Department8">Enterprise Risk Management</string>
+    <string name="Department9">Estates</string>
+    <string name="Department10">Finance and Administration</string>
+    <string name="Department11">Geology and Survey</string>
+    <string name="Department12">Harare Office</string>
+    <string name="Department13">Human Resources</string>
+    <string name="Department14">Human Resources Developments</string>
+    <string name="Department15">ICT</string>
+    <string name="Department16">Loss Control</string>
+    <string name="Department17">Materials Handling and Logistics</string>
+    <string name="Department18">Medical Services</string>
+    <string name="Department19">Metallurgical Services</string>
+    <string name="Department20">Mine Machines</string>
+    <string name="Department21">Mine Planning</string>
+    <string name="Department22">Mining</string>
+    <string name="Department23">Mining North</string>
+    <string name="Department24">Mining South</string>
+    <string name="Department25">Mobile Equipment</string>
+    <string name="Department26">Plant</string>
+    <string name="Department27">Projects and Planning</string>
+    <string name="Department28">SHE - Surface</string>
+    <string name="Department29">SHE - Underground</string>
+    <string name="Department30">Supply Chain</string>
+    <string name="Department31">Transport</string>
+    <string name="Section">Select Section</string>Administration
+    <string name="Section1">Administration</string>
+    <string name="Section2">Blore Shaft Services</string>
+    <string name="Section3">Buses Maintenance</string>
+    <string name="Section4">Business Assurance</string>
+    <string name="Section5">Civils</string>
+    <string name="Section6">Clinic</string>
+    <string name="Section7">Commercial Administration</string>
+    <string name="Section8">Contracts</string>
+    <string name="Section9">Contracts Administration</string>
+    <string name="Section10">Critical Development North</string>
+    <string name="Section11">Critical Development South</string>
+    <string name="Section12">Crushing and Screening</string>
+    <string name="Section13">Engineering General</string>
+    <string name="Section14">Environment</string>
+    <string name="Section15">Estates</string>
+    <string name="Section16">Finance</string>
+    <string name="Section17">Geology</string>
+    <string name="Section18">Harare Office</string>
+    <string name="Section19">HR Central</string>
+    <string name="Section20">HR Core Process</string>
+    <string name="Section21">HRD</string>
+    <string name="Section22">ICT</string>
+    <string name="Section23">Laboratory</string>
+    <string name="Section24">Loss Control</string>
+    <string name="Section25">Materials Handling General</string>
+    <string name="Section26">Materials Handling North</string>
+    <string name="Section27">Materials Handling South</string>
+    <string name="Section28">Metallurgy</string>
+    <string name="Section29">Mine Machines</string>
+    <string name="Section30">Mining North General</string>
+    <string name="Section31">Mining North Section 1</string>
+    <string name="Section32">Mining North Section 2</string>
+    <string name="Section33">Mining North Section 3</string>
+    <string name="Section34">Mining North Section 4</string>
+    <string name="Section35">Mining North Section 5</string>
+    <string name="Section36">Mining North Section 6</string>
+    <string name="Section37">Mining North Services</string>
+    <string name="Section38">Mining Planning</string>
+    <string name="Section39">Mining South General</string>
+    <string name="Section40">Mining South Section 1</string>
+    <string name="Section41">Mining South Section 2</string>
+    <string name="Section42">Mining South Section 3</string>
+    <string name="Section43">Mining South Section 4</string>
+    <string name="Section44">Mining South Section 5</string>
+    <string name="Section45">Mining South Section 6</string>
+    <string name="Section46">Mining South Services</string>
+    <string name="Section47">Planning</string>
+    <string name="Section48">Planning Services</string>
+    <string name="Section49">Plant Engineering</string>
+    <string name="Section50">Plant General</string>
+    <string name="Section51">Projects</string>
+    <string name="Section52">Proto</string>
+    <string name="Section53">Rigs</string>
+    <string name="Section54">Risk</string>
+    <string name="Section55">Roadways</string>
+    <string name="Section56">SHE General</string>
+    <string name="Section57">Supply Chain</string>
+    <string name="Section58">Survey</string>
+    <string name="Section59">Systems</string>
+    <string name="Section60">Tailings Dam</string>
+    <string name="Section61">Technical Projects</string>
+    <string name="Section62">Technical Services General</string>
+    <string name="Section63">Transport</string>
+    <string name="Section64">Upper Ores 1</string>
+    <string name="Section65">Upper Ores 2</string>
+    <string name="Section66">Ventilation</string>
+    <string name="i_saw_this_on">I saw this on:</string>
+    <string name="at_what_time">At what time:</string>
+    <string name="values">Values - (Tick Values under Observation - Refer to pact)</string>
+    <string name="chk_excellence">Excellence</string>
+    <string name="chk_goal">Goal Oriented</string>
+    <string name="chk_ownership">Ownership</string>
+    <string name="chk_empowerment">Empowerment</string>
+    <string name="chk_recognition">Recognition</string>
+    <string name="chk_motivation">Motivation</string>
+    <string name="chk_communication">Communication</string>
+    <string name="chk_customer">Customer Driven</string>
+    <string name="chk_sustainability">Sustainability</string>
+    <string name="chk_efficiency">Efficiency</string>
+    <string name="chk_teamwork">Teamwork</string>
+    <string name="chk_integrity">Integrity</string>
+    <string name="chk_prayer">Prayer</string>
+    <string name="chk_innovation">Innovation</string>
+    <string name="chk_transparency">Transparency</string>
+    <string name="chk_accountability">Accountability</string>
+    <string name="chk_wellness">Wellness</string>
+    <string name="chk_care">Care</string>
+    <string name="value">VALUES (Tick values under observation - Refer to pact)</string>
+    <string name="TextView">TextView</string>
+    <string name="adherence_to_standard_operating_procedures_and_she_standards">Adherence to standard operating procedures and SHE standards</string>
+    <string name="observable_behaviours">Observable Behaviours</string>
+    <string name="Safe">Safe</string>
+    <string name="Unsafe">Unsafe</string>
+    <string name="demonstrating_hard_work_within_stipulated_start_and_finish_time">Demonstrating hard work within stipulated start and finish time</string>
+    <string name="helping_each_other_brother_s_keeper">Helping each other (brother\'s keeper)</string>
+    <string name="doing_the_right_thing_always_with_or_without_the_supervisor">Doing the right thing always with or without the supervisor</string>
+    <string name="continuous_improvement_of_systems_and_adoption_of_advanced_technology">Continuous improvement of systems and adoption of advanced technology</string>
+    <string name="utilisation_of_resources_efficiently_and_responsibly">Utilisation of resources efficiently and responsibly</string>
+    <string name="communicating_information_effectively_openly_and_efficiently_within_team_members">Communicating information effectively, openly and efficiently within team members</string>
+    <string name="observer_and_observed_engagement">Observer and observed engagement</string>
+    <string name="upholding_professional_ethics">Upholding professional ethics</string>
+    <string name="demonstrating_genuine_concern_to_peers_and_others">Demonstrating genuine concern to peers and others</string>
+    <string name="recognising_superior_performance_and_celebrating_milestones">Recognising superior performance and celebrating milestones</string>
+    <string name="minimising_breakdowns_and_downtime">Minimising breakdowns and downtime</string>
+    <string name="seeking_divine_intervention">Seeking divine intervention</string>
+    <string name="other">Other</string>
+    <string name="what_did_you_see">What did you see?</string>
+    <string name="comment">Comment?</string>
+    <string name="submit">Submit</string>
 
 
 </resources>

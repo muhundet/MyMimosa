@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import zw.co.mimosa.mymimosa.R;
+
 public class BBSActivity2 extends AppCompatActivity {
     CheckBox cb1,cb2,cb3,cb4,cb5,cb6,cb7,cb8,cb9,cb10,cb11,cb12,cb13,cb14,cb15,cb16,cb17,cb18;
     @Override

@@ -267,5 +267,17 @@
         app:layout_constraintTop_toBottomOf="@+id/advance_reason"
         android:background="@drawable/spinner_border"/>
 
+    <ProgressBar
+        android:id="@+id/progress_bar_advance_submit"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -131,149 +131,144 @@ public class HrFormRecyclerAdapter extends RecyclerView.Adapter<HrFormRecyclerAd
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
                     alertDialog.setTitle("Select an Option below");
                     String[] items = {"Leave","Advance"};
-                    int checkedItem = -1;
-                    alertDialog.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            LoggedInUserAccessUtility luau = LoggedInUserAccessUtility.getInstance();
-                            switch (which) {
-                                case 0:
-                                    LeaveFormHelper lfh = LeaveFormHelper.getLeaveFormHelperInstance();
-                                    lfh.setWhatAreYouApplyingFor("leave");
-                                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
-                                    alertDialog.setTitle("Choose an option");
-                                    String[] items = {"Self","On Behalf"};
-                                    int checkedItem = -1;
-                                    alertDialog.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            switch (which) {
-                                                case 0:
-                                                    LoggedInUserAccessUtility luau = LoggedInUserAccessUtility.getInstance();
-                                                    String empIdFromLUAU = luau.getEmployeeId();
-                                                        getUserFromDatabase(empIdFromLUAU);
-                                                        setUserFieldsToLeaveLeaveSelfFormHelper();
-                                                            Intent intentLeaveSelf = new Intent(mContext, LeaveActivity.class);
-                                                                intentLeaveSelf.putExtra("DEPARTMENTID", departmentName[0]);
-                                                                intentLeaveSelf.putExtra("EMPID", empId[0]);
-                                                                intentLeaveSelf.putExtra("JOBTITLE", jobTitle[0]);
-                                                                intentLeaveSelf.putExtra("EMAILID", emailId[0]);
-                                                                intentLeaveSelf.putExtra("FIRSTNAME", firstName[0]);
-                                                                intentLeaveSelf.putExtra("LASTNAME", lastName[0]);
-                                                        mContext.startActivity(intentLeaveSelf);
-                                                    dialog.dismiss();
-                                                    break;
-                                                case 1:
-                                                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                                                    View viewInflated = LayoutInflater.from(mContext).inflate(R.layout.text_input_mine_number, null, false);
-                                                    final TextInputEditText input =  viewInflated.findViewById(R.id.input);
-                                                    input.requestFocus();
-                                                    InputMethodManager imm = (InputMethodManager) mContext.getSystemService(INPUT_METHOD_SERVICE);
-                                                    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-                                                    builder.setView(viewInflated);
-                                                    builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialog, int which) {
-                                                            String employeeId = input.getText().toString().trim();
-                                                            getUserFromDatabase(employeeId);
-                                                            setUserFieldsToLeaveLeaveOnBehalfFormHelper();
-                                                            Intent intentLeaveOnBehalf = new Intent(mContext, LeaveActivity.class);
-                                                            intentLeaveOnBehalf.putExtra("DEPARTMENTID", departmentName[0]);
-                                                            intentLeaveOnBehalf.putExtra("EMPID", empId[0]);
-                                                            intentLeaveOnBehalf.putExtra("JOBTITLE", jobTitle[0]);
-                                                            intentLeaveOnBehalf.putExtra("EMAILID", emailId[0]);
-                                                            intentLeaveOnBehalf.putExtra("FIRSTNAME", firstName[0]);
-                                                            intentLeaveOnBehalf.putExtra("LASTNAME", lastName[0]);
-                                                            mContext.startActivity(intentLeaveOnBehalf);
-
-                                                        }
-                                                    });
-                                                    builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialog, int which) {
-                                                            dialog.cancel();
-                                                        }
-                                                    });
-                                                    builder.show();
-                                                    dialog.dismiss();
-                                                    break;
-                                            }
-                                        }
-                                    });
-                                    AlertDialog alert = alertDialog.create();
-                                    alert.setCanceledOnTouchOutside(false);
-                                    alert.show();
-                                    dialog.dismiss();
-                                    break;
-                                case 1:
-                                    LeaveFormHelper leaveFormHelperAdvance = LeaveFormHelper.getLeaveFormHelperInstance();
-                                    leaveFormHelperAdvance.setWhatAreYouApplyingFor("advance");
-                                    AlertDialog.Builder alertDialog1 = new AlertDialog.Builder(mContext);
-                                    alertDialog1.setTitle("Choose an option");
-                                    String[] items1 = {"Self","On Behalf"};
-                                    int checkedItem1 = -1;
-                                    alertDialog1.setSingleChoiceItems(items1, checkedItem1, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            switch (which) {
-                                                case 0:
-                                                    LoggedInUserAccessUtility luau = LoggedInUserAccessUtility.getInstance();
-                                                    String empIdFromLUAU = luau.getEmployeeId();
+                    alertDialog.setItems(items, (dialog, which) -> {
+                        LoggedInUserAccessUtility luau = LoggedInUserAccessUtility.getInstance();
+                        switch (which) {
+                            case 0:
+                                LeaveFormHelper lfh = LeaveFormHelper.getLeaveFormHelperInstance();
+                                lfh.setWhatAreYouApplyingFor("leave");
+                                AlertDialog.Builder alertDialog12 = new AlertDialog.Builder(mContext);
+                                alertDialog12.setTitle("Choose an option");
+                                String[] items12 = {"Self","On Behalf"};
+                                alertDialog12.setItems(items12, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        switch (which) {
+                                            case 0:
+                                                LoggedInUserAccessUtility luau = LoggedInUserAccessUtility.getInstance();
+                                                String empIdFromLUAU = luau.getEmployeeId();
                                                     getUserFromDatabase(empIdFromLUAU);
-                                                    setUserFieldsToLeaveAdvanceSelfFormHelper();
-                                                    Intent intentAdvanceSelf = new Intent(mContext, AdvanceActivity.class);
-                                                    intentAdvanceSelf.putExtra("DEPARTMENTID", departmentName[0]);
-                                                    intentAdvanceSelf.putExtra("EMPID", empId[0]);
-                                                    intentAdvanceSelf.putExtra("JOBTITLE", jobTitle[0]);
-                                                    intentAdvanceSelf.putExtra("EMAILID", emailId[0]);
-                                                    intentAdvanceSelf.putExtra("FIRSTNAME", firstName[0]);
-                                                    intentAdvanceSelf.putExtra("LASTNAME", lastName[0]);
-                                                    mContext.startActivity(intentAdvanceSelf);
-                                                    dialog.dismiss();
-                                                    break;
-                                                case 1:
-                                                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                                                    View viewInflated = LayoutInflater.from(mContext).inflate(R.layout.text_input_mine_number, null, false);
-                                                    final TextInputEditText input =  viewInflated.findViewById(R.id.input);
-                                                    input.requestFocus();
-                                                    InputMethodManager imm = (InputMethodManager) mContext.getSystemService(INPUT_METHOD_SERVICE);
-                                                    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-                                                    builder.setView(viewInflated);
-                                                    builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialog, int which) {
-                                                            String employeeId = input.getText().toString().trim();
-                                                            getUserFromDatabase(employeeId);
-                                                            setUserFieldsToLeaveAdvanceOnBehalfFormHelper();
-                                                            Intent intentAdvanceOnBehalf = new Intent(mContext, AdvanceActivity.class);
-                                                            intentAdvanceOnBehalf.putExtra("DEPARTMENTID", departmentName[0]);
-                                                            intentAdvanceOnBehalf.putExtra("EMPID", empId[0]);
-                                                            intentAdvanceOnBehalf.putExtra("JOBTITLE", jobTitle[0]);
-                                                            intentAdvanceOnBehalf.putExtra("EMAILID", emailId[0]);
-                                                            intentAdvanceOnBehalf.putExtra("FIRSTNAME", firstName[0]);
-                                                            intentAdvanceOnBehalf.putExtra("LASTNAME", lastName[0]);
-                                                            mContext.startActivity(intentAdvanceOnBehalf);
+                                                    setUserFieldsToLeaveLeaveSelfFormHelper();
+                                                        Intent intentLeaveSelf = new Intent(mContext, LeaveActivity.class);
+                                                            intentLeaveSelf.putExtra("DEPARTMENTID", departmentName[0]);
+                                                            intentLeaveSelf.putExtra("EMPID", empId[0]);
+                                                            intentLeaveSelf.putExtra("JOBTITLE", jobTitle[0]);
+                                                            intentLeaveSelf.putExtra("EMAILID", emailId[0]);
+                                                            intentLeaveSelf.putExtra("FIRSTNAME", firstName[0]);
+                                                            intentLeaveSelf.putExtra("LASTNAME", lastName[0]);
+                                                    mContext.startActivity(intentLeaveSelf);
+                                                dialog.dismiss();
+                                                break;
+                                            case 1:
+                                                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                                                View viewInflated = LayoutInflater.from(mContext).inflate(R.layout.text_input_mine_number, null, false);
+                                                final TextInputEditText input =  viewInflated.findViewById(R.id.input);
+                                                input.requestFocus();
+                                                InputMethodManager imm = (InputMethodManager) mContext.getSystemService(INPUT_METHOD_SERVICE);
+                                                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+                                                builder.setView(viewInflated);
+                                                builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        String employeeId = input.getText().toString().trim();
+                                                        getUserFromDatabase(employeeId);
+                                                        setUserFieldsToLeaveLeaveOnBehalfFormHelper();
+                                                        Intent intentLeaveOnBehalf = new Intent(mContext, LeaveActivity.class);
+                                                        intentLeaveOnBehalf.putExtra("DEPARTMENTID", departmentName[0]);
+                                                        intentLeaveOnBehalf.putExtra("EMPID", empId[0]);
+                                                        intentLeaveOnBehalf.putExtra("JOBTITLE", jobTitle[0]);
+                                                        intentLeaveOnBehalf.putExtra("EMAILID", emailId[0]);
+                                                        intentLeaveOnBehalf.putExtra("FIRSTNAME", firstName[0]);
+                                                        intentLeaveOnBehalf.putExtra("LASTNAME", lastName[0]);
+                                                        mContext.startActivity(intentLeaveOnBehalf);
 
-                                                        }
-                                                    });
-                                                    builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialog, int which) {
-                                                            dialog.cancel();
-                                                        }
-                                                    });
-                                                    builder.show();
-                                                    dialog.dismiss();
-                                                    break;
-                                            }
+                                                    }
+                                                });
+                                                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        dialog.cancel();
+                                                    }
+                                                });
+                                                builder.show();
+                                                dialog.dismiss();
+                                                break;
                                         }
-                                    });
-                                    AlertDialog alert1 = alertDialog1.create();
-                                    alert1.setCanceledOnTouchOutside(false);
-                                    alert1.show();
-                                    dialog.dismiss();
-                                    break;
-                            }
+                                    }
+                                });
+                                AlertDialog alert = alertDialog12.create();
+                                alert.setCanceledOnTouchOutside(false);
+                                alert.show();
+                                dialog.dismiss();
+                                break;
+                            case 1:
+                                LeaveFormHelper leaveFormHelperAdvance = LeaveFormHelper.getLeaveFormHelperInstance();
+                                leaveFormHelperAdvance.setWhatAreYouApplyingFor("advance");
+                                AlertDialog.Builder alertDialog1 = new AlertDialog.Builder(mContext);
+                                alertDialog1.setTitle("Choose an option");
+                                String[] items1 = {"Self","On Behalf"};
+                                int checkedItem1 = -1;
+                                alertDialog1.setItems(items1,  new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        switch (which) {
+                                            case 0:
+                                                LoggedInUserAccessUtility luau = LoggedInUserAccessUtility.getInstance();
+                                                String empIdFromLUAU = luau.getEmployeeId();
+                                                getUserFromDatabase(empIdFromLUAU);
+                                                setUserFieldsToLeaveAdvanceSelfFormHelper();
+                                                Intent intentAdvanceSelf = new Intent(mContext, AdvanceActivity.class);
+                                                intentAdvanceSelf.putExtra("DEPARTMENTID", departmentName[0]);
+                                                intentAdvanceSelf.putExtra("EMPID", empId[0]);
+                                                intentAdvanceSelf.putExtra("JOBTITLE", jobTitle[0]);
+                                                intentAdvanceSelf.putExtra("EMAILID", emailId[0]);
+                                                intentAdvanceSelf.putExtra("FIRSTNAME", firstName[0]);
+                                                intentAdvanceSelf.putExtra("LASTNAME", lastName[0]);
+                                                mContext.startActivity(intentAdvanceSelf);
+                                                dialog.dismiss();
+                                                break;
+                                            case 1:
+                                                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                                                View viewInflated = LayoutInflater.from(mContext).inflate(R.layout.text_input_mine_number, null, false);
+                                                final TextInputEditText input =  viewInflated.findViewById(R.id.input);
+                                                input.requestFocus();
+                                                InputMethodManager imm = (InputMethodManager) mContext.getSystemService(INPUT_METHOD_SERVICE);
+                                                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+                                                builder.setView(viewInflated);
+                                                builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        String employeeId = input.getText().toString().trim();
+                                                        getUserFromDatabase(employeeId);
+                                                        setUserFieldsToLeaveAdvanceOnBehalfFormHelper();
+                                                        Intent intentAdvanceOnBehalf = new Intent(mContext, AdvanceActivity.class);
+                                                        intentAdvanceOnBehalf.putExtra("DEPARTMENTID", departmentName[0]);
+                                                        intentAdvanceOnBehalf.putExtra("EMPID", empId[0]);
+                                                        intentAdvanceOnBehalf.putExtra("JOBTITLE", jobTitle[0]);
+                                                        intentAdvanceOnBehalf.putExtra("EMAILID", emailId[0]);
+                                                        intentAdvanceOnBehalf.putExtra("FIRSTNAME", firstName[0]);
+                                                        intentAdvanceOnBehalf.putExtra("LASTNAME", lastName[0]);
+                                                        mContext.startActivity(intentAdvanceOnBehalf);
+
+                                                    }
+                                                });
+                                                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        dialog.cancel();
+                                                    }
+                                                });
+                                                builder.show();
+                                                dialog.dismiss();
+                                                break;
+                                        }
+                                    }
+                                });
+                                AlertDialog alert1 = alertDialog1.create();
+                                alert1.setCanceledOnTouchOutside(false);
+                                alert1.show();
+                                dialog.dismiss();
+                                break;
                         }
                     });
                     AlertDialog alert = alertDialog.create();

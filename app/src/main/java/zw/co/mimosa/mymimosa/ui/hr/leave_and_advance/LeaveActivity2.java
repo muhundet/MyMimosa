@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -90,7 +92,6 @@ public class LeaveActivity2 extends AppCompatActivity {
         etLeaveReason = findViewById(R.id.et_leave_reason);
         etStartDate = findViewById(R.id.et_start_date);
         pgBarSubmit = findViewById(R.id.progressBarSubmit);
-//        pgBarSubmit.setVisibility(View.INVISIBLE);
         etEndDate = findViewById(R.id.et_end_date);
         radioModeOfPayment = findViewById(R.id.radio_mode_of_payment);
         mSpinnerApproverHos = findViewById(R.id.spinner_approver_hos);
@@ -192,7 +193,7 @@ public class LeaveActivity2 extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                pgBarSubmit.setVisibility(View.VISIBLE);
+                if (validateDaysAcrued() && validateStartDate() && validateEndDate() && validateLeaveReason() && validateModeOfPayment() && validateSpinnerApproverHos() && validateSpinnerApproverHr()) {
                 int selectedId = radioModeOfPayment.getCheckedRadioButtonId();
                 radioButtonModeOfPayment = findViewById(selectedId);
                 LeaveFormHelper lfh = LeaveFormHelper.getLeaveFormHelperInstance();
@@ -262,7 +263,7 @@ public class LeaveActivity2 extends AppCompatActivity {
                 Request request = new Request(subject, description, requesterObj, templateObj, udfFields);
                 leaveRequest = new LeaveRequest(request);
 
-                if (!validateDaysAcrued() | !validateStartDate() | !validateEndDate() | !validateLeaveReason() | !validateModeOfPayment() | !validateSpinnerApproverHos() | ! validateSpinnerApproverHr()) {
+
 //                    sendLeaveDataPost(leaveRequest);
                 new BooksQueryTask().execute();
                 }
@@ -470,6 +471,9 @@ public class LeaveActivity2 extends AppCompatActivity {
 
         if (val.isEmpty()) {
             inputLayoutLeaveReason.setError("Leave Reason cannot be empty");
+            etLeaveReason.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etLeaveReason, InputMethodManager.SHOW_IMPLICIT);
             return false;
         } else if (val.length() > 20) {
             inputLayoutLeaveReason.setError("Leave reason is too large!");
@@ -500,9 +504,9 @@ public class LeaveActivity2 extends AppCompatActivity {
         if (mSpinnerApproverHos.getSelectedItemPosition() == 0) {
             Toast.makeText(this, "Please Select HOS", Toast.LENGTH_SHORT).show();
             Log.d("TAG", "validateSpinnerHOS:Nothing selected ");
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -510,9 +514,9 @@ public class LeaveActivity2 extends AppCompatActivity {
         if (mSpinnerApproverHr.getSelectedItemPosition() == 0) {
             Toast.makeText(this, "Please Select APPROVER HR", Toast.LENGTH_SHORT).show();
             Log.d("TAG", "validateSpinnerHr:Nothing selected ");
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -525,7 +529,6 @@ public class LeaveActivity2 extends AppCompatActivity {
 
         @Override
         protected String doInBackground(URL... urls) {
-            pgBarSubmit.setVisibility(View.VISIBLE);
             AndroidNetworking.post("https://servicedesk.mimosa.co.zw:8090/api/v3/requests")
                     .addHeaders("TECHNICIAN_KEY", "5775EFB0-AAB8-437A-8888-A330875F2B8D")
                     .addBodyParameter("input_data",jsonStr)
@@ -625,7 +628,6 @@ public class LeaveActivity2 extends AppCompatActivity {
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
 //                            if (!error.getErrorDetail().equals("connectionError")){
 //                                pgBarSubmit.setVisibility(View.INVISIBLE);
 //                                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LeaveActivity2.this);
@@ -644,6 +646,7 @@ public class LeaveActivity2 extends AppCompatActivity {
 //                            }
 //                            else {
                                 pgBarSubmit.setVisibility(View.INVISIBLE);
+                                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LeaveActivity2.this);
 //                                dialogBuilder.setMessage("Your application was not sent because of bad network, the system will resend when network is detected. No need to redo the request.")
                                 dialogBuilder.setMessage("Your application was not sent because of bad network. Please retry.")
@@ -683,7 +686,9 @@ public class LeaveActivity2 extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+            pgBarSubmit.setVisibility(View.VISIBLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         }
     }
 }

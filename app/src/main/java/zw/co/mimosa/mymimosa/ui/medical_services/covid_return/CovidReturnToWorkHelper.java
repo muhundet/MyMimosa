@@ -28,6 +28,8 @@ public class CovidReturnToWorkHelper {
     String nextOfKin;
     String address;
     String template;
+    String description;
+
 
     public static CovidReturnToWorkHelper getmCovidReturnToWorkHelper() {
         return mCovidReturnToWorkHelper;
@@ -35,6 +37,14 @@ public class CovidReturnToWorkHelper {
 
     public static void setmCovidReturnToWorkHelper(CovidReturnToWorkHelper mCovidReturnToWorkHelper) {
         CovidReturnToWorkHelper.mCovidReturnToWorkHelper = mCovidReturnToWorkHelper;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getTemplate() {

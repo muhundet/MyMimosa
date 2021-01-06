@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import zw.co.mimosa.mymimosa.R;
+
 public class BBSActivity3 extends AppCompatActivity {
  private Button button;
     @Override

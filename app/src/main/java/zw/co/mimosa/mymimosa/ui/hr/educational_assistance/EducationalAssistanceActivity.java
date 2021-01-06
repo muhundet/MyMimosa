@@ -3,10 +3,12 @@ package zw.co.mimosa.mymimosa.ui.hr.educational_assistance;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -80,7 +82,7 @@ public class EducationalAssistanceActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( validateChildFirstName() | validateChildSurname() | validateChildDob() | validateChildSchool() | !validateSpinnerApproverHr()) {
+                if ( validateChildFirstName() && validateChildSurname() && validateChildDob() && validateChildSchool() && validateSpinnerChildLevel() && validateSpinnerSection()) {
                     String childDob = etChildDob.getText().toString();
                     SimpleDateFormat startDateFormat = new SimpleDateFormat("yyyy/mm/dd");
                     try {
@@ -114,6 +116,9 @@ public class EducationalAssistanceActivity extends AppCompatActivity {
 
         if (val.isEmpty()) {
             inputLayoutChildFirstName.setError("Child's first name cannot be empty");
+            etChildFirstName.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etChildFirstName, InputMethodManager.SHOW_IMPLICIT);
             return false;
         }
 //        else if (val.length() > 20) {
@@ -137,6 +142,9 @@ public class EducationalAssistanceActivity extends AppCompatActivity {
 
         if (val.isEmpty()) {
             inputLayoutChildSurname.setError("Child's surname cannot be empty");
+            etChildSurname.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etChildSurname, InputMethodManager.SHOW_IMPLICIT);
             return false;
         } else if (val.length() > 20) {
             inputLayoutChildSurname.setError("Child's surname is too large!");
@@ -159,15 +167,14 @@ public class EducationalAssistanceActivity extends AppCompatActivity {
 
         if (val.isEmpty()) {
             inputLayoutSchoolName.setError("School cannot be empty");
+            etChildSchoolName.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etChildSchoolName, InputMethodManager.SHOW_IMPLICIT);
             return false;
         } else if (val.length() > 20) {
             inputLayoutSchoolName.setError("School is too large!");
             return false;
         }
-//        else if (!val.matches(checkspaces)) {
-//            inputLayoutUsername.setError("No White spaces are allowed!");
-//            return false;
-//        }
         else {
             inputLayoutSchoolName.setError(null);
             inputLayoutSchoolName.setErrorEnabled(false);
@@ -197,13 +204,23 @@ public class EducationalAssistanceActivity extends AppCompatActivity {
         }
     }
 
-    private boolean validateSpinnerApproverHr() {
-        if (spinnerChildLevel.getSelectedItemPosition() == 0) {
-            Toast.makeText(this, "Please Select APPROVER HR", Toast.LENGTH_SHORT).show();
-            Log.d("TAG", "validateSpinnerHr:Nothing selected ");
-            return true;
-        } else {
+    private boolean validateSpinnerSection() {
+        if (spinnerSection.getSelectedItemPosition() == 0) {
+            Toast.makeText(this, "Please Select Section", Toast.LENGTH_SHORT).show();
+            Log.d("TAG", "validateSpinnerSection:Nothing selected ");
             return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerChildLevel() {
+        if (spinnerChildLevel.getSelectedItemPosition() == 0) {
+            Toast.makeText(this, "Please Select Child Level", Toast.LENGTH_SHORT).show();
+            Log.d("TAG", "Child level not selected ");
+            return false;
+        } else {
+            return true;
         }
     }
 

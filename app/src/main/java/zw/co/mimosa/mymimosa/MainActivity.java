@@ -1,6 +1,8 @@
 package zw.co.mimosa.mymimosa;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -16,6 +18,7 @@ import android.view.View;
 
 import zw.co.mimosa.mymimosa.ui.main.FormsFragment;
 import zw.co.mimosa.mymimosa.ui.main.SectionsPagerAdapter;
+import zw.co.mimosa.mymimosa.utilities.NetworkStateChecker;
 
 public class MainActivity extends AppCompatActivity {
     String globalEmployeeId;
@@ -30,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
+
+        registerReceiver(new NetworkStateChecker(), new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         Intent intent = getIntent();
         globalEmployeeId = intent.getStringExtra("EMPLOYEEID");
@@ -47,5 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
     }
 }

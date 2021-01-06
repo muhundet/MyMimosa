@@ -15,9 +15,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.card.MaterialCardView;
 
-import zw.co.mimosa.mymimosa.MainActivity;
 import zw.co.mimosa.mymimosa.R;
 import zw.co.mimosa.mymimosa.ui.hr.HrDashboardActivity;
+import zw.co.mimosa.mymimosa.ui.medical_services.MedicalServicesDashboardActivity;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -27,6 +27,7 @@ public class FormsFragment extends Fragment  implements View.OnClickListener {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private PageViewModel pageViewModel;
+    MaterialCardView materialCardViewMedicalServicesMenu;
 
     public static FormsFragment newInstance(int index) {
         FormsFragment fragment = new FormsFragment();
@@ -56,12 +57,21 @@ public class FormsFragment extends Fragment  implements View.OnClickListener {
 //        final TextView textView = root.findViewById(R.id.section_label);
         final MaterialCardView materialCardViewHrMenu = root.findViewById(R.id.hr_menu);
         final TextView loggedInAs = root.findViewById(R.id.tv_logged_in_as);
+        materialCardViewMedicalServicesMenu = root.findViewById(R.id.medical_services_menu);
         loggedInAs.setText(lastName);
         materialCardViewHrMenu.setOnClickListener(this);
         pageViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
 //                textView.setText(s);
+            }
+        });
+
+        materialCardViewMedicalServicesMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MedicalServicesDashboardActivity.class);
+                startActivity(intent);
             }
         });
         return root;
@@ -75,6 +85,7 @@ public class FormsFragment extends Fragment  implements View.OnClickListener {
             case R.id.hr_menu:
                 intent = new Intent(getContext(), HrDashboardActivity.class);
                 startActivity(intent);
+
         }
     }
 }

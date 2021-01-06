@@ -121,6 +121,7 @@ public class LoginActivity extends AppCompatActivity  {
                                 startActivity(intent);
                                 finish();
                             } else {
+                                inputLayoutPassword.setError("Incorrect password");
                                 Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();
                             }
                         } else {

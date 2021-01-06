@@ -120,10 +120,10 @@ public class CovidReturnToWork extends AppCompatActivity {
                 creturn.setNextOfKin(etNextOfKin.getText().toString());
                 creturn.setAddress(etAddress.getText().toString());
 
-                String template = "COVID-19 SCREENING FORM - Routine";
+                String template = creturn.getTemplate();
                 String requester = creturn.getFirstname() + " " + creturn.getSurname();
                 String subject = "COVID-19 SCREENING FORM for " + creturn.getFirstname() + " " + creturn.getSurname() + " (from android device)";
-                String description = "COVID-19 SCREENING FORM- Return To Work Description";
+                String description = creturn.getDescription();
                 String firstname = creturn.getFirstname();
                 String surname = creturn.getSurname();
                 String employeeId = creturn.employeeId;

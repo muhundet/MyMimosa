@@ -157,7 +157,8 @@
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/medical_services_menu"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:layout_width="160dp"
@@ -175,13 +176,13 @@
                     android:layout_height="64dp"
 
                     android:padding="10dp"
-                    android:src="@drawable/ict" />
+                    android:src="@drawable/medical" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="ICT SERVICES"
+                    android:text="MEDICAL SERVICES"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
 
@@ -196,11 +197,11 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Other Forms..."
+                    android:text="Covid Screening Forms"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
     <LinearLayout
