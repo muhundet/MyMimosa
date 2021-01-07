@@ -38,6 +38,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import zw.co.mimosa.mymimosa.MainActivity;
 import zw.co.mimosa.mymimosa.Pickers.DateOfLastAdvancePicker;
@@ -285,7 +286,7 @@ public class AdvanceActivity extends AppCompatActivity {
         String checkspaces = "Aw{1,20}z";
 
         if (val.isEmpty()) {
-            inputLayoutAdvanceReason.setError("Reasin for advance cannot be empty");
+            inputLayoutAdvanceReason.setError("Reason for advance cannot be empty");
             return false;
         } else if (val.length() > 100) {
             inputLayoutAdvanceReason.setError("Days acrued is too large!");
@@ -393,7 +394,11 @@ public class AdvanceActivity extends AppCompatActivity {
                             Log.d("TAG", "onError errorCode : " + error.getErrorCode());
                             Log.d("TAG", "onError errorBody : " + error.getErrorBody());
                             Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
-                            saveJson();
+                            String advanceJsonString = "advanceid_";
+                            String currentDate = new SimpleDateFormat("ddMMyyyy", Locale.getDefault()).format(new Date());
+                            System.out.println(currentDate);
+                            advanceJsonString = advanceJsonString + currentDate + ".json";
+                            saveJson(advanceJsonString);
                             pgBarSubmit.setVisibility(View.INVISIBLE);
                             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
@@ -417,9 +422,9 @@ public class AdvanceActivity extends AppCompatActivity {
             return result;
         }
 
-        private void saveJson(){
+        private void saveJson(String jsonFileName){
             try {
-                File file = new File(AdvanceActivity.this.getFilesDir(), "TestAdvance.json");
+                File file = new File(AdvanceActivity.this.getFilesDir(), jsonFileName);
                 FileWriter fileWriter = new FileWriter(file);
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
                 bufferedWriter.write(jsonStr);

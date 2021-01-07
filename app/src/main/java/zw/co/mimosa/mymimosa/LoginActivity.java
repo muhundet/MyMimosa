@@ -16,6 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
+import java.io.File;
+
 import zw.co.mimosa.mymimosa.database.OpenHelper;
 import zw.co.mimosa.mymimosa.utilities.LoggedInUserAccessUtility;
 
@@ -83,6 +87,15 @@ public class LoginActivity extends AppCompatActivity  {
         }
     }
 
+    private void initializeSQLCipher() {
+        SQLiteDatabase.loadLibs(this);
+        File databaseFile = getDatabasePath("/data/data/zw.co.mimosa.mymimosa/databases/Mimdb.db");
+        databaseFile.mkdirs();
+        databaseFile.delete();
+        SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(databaseFile, "test123", null);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         dbOpenHelper = new OpenHelper(this);
@@ -94,6 +107,8 @@ public class LoginActivity extends AppCompatActivity  {
         editTextPassword = findViewById(R.id.password);
         loginButton = findViewById(R.id.btn_login);
 
+
+        initializeSQLCipher();
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

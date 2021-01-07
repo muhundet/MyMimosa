@@ -1,25 +1,15 @@
 package zw.co.mimosa.mymimosa.utilities;
 
-import android.app.AlertDialog;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.os.Build;
-import android.os.IBinder;
 import android.util.Log;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.androidnetworking.AndroidNetworking;
@@ -31,138 +21,68 @@ import com.google.gson.Gson;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import zw.co.mimosa.mymimosa.MainActivity;
 import zw.co.mimosa.mymimosa.R;
-import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.AdvanceActivity;
 
-import static android.provider.Settings.System.getString;
-
-public class NetworkStateChecker extends Service {
+public class NetworkStateChecker1 extends BroadcastReceiver {
     Context context;
     String jsonString;
-    BroadcastReceiver broadcastReceiverNetwork;
 
     @Override
-    public void onCreate()
-    {
-        registerBroadcastReceiverNetwork();
-    }
+    public void onReceive(Context context, Intent intent) {
+        this.context = context;
 
-    @Override
-    public void onDestroy()
-    {
-        unregisterReceiver(broadcastReceiverNetwork);
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
-    }
-    public void registerBroadcastReceiverNetwork(){
-        broadcastReceiverNetwork = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                NetworkStateChecker.this.context = context;
+        if (activeNetwork != null) {
+            //if connected to wifi or mobile data plan
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI || activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
 
-                ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-
-                if (activeNetwork != null) {
-                    //if connected to wifi or mobile data plan
-                    if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI || activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-
-                        List<String> jsonFileList = new ArrayList<>();
-                        File folder = new File(String.valueOf(context.getFilesDir()));
-                        File[] filesInFolder = folder.listFiles();
-                        for (File file : filesInFolder) {
-                            if (!file.isDirectory()) {
-                                jsonFileList.add(file.getPath());
-                            }
-                        }
-
-                        if(jsonFileList.size() == 0){
-                            System.out.println("no json files");
-                        }else{
-                            for(int i = 0; i<jsonFileList.size(); i++){
-                                String jsonFilePath = jsonFileList.get(i);
-                                System.out.println(jsonFilePath);
-                                try {
-                                    File file = new File(context.getFilesDir(), "TestAdvance.json");
-                                    FileReader fileReader = new FileReader(file);
-                                    BufferedReader bufferedReader = new BufferedReader(fileReader);
-                                    StringBuilder stringBuilder = new StringBuilder();
-                                    String line = bufferedReader.readLine();
-                                    while (line != null) {
-                                        stringBuilder.append(line).append("\n");
-                                        line = bufferedReader.readLine();
-                                    }
-                                    bufferedReader.close();
-                                    jsonString = stringBuilder.toString();
-                                }catch(Exception e){
-                                    e.printStackTrace();
-                                }
-                                new AdvanceQueryTask().execute();
-                            }
-
-                        }
+                List<String> jsonFileList = new ArrayList<>();
+                File folder = new File(String.valueOf(context.getFilesDir()));
+                File[] filesInFolder = folder.listFiles();
+                for (File file : filesInFolder) {
+                    if (!file.isDirectory()) {
+                        jsonFileList.add(file.getPath());
                     }
                 }
+
+                if(jsonFileList.size() == 0){
+                    System.out.println("no json files");
+                }else{
+                    for(int i = 0; i<jsonFileList.size(); i++){
+                        String jsonFilePath = jsonFileList.get(i);
+                        System.out.println(jsonFilePath);
+                        try {
+                            File file = new File(context.getFilesDir(), "TestAdvance.json");
+                            FileReader fileReader = new FileReader(file);
+                            BufferedReader bufferedReader = new BufferedReader(fileReader);
+                            StringBuilder stringBuilder = new StringBuilder();
+                            String line = bufferedReader.readLine();
+                            while (line != null) {
+                                stringBuilder.append(line).append("\n");
+                                line = bufferedReader.readLine();
+                            }
+                            bufferedReader.close();
+                            jsonString = stringBuilder.toString();
+                        }catch(Exception e){
+                            e.printStackTrace();
+                        }
+                        new AdvanceQueryTask().execute();
+                    }
+
+                }
             }
-        };
+        }
+
     }
-
-//    public void onReceive(Context context, Intent intent) {
-//        this.context = context;
-//
-//        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-//        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-//
-//        if (activeNetwork != null) {
-//            //if connected to wifi or mobile data plan
-//            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI || activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-//
-//                List<String> jsonFileList = new ArrayList<>();
-//                File folder = new File(String.valueOf(context.getFilesDir()));
-//                File[] filesInFolder = folder.listFiles();
-//                for (File file : filesInFolder) {
-//                    if (!file.isDirectory()) {
-//                        jsonFileList.add(file.getPath());
-//                    }
-//                }
-//
-//                if(jsonFileList.size() == 0){
-//                    System.out.println("no json files");
-//                }else{
-//                    for(int i = 0; i<jsonFileList.size(); i++){
-//                        String jsonFilePath = jsonFileList.get(i);
-//                        System.out.println(jsonFilePath);
-//                        try {
-//                            File file = new File(context.getFilesDir(), "TestAdvance.json");
-//                            FileReader fileReader = new FileReader(file);
-//                            BufferedReader bufferedReader = new BufferedReader(fileReader);
-//                            StringBuilder stringBuilder = new StringBuilder();
-//                            String line = bufferedReader.readLine();
-//                            while (line != null) {
-//                                stringBuilder.append(line).append("\n");
-//                                line = bufferedReader.readLine();
-//                            }
-//                            bufferedReader.close();
-//                            jsonString = stringBuilder.toString();
-//                        }catch(Exception e){
-//                            e.printStackTrace();
-//                        }
-//                        new AdvanceQueryTask().execute();
-//                    }
-//
-//                }
-//            }
-//        }
-
-//    }
 
 
     private String readJsonFile() {
@@ -188,12 +108,6 @@ public class NetworkStateChecker extends Service {
         // Add as notification
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(0, builder.build());
-    }
-
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
     }
 
     public class AdvanceQueryTask extends AsyncTask<URL, Void, String> {
