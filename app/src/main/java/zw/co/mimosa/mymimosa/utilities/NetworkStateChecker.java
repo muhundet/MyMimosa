@@ -9,6 +9,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -46,14 +47,16 @@ import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.AdvanceActivity;
 import static android.provider.Settings.System.getString;
 
 public class NetworkStateChecker extends Service {
-    Context context;
+    Context mContext;
     String jsonString;
     BroadcastReceiver broadcastReceiverNetwork;
+    String jsonFilePath;
 
     @Override
     public void onCreate()
     {
         registerBroadcastReceiverNetwork();
+        registerReceiver(broadcastReceiverNetwork, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     @Override
@@ -66,7 +69,12 @@ public class NetworkStateChecker extends Service {
         broadcastReceiverNetwork = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                NetworkStateChecker.this.context = context;
+                mContext = context;
+
+//                IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+//                filter.addAction(Intent.ACTION_MANAGE_NETWORK_USAGE);
+//                mContext.registerReceiver(broadcastReceiverNetwork, filter);
+
 
                 ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
@@ -80,7 +88,7 @@ public class NetworkStateChecker extends Service {
                         File[] filesInFolder = folder.listFiles();
                         for (File file : filesInFolder) {
                             if (!file.isDirectory()) {
-                                jsonFileList.add(file.getPath());
+                                jsonFileList.add(file.getName());
                             }
                         }
 
@@ -88,10 +96,10 @@ public class NetworkStateChecker extends Service {
                             System.out.println("no json files");
                         }else{
                             for(int i = 0; i<jsonFileList.size(); i++){
-                                String jsonFilePath = jsonFileList.get(i);
+                                jsonFilePath = jsonFileList.get(i);
                                 System.out.println(jsonFilePath);
                                 try {
-                                    File file = new File(context.getFilesDir(), "TestAdvance.json");
+                                    File file = new File(context.getFilesDir(), jsonFilePath);
                                     FileReader fileReader = new FileReader(file);
                                     BufferedReader bufferedReader = new BufferedReader(fileReader);
                                     StringBuilder stringBuilder = new StringBuilder();
@@ -170,23 +178,26 @@ public class NetworkStateChecker extends Service {
         return  jsonString;
     }
 
-    private void deleteJsonFile(){
-
+    private void deleteJsonFile(String jsonFileName){
+        File dir = getFilesDir();
+        File file = new File(dir, jsonFileName);
+        boolean deleted = file.delete();
+        System.out.println("Json file deleted: " + deleted);
     }
 
     private void addNotification() {
         NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(context)
+                new NotificationCompat.Builder(mContext)
                         .setSmallIcon(R.drawable.mimosa_logo_no_motto)
                         .setContentTitle("Advance Application")
                         .setContentText("Sent successfully, now awaits approval");
 
-        Intent notificationIntent = new Intent(context, MainActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent notificationIntent = new Intent(mContext, MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(mContext, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(contentIntent);
 
         // Add as notification
-        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(0, builder.build());
     }
 
@@ -216,7 +227,7 @@ public class NetworkStateChecker extends Service {
                             // do anything with response
                             System.out.println("response");
                             addNotification();
-                            deleteJsonFile();
+                            deleteJsonFile(jsonFilePath);
 //                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(AdvanceActivity.this);
 //                            dialogBuilder.setMessage("You have successfully applied for advance")
 //                                    .setTitle("Submitted")

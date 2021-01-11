@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -22,12 +23,13 @@ import zw.co.mimosa.mymimosa.ui.medical_services.MedicalServicesDashboardActivit
 /**
  * A placeholder fragment containing a simple view.
  */
-public class FormsFragment extends Fragment  implements View.OnClickListener {
+public class FormsFragment extends Fragment  {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private PageViewModel pageViewModel;
-    MaterialCardView materialCardViewMedicalServicesMenu;
+    CardView materialCardViewMedicalServicesMenu, materialCardViewHrMenu, materialCardViewHarareOfficeMenu,
+    materialCardViewSheMenu, materialCardViewIctMenu, materialCardViewTransportMenu, materialCardViewFinanceMenu, materialCardViewSupplyChainMenu;
 
     public static FormsFragment newInstance(int index) {
         FormsFragment fragment = new FormsFragment();
@@ -55,15 +57,30 @@ public class FormsFragment extends Fragment  implements View.OnClickListener {
         String lastName = getArguments().getString("LASTNAME");
         View root = inflater.inflate(R.layout.fragment_forms, container, false);
 //        final TextView textView = root.findViewById(R.id.section_label);
-        final MaterialCardView materialCardViewHrMenu = root.findViewById(R.id.hr_menu);
-        final TextView loggedInAs = root.findViewById(R.id.tv_logged_in_as);
-        materialCardViewMedicalServicesMenu = root.findViewById(R.id.medical_services_menu);
-        loggedInAs.setText(lastName);
-        materialCardViewHrMenu.setOnClickListener(this);
+//        final MaterialCardView materialCardViewHrMenu = root.findViewById(R.id.hr_menu);
+//        final TextView loggedInAs = root.findViewById(R.id.tv_logged_in_as);
+        materialCardViewHrMenu = root.findViewById(R.id.cv_hr_menu);
+        materialCardViewMedicalServicesMenu = root.findViewById(R.id.cv_medical_services_menu);
+        materialCardViewHarareOfficeMenu = root.findViewById(R.id.cv_harare_office_menu);
+        materialCardViewSheMenu = root.findViewById(R.id.cv_she_menu);
+        materialCardViewIctMenu = root.findViewById(R.id.cv_ict_menu);
+        materialCardViewTransportMenu = root.findViewById(R.id.cv_transport_menu);
+        materialCardViewFinanceMenu = root.findViewById(R.id.cv_finance_menu);
+        materialCardViewSupplyChainMenu = root.findViewById(R.id.cv_supply_menu);
+//        loggedInAs.setText(lastName);
+//        materialCardViewHrMenu.setOnClickListener(this);
         pageViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
 //                textView.setText(s);
+            }
+        });
+
+        materialCardViewHrMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HrDashboardActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -77,15 +94,14 @@ public class FormsFragment extends Fragment  implements View.OnClickListener {
         return root;
     }
 
-    @Override
-    public void onClick(View v) {
-        Intent intent;
-
-        switch(v.getId()){
-            case R.id.hr_menu:
-                intent = new Intent(getContext(), HrDashboardActivity.class);
-                startActivity(intent);
-
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        Intent intent;
+//
+//        switch(v.getId()){
+//            case R.id.hr_menu:
+//
+//
+//        }
+//    }
 }

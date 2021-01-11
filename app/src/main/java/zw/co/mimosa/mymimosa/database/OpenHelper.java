@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class OpenHelper extends SQLiteOpenHelper {
@@ -31,6 +33,11 @@ public class OpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 //        db.execSQL(DatabaseContract.Entry.SQL_CREATE_TABLE);
 //        db.execSQL(DatabaseContract.Entry.SQL_CREATE_TABLE);
+        try {
+            decryptDataBase("ruby100");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -46,6 +53,22 @@ public class OpenHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public void decryptDataBase(String passphrase) throws IOException {
+        net.sqlcipher.database.SQLiteDatabase.loadLibs(mContext);
+        File originalFile = mContext.getDatabasePath("Mimdb.db");
+        System.out.println(String.valueOf(originalFile));
 
+//        File newFile = File.createTempFile("sqlcipherutils", "tmp", getCacheDir());
 
+        net.sqlcipher.database.SQLiteDatabase existing_db = net.sqlcipher.database.SQLiteDatabase.openDatabase(String.valueOf(originalFile), "", null, net.sqlcipher.database.SQLiteDatabase.OPEN_READWRITE);
+
+        existing_db.rawExecSQL("ATTACH DATABASE '" + originalFile + "' AS plaintext KEY '" + passphrase + "';");
+        existing_db.rawExecSQL("SELECT sqlcipher_export('decrypted');");
+        existing_db.rawExecSQL("DETACH DATABASE decrypted;");
+
+        existing_db.close();
+
+        originalFile.delete();
+
+    }
 }

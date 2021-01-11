@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 import zw.co.mimosa.mymimosa.R;
 import zw.co.mimosa.mymimosa.data.acting_allowance_data.ActingAllowanceRequest;
+import zw.co.mimosa.mymimosa.database.CipherOpenHelper;
 import zw.co.mimosa.mymimosa.database.OpenHelper;
 import zw.co.mimosa.mymimosa.ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationHelper;
 import zw.co.mimosa.mymimosa.ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationMine;
@@ -386,8 +387,8 @@ public class HrFormRecyclerAdapter extends RecyclerView.Adapter<HrFormRecyclerAd
         }
 
         private void getUserFromDatabase(String empIdFromLUAU) {
-            OpenHelper dbOpenHelper;
-            dbOpenHelper = new OpenHelper(mContext);
+            CipherOpenHelper dbOpenHelper;
+            dbOpenHelper = new CipherOpenHelper(mContext);
             try {
                 Cursor cursor = dbOpenHelper.getLoginUser(empIdFromLUAU);
                 if (cursor.moveToFirst()) {

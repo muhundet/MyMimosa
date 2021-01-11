@@ -20,14 +20,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMimosa"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.main.MainDashboardActivity"></activity>
+        <!-- <receiver android:name=".utilities.NetworkStateChecker1"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.net.conn.CONNECTIVITY_CHANGE" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+        <!-- <receiver android:name=".utilities.NetworkStateChecker1"  android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.CONNECTIVITY"/> -->
+        <!-- <action android:name="android.intent.action.INPUT_METHOD_CHANGED" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+        <service
+            android:name=".utilities.NetworkStateChecker"
+            android:enabled="true" />
 
-        <receiver android:name=".utilities.NetworkStateChecker">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
-
-        <activity android:name=".ui.medical_services.MedicalServicesDashboardActivity"></activity>
+        <activity android:name=".ui.medical_services.MedicalServicesDashboardActivity" />
         <activity android:name=".ui.medical_services.covid_return.CovidReturnToWork" />
         <activity android:name=".ui.harare_office.petty_cash_authorisation_harare_office.PettyCashAuthorisationHarare" />
         <activity android:name=".ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationMine" />

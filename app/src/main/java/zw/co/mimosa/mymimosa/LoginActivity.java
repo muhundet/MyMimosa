@@ -19,14 +19,16 @@ import com.google.android.material.textfield.TextInputLayout;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import java.io.File;
+import java.io.IOException;
 
+import zw.co.mimosa.mymimosa.database.CipherOpenHelper;
 import zw.co.mimosa.mymimosa.database.OpenHelper;
 import zw.co.mimosa.mymimosa.utilities.LoggedInUserAccessUtility;
 
 @RequiresApi(api = Build.VERSION_CODES.O_MR1)
 public class LoginActivity extends AppCompatActivity  {
     Button loginButton;
-    OpenHelper dbOpenHelper;
+    CipherOpenHelper dbOpenHelper;
     String employeeId;
     String password;
 
@@ -89,16 +91,56 @@ public class LoginActivity extends AppCompatActivity  {
 
     private void initializeSQLCipher() {
         SQLiteDatabase.loadLibs(this);
-        File databaseFile = getDatabasePath("/data/data/zw.co.mimosa.mymimosa/databases/Mimdb.db");
-        databaseFile.mkdirs();
-        databaseFile.delete();
-        SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(databaseFile, "test123", null);
+        File databaseFile = getDatabasePath("Mimdb.db");
+        System.out.println(databaseFile);
+//        SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(databaseFile, "test123", null,);
+//        database.execSQL("create table users(a, b)");
+//        database.execSQL("insert into users(a, b) values(?, ?)", new Object[]{"testt",
+//                "testingg"});
+    }
+
+    public void encryptDataBase(String passphrase) throws IOException {
+        SQLiteDatabase.loadLibs(this);
+        File originalFile = this.getDatabasePath("Mimdb.db");
+        System.out.println(String.valueOf(originalFile));
+
+        File newFile = File.createTempFile("sqlcipherutils", "tmp", getCacheDir());
+
+        SQLiteDatabase existing_db = SQLiteDatabase.openDatabase(String.valueOf(originalFile), "", null, SQLiteDatabase.OPEN_READWRITE);
+
+        existing_db.rawExecSQL("ATTACH DATABASE '" + newFile.getPath() + "' AS encrypted KEY '" + passphrase + "';");
+        existing_db.rawExecSQL("SELECT sqlcipher_export('encrypted');");
+        existing_db.rawExecSQL("DETACH DATABASE encrypted;");
+
+        existing_db.close();
+
+        originalFile.delete();
+        newFile.renameTo(originalFile);
 
     }
 
+    public void decryptDataBase(String passphrase) throws IOException {
+        SQLiteDatabase.loadLibs(this);
+        File originalFile = this.getDatabasePath("Mimdb.db");
+        System.out.println("decrypt>>>>>>>> " + originalFile);
+
+        File newFile = File.createTempFile("sqlcipherutils", "tmp", getCacheDir());
+
+        SQLiteDatabase existing_db = SQLiteDatabase.openDatabase(String.valueOf(originalFile), "ruby100", null, SQLiteDatabase.OPEN_READWRITE);
+
+        existing_db.rawExecSQL("ATTACH DATABASE '" + newFile.getPath() + "' AS plaintext KEY '" + passphrase + "';");
+        existing_db.rawExecSQL("SELECT sqlcipher_export('plaintext');");
+        existing_db.rawExecSQL("DETACH DATABASE plaintext;");
+
+        existing_db.close();
+
+        originalFile.delete();
+        newFile.renameTo(originalFile);
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        dbOpenHelper = new OpenHelper(this);
+        dbOpenHelper = new CipherOpenHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         inputLayoutUsername = findViewById(R.id.usernameLayout);
@@ -109,6 +151,12 @@ public class LoginActivity extends AppCompatActivity  {
 
 
         initializeSQLCipher();
+        try {
+//            encryptDataBase("ruby100");
+            decryptDataBase("ruby100");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

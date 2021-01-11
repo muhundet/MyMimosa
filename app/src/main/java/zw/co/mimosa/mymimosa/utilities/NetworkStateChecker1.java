@@ -59,7 +59,7 @@ public class NetworkStateChecker1 extends BroadcastReceiver {
                 }else{
                     for(int i = 0; i<jsonFileList.size(); i++){
                         String jsonFilePath = jsonFileList.get(i);
-                        System.out.println(jsonFilePath);
+                        System.out.println(">>>>>>>>>>>>>>>>>>>>" + jsonFilePath);
                         try {
                             File file = new File(context.getFilesDir(), "TestAdvance.json");
                             FileReader fileReader = new FileReader(file);

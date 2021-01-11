@@ -41,10 +41,9 @@
                         android:layout_below="@id/hr_menu_icon"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="HR Forms"
+                        android:text="HR "
                         android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
+                        android:textSize="20sp"
                         />
 
                     <ImageView
@@ -77,8 +76,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Medical Services"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
+                        android:textSize="20sp"
                          />
 
                     <ImageView
@@ -123,9 +121,8 @@
                         android:layout_marginTop="10dp"
                         android:text="Harare Office"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                         />
+                        android:textSize="20sp"
+                        />
 
                     <ImageView
                         android:id="@+id/hr_harare_icon"
@@ -155,11 +152,10 @@
                         android:layout_below="@id/image_view_she"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="SHE Forms"
+                        android:text="SHE"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                        />
+                        android:textSize="20sp"
+                         />
 
                     <ImageView
                         android:id="@+id/image_view_she"
@@ -199,9 +195,8 @@
                         android:layout_marginTop="10dp"
                         android:text="ICT Services"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                         />
+                        android:textSize="20sp"
+                       />
                     <ImageView
                         android:id="@+id/image_ict"
                         android:layout_width="75dp"
@@ -227,11 +222,10 @@
                         android:layout_below="@id/train"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="Transport Forms"
+                        android:text="Transport"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                         />
+                        android:textSize="20sp"
+                        />
                     <ImageView
                         android:id="@+id/train"
                         android:layout_width="75dp"
@@ -267,11 +261,10 @@
                         android:layout_below="@id/cycle"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="Finance Forms"
+                        android:text="Finance"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                        />
+                        android:textSize="20sp"
+                         />
                     <ImageView
                         android:id="@+id/cycle"
                         android:layout_width="75dp"
@@ -299,8 +292,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Supply Chain"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
+                        android:textSize="20sp"
                          />
                     <ImageView
                         android:id="@+id/airplane"
