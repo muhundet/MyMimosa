@@ -48,8 +48,8 @@
 
                     <ImageView
                         android:id="@+id/hr_menu_icon"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/hr_icon" />
@@ -81,8 +81,8 @@
 
                     <ImageView
                         android:id="@+id/image_view_medical_services"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/medical" />
@@ -161,8 +161,8 @@
 
                     <ImageView
                         android:id="@+id/image_view_she"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/she" />
@@ -202,8 +202,8 @@
                          />
                     <ImageView
                         android:id="@+id/image_ict"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/ict" />
@@ -232,8 +232,8 @@
                          />
                     <ImageView
                         android:id="@+id/train"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/transport" />
@@ -272,8 +272,8 @@
                         />
                     <ImageView
                         android:id="@+id/cycle"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/finance" />
@@ -303,8 +303,8 @@
                          />
                     <ImageView
                         android:id="@+id/airplane"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/supply_chain" />
