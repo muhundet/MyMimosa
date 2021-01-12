@@ -18,6 +18,7 @@ import com.google.android.material.card.MaterialCardView;
 
 import zw.co.mimosa.mymimosa.R;
 import zw.co.mimosa.mymimosa.ui.hr.HrDashboardActivity;
+import zw.co.mimosa.mymimosa.ui.hr.HrMainDashboardActivity;
 import zw.co.mimosa.mymimosa.ui.medical_services.MedicalServicesDashboardActivity;
 
 /**
@@ -28,7 +29,7 @@ public class FormsFragment extends Fragment  {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private PageViewModel pageViewModel;
-    CardView materialCardViewMedicalServicesMenu, materialCardViewHrMenu, materialCardViewHarareOfficeMenu,
+    MaterialCardView materialCardViewMedicalServicesMenu, materialCardViewHrMenu, materialCardViewHarareOfficeMenu,
     materialCardViewSheMenu, materialCardViewIctMenu, materialCardViewTransportMenu, materialCardViewFinanceMenu, materialCardViewSupplyChainMenu;
 
     public static FormsFragment newInstance(int index) {
@@ -79,7 +80,7 @@ public class FormsFragment extends Fragment  {
         materialCardViewHrMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), HrDashboardActivity.class);
+                Intent intent = new Intent(getContext(), HrMainDashboardActivity.class);
                 startActivity(intent);
             }
         });

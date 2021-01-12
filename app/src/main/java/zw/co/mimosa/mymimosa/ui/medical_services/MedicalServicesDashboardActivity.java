@@ -2,6 +2,7 @@ package zw.co.mimosa.mymimosa.ui.medical_services;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.google.android.material.card.MaterialCardView;
 
 import zw.co.mimosa.mymimosa.R;
+import zw.co.mimosa.mymimosa.database.CipherOpenHelper;
 import zw.co.mimosa.mymimosa.database.OpenHelper;
 import zw.co.mimosa.mymimosa.ui.medical_services.covid_return.CovidReturnToWork;
 import zw.co.mimosa.mymimosa.ui.medical_services.covid_return.CovidReturnToWorkHelper;
@@ -19,6 +21,7 @@ import zw.co.mimosa.mymimosa.utilities.LoggedInUserAccessUtility;
 
 public class MedicalServicesDashboardActivity extends AppCompatActivity {
     MaterialCardView materialCardViewReturn, materialCardViewRoutine, materialCardViewdrivers;
+    Context mContext = this;
     CovidReturnToWorkHelper creturn = CovidReturnToWorkHelper.getCovidReturnToWorkHelperInstance();
     LoggedInUserAccessUtility luau;
 
@@ -55,8 +58,8 @@ public class MedicalServicesDashboardActivity extends AppCompatActivity {
                 intentCovidReturnToWork.putExtra("EMAILID", emailId);
                 intentCovidReturnToWork.putExtra("FIRSTNAME", firstName);
                 intentCovidReturnToWork.putExtra("LASTNAME", lastName);
-                MedicalServicesDashboardActivity.this.startActivity(intentCovidReturnToWork);
-                startActivity(intentCovidReturnToWork);
+                mContext.startActivity(intentCovidReturnToWork);
+
             }
         });
 
@@ -76,8 +79,8 @@ public class MedicalServicesDashboardActivity extends AppCompatActivity {
                 intentCovidReturnToWork.putExtra("EMAILID", emailId);
                 intentCovidReturnToWork.putExtra("FIRSTNAME", firstName);
                 intentCovidReturnToWork.putExtra("LASTNAME", lastName);
-                MedicalServicesDashboardActivity.this.startActivity(intentCovidReturnToWork);
-                startActivity(intentCovidReturnToWork);
+                mContext.startActivity(intentCovidReturnToWork);
+
             }
         });
 
@@ -97,15 +100,15 @@ public class MedicalServicesDashboardActivity extends AppCompatActivity {
                 intentCovidReturnToWork.putExtra("EMAILID", emailId);
                 intentCovidReturnToWork.putExtra("FIRSTNAME", firstName);
                 intentCovidReturnToWork.putExtra("LASTNAME", lastName);
-                MedicalServicesDashboardActivity.this.startActivity(intentCovidReturnToWork);
-                startActivity(intentCovidReturnToWork);
+                mContext.startActivity(intentCovidReturnToWork);
+
             }
         });
     }
 
     private void getUserFromDatabase(String empIdFromLUAU) {
-        OpenHelper dbOpenHelper;
-        dbOpenHelper = new OpenHelper(this);
+        CipherOpenHelper dbOpenHelper;
+        dbOpenHelper = new CipherOpenHelper(this);
         try {
             Cursor cursor = dbOpenHelper.getLoginUser(empIdFromLUAU);
             if (cursor.moveToFirst()) {

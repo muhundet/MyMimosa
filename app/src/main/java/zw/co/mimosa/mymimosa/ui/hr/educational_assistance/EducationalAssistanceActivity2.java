@@ -48,6 +48,7 @@ import zw.co.mimosa.mymimosa.MainActivity;
 import zw.co.mimosa.mymimosa.R;
 import zw.co.mimosa.mymimosa.data.educational_assistance_data.EducationalAssistanceRequest;
 import zw.co.mimosa.mymimosa.data.educational_assistance_data.UdfDate686;
+import zw.co.mimosa.mymimosa.ui.hr.acting_allowance.ActingAllowanceActivity2;
 import zw.co.mimosa.mymimosa.utilities.UriUtils;
 
 public class EducationalAssistanceActivity2 extends AppCompatActivity {
@@ -410,6 +411,13 @@ public class EducationalAssistanceActivity2 extends AppCompatActivity {
                                     .setPositiveButton(android.R.string.ok, null)
                                     .setIcon(R.drawable.checkmark);
                             AlertDialog dialog = builder.create();
+                            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(EducationalAssistanceActivity2.this, MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
                             dialog.show();
                         }
 

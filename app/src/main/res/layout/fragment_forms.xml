@@ -13,7 +13,7 @@
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="0dp"
-            android:layout_height="175dp"
+            android:layout_height="140dp"
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
             android:padding="10dp"
@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_hr_menu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -40,24 +40,23 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/hr_menu_icon"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="0dp"
                         android:text="HR Forms"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
                         android:textSize="15sp"
-                        />
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/hr_menu_icon"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/hr_icon" />
                 </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_medical_services_menu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -74,28 +73,27 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/image_view_medical_services"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="0dp"
                         android:text="Medical Services"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
                         android:textSize="15sp"
-                         />
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/image_view_medical_services"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/medical" />
                 </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="0dp"
-            android:layout_height="175dp"
+            android:layout_height="140dp"
             android:orientation="horizontal"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +101,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_harare_office_menu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -120,7 +118,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/hr_harare_icon"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="0dp"
                         android:text="Harare Office"
                         android:textColor="@color/black"
                         android:textStyle="bold"
@@ -129,15 +127,15 @@
 
                     <ImageView
                         android:id="@+id/hr_harare_icon"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/harareoffice" />
                 </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_she_menu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -154,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/image_view_she"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="0dp"
                         android:text="SHE Forms"
                         android:textColor="@color/black"
                         android:textStyle="bold"
@@ -163,25 +161,25 @@
 
                     <ImageView
                         android:id="@+id/image_view_she"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/she" />
                 </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="0dp"
-            android:layout_height="175dp"
+            android:layout_height="140dp"
             android:orientation="horizontal"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_ict_menu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -196,7 +194,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/image_ict"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="0dp"
                         android:text="ICT Services"
                         android:textColor="@color/black"
                         android:textStyle="bold"
@@ -204,14 +202,14 @@
                          />
                     <ImageView
                         android:id="@+id/image_ict"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/ict" />
                 </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_transport_menu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -226,7 +224,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/train"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="0dp"
                         android:text="Transport Forms"
                         android:textColor="@color/black"
                         android:textStyle="bold"
@@ -234,24 +232,24 @@
                          />
                     <ImageView
                         android:id="@+id/train"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/transport" />
                 </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="175dp"
+            android:layout_height="140dp"
             android:orientation="horizontal"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_finance_menu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -266,7 +264,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/cycle"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="0dp"
                         android:text="Finance Forms"
                         android:textColor="@color/black"
                         android:textStyle="bold"
@@ -274,19 +272,20 @@
                         />
                     <ImageView
                         android:id="@+id/cycle"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/finance" />
                 </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_supply_menu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+               >
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -296,7 +295,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/airplane"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="0dp"
                         android:text="Supply Chain"
                         android:textColor="@color/black"
                         android:textStyle="bold"
@@ -304,13 +303,13 @@
                          />
                     <ImageView
                         android:id="@+id/airplane"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         app:srcCompat="@drawable/supply_chain" />
                 </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
