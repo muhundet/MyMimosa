@@ -47,7 +47,7 @@ public class LeaveActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leave);
-
+        setTitle("Leave Form");
         etFirstName = findViewById(R.id.et_ea_first_name);
         etSurname = findViewById(R.id.et_ea_surname);
         etMineNumber = findViewById(R.id.et_ea_mine_number);

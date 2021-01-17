@@ -227,7 +227,7 @@ public class ActingAllowanceActivity extends AppCompatActivity {
         String checkspaces = "Aw{1,20}z";
 
         if (val.isEmpty()) {
-            inputLayoutActingPosition.setError("End date cannot be empty");
+            inputLayoutEndDate.setError("End date cannot be empty");
             etEndDate.requestFocus();
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(etEndDate, InputMethodManager.SHOW_IMPLICIT);

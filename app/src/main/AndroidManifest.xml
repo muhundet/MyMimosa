@@ -38,7 +38,7 @@
             android:enabled="true" />
 
         <activity android:name=".ui.medical_services.MedicalServicesDashboardActivity" />
-        <activity android:name=".ui.medical_services.covid_return.CovidReturnToWork" />
+        <activity android:name=".ui.medical_services.covid_screening.CovidScreening" />
         <activity android:name=".ui.harare_office.petty_cash_authorisation_harare_office.PettyCashAuthorisationHarare" />
         <activity android:name=".ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationMine" />
         <activity android:name=".ui.hr.acting_allowance.ActingAllowanceActivity2" />

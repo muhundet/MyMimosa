@@ -42,7 +42,7 @@ tools:context=".ui.harare_office.petty_cash_authorisation_harare_office.HarareDa
                     android:layout_marginTop="0dp"
                     android:text="Petty Cash Authorisation"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <ImageView

@@ -424,6 +424,9 @@ public class ActingAllowanceActivity2 extends AppCompatActivity {
                             Log.d("TAG", "onError errorBody : " + error.getErrorBody());
                             Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
 
+                            pgBarSubmit.setVisibility(View.INVISIBLE);
+                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
                                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ActingAllowanceActivity2.this);
 //                                dialogBuilder.setMessage("Your application was not sent because of bad network, the system will resend when network is detected. No need to redo the request.")
                                 dialogBuilder.setMessage("Your application was not sent because of bad network. Please retry.")
@@ -457,8 +460,6 @@ public class ActingAllowanceActivity2 extends AppCompatActivity {
                 tvResponse.setText(result);
             }
 
-            pgBarSubmit.setVisibility(View.INVISIBLE);
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
         }
 

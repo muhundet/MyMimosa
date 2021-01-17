@@ -37,12 +37,15 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -335,7 +338,6 @@ public class LeaveActivity2 extends AppCompatActivity {
 //                            message =  jsonObject.get("message").getAsString();
 //                        }
 
-
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -547,6 +549,13 @@ public class LeaveActivity2 extends AppCompatActivity {
                                     JSONObject jobj = response.getJSONObject("request");
                                     JSONObject response_jobj = response.getJSONObject("response_status");
                                     result = jobj.get("id").toString();
+                                    String attachmentJsonString = "{\n" +
+                                            "\t\"attachment\": {\n" +
+                                            "\t\t\"request\": {\n" +
+                                            "\t\t\t\"id\": \"" + result + "\"\n" +
+                                            "\t\t}\n" +
+                                            "\t}\n" +
+                                            "}";
                                     status_code = response_jobj.get("status_code").toString();
                                     System.out.println("This is the id: " + status_code);
 
@@ -556,13 +565,7 @@ public class LeaveActivity2 extends AppCompatActivity {
                                             .addHeaders("TECHNICIAN_KEY", "5775EFB0-AAB8-437A-8888-A330875F2B8D")
                                             .addMultipartFile("image", file)
                                             .addMultipartParameter("OPERATION_NAME", "ADD_ATTACHMENT")
-                                            .addMultipartParameter("input_data", "{\n" +
-                                                    "\t\"attachment\": {\n" +
-                                                    "\t\t\"request\": {\n" +
-                                                    "\t\t\t\"id\": \"" + result + "\"\n" +
-                                                    "\t\t}\n" +
-                                                    "\t}\n" +
-                                                    "}")
+                                            .addMultipartParameter("input_data", attachmentJsonString)
                                             .setPriority(Priority.HIGH)
                                             .build()
                                             .setUploadProgressListener(new UploadProgressListener() {
@@ -628,6 +631,15 @@ public class LeaveActivity2 extends AppCompatActivity {
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                            String leaveJsonString = "leaveId_";
+                            String currentDate = new SimpleDateFormat("ddMMyyyyhhmmss", Locale.getDefault()).format(new Date());
+                            System.out.println(currentDate);
+                            leaveJsonString = leaveJsonString + currentDate;
+                            saveJson(leaveJsonString);
+                            if(leaveFormHelper.isSickSelected) {
+                                saveAttachmentPath(leaveFormHelper.getFilepath(), leaveJsonString);
+                            }
 //                            if (!error.getErrorDetail().equals("connectionError")){
 //                                pgBarSubmit.setVisibility(View.INVISIBLE);
 //                                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LeaveActivity2.this);
@@ -644,7 +656,7 @@ public class LeaveActivity2 extends AppCompatActivity {
 //                                });
 //                                dialogBuilder.show();
 //                            }
-//                            else {
+//                            else {                        }
                                 pgBarSubmit.setVisibility(View.INVISIBLE);
                                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LeaveActivity2.this);
@@ -667,6 +679,36 @@ public class LeaveActivity2 extends AppCompatActivity {
                     });
 
             return result;
+        }
+
+        private void saveJson(String jsonFileName){
+            try {
+//                File mainDir = LeaveActivity2.this.getDir("MainFolder", Context.MODE_PRIVATE);
+                File fileMain = new File(LeaveActivity2.this.getFilesDir(), String.valueOf(Context.MODE_PRIVATE));
+                boolean isDirMade = fileMain.mkdir();
+                System.out.println("Directory made: " + isDirMade );
+                File file = new File(fileMain, jsonFileName + ".json");
+                FileWriter fileWriter = new FileWriter(file);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                bufferedWriter.write(jsonStr);
+                bufferedWriter.close();
+                System.out.println("json file saved success in: " + file.getPath());
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        private void saveAttachmentPath(String attachmentPath, String attachmentName){
+            try {
+                File file = new File(LeaveActivity2.this.getFilesDir(), attachmentName + "_attachment.txt");
+                FileWriter fileWriter = new FileWriter(file);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                bufferedWriter.write(attachmentPath);
+                bufferedWriter.close();
+                System.out.println("Attachment file saved success in: " + file.getPath());
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
 
         @Override

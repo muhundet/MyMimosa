@@ -17,6 +17,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.card.MaterialCardView;
 
 import zw.co.mimosa.mymimosa.R;
+import zw.co.mimosa.mymimosa.ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationMine;
+import zw.co.mimosa.mymimosa.ui.harare_office.petty_cash_authorisation_harare_office.HarareDashboardActivity;
 import zw.co.mimosa.mymimosa.ui.hr.HrDashboardActivity;
 import zw.co.mimosa.mymimosa.ui.hr.HrMainDashboardActivity;
 import zw.co.mimosa.mymimosa.ui.medical_services.MedicalServicesDashboardActivity;
@@ -57,6 +59,7 @@ public class FormsFragment extends Fragment  {
             Bundle savedInstanceState) {
         String lastName = getArguments().getString("LASTNAME");
         View root = inflater.inflate(R.layout.fragment_forms, container, false);
+        getActivity().setTitle("DASHBOARD");
 //        final TextView textView = root.findViewById(R.id.section_label);
 //        final MaterialCardView materialCardViewHrMenu = root.findViewById(R.id.hr_menu);
 //        final TextView loggedInAs = root.findViewById(R.id.tv_logged_in_as);
@@ -89,6 +92,22 @@ public class FormsFragment extends Fragment  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), MedicalServicesDashboardActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        materialCardViewHarareOfficeMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HarareDashboardActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        materialCardViewFinanceMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PettyCashAuthorisationMine.class);
                 startActivity(intent);
             }
         });

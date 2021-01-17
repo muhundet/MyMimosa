@@ -8,13 +8,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.os.Build;
-import android.text.InputType;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,23 +24,19 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.ArrayList;
 
 import zw.co.mimosa.mymimosa.R;
-import zw.co.mimosa.mymimosa.data.acting_allowance_data.ActingAllowanceRequest;
 import zw.co.mimosa.mymimosa.database.CipherOpenHelper;
-import zw.co.mimosa.mymimosa.database.OpenHelper;
-import zw.co.mimosa.mymimosa.ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationHelper;
 import zw.co.mimosa.mymimosa.ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationMine;
 import zw.co.mimosa.mymimosa.ui.harare_office.petty_cash_authorisation_harare_office.PettyCashAuthorisationHarare;
 import zw.co.mimosa.mymimosa.ui.harare_office.petty_cash_authorisation_harare_office.PettyCashAuthorisationHarareHelper;
 import zw.co.mimosa.mymimosa.ui.hr.acting_allowance.ActingAllowanceActivity;
-import zw.co.mimosa.mymimosa.ui.hr.acting_allowance.ActingAllowanceActivity2;
 import zw.co.mimosa.mymimosa.ui.hr.acting_allowance.ActingAllowanceHelper;
 import zw.co.mimosa.mymimosa.ui.hr.educational_assistance.EducationalAssistanceActivity;
 import zw.co.mimosa.mymimosa.ui.hr.educational_assistance.EducationalAssistanceHelper;
 import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.AdvanceActivity;
 import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.LeaveActivity;
 import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.LeaveFormHelper;
-import zw.co.mimosa.mymimosa.ui.medical_services.covid_return.CovidReturnToWork;
-import zw.co.mimosa.mymimosa.ui.medical_services.covid_return.CovidReturnToWorkHelper;
+import zw.co.mimosa.mymimosa.ui.medical_services.covid_screening.CovidScreening;
+import zw.co.mimosa.mymimosa.ui.medical_services.covid_screening.CovidReturnScreeningHelper;
 import zw.co.mimosa.mymimosa.utilities.LoggedInUserAccessUtility;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
@@ -373,7 +366,7 @@ public class HrFormRecyclerAdapter extends RecyclerView.Adapter<HrFormRecyclerAd
                     empIdFromLUAU = luau.getEmployeeId();
                     getUserFromDatabase(empIdFromLUAU);
                     setUserFieldsToCovidReturnToWork();
-                    Intent intentCovidReturnToWork = new Intent(mContext, CovidReturnToWork.class);
+                    Intent intentCovidReturnToWork = new Intent(mContext, CovidScreening.class);
                     intentCovidReturnToWork.putExtra("DEPARTMENTID", departmentName[0]);
                     intentCovidReturnToWork.putExtra("EMPID", empId[0]);
                     intentCovidReturnToWork.putExtra("JOBTITLE", jobTitle[0]);
@@ -486,7 +479,7 @@ public class HrFormRecyclerAdapter extends RecyclerView.Adapter<HrFormRecyclerAd
         }
 
         private void setUserFieldsToCovidReturnToWork() {
-            CovidReturnToWorkHelper creturn = CovidReturnToWorkHelper.getCovidReturnToWorkHelperInstance();
+            CovidReturnScreeningHelper creturn = CovidReturnScreeningHelper.getCovidReturnToWorkHelperInstance();
             creturn.setFirstname(firstName[0]);
             creturn.setSurname(lastName[0]);
             creturn.setEmployeeId(empId[0]);

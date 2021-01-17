@@ -1,21 +1,26 @@
-package zw.co.mimosa.mymimosa.ui.medical_services.covid_return;
+package zw.co.mimosa.mymimosa.ui.medical_services.covid_screening;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -34,29 +39,26 @@ import java.util.Date;
 
 import zw.co.mimosa.mymimosa.MainActivity;
 import zw.co.mimosa.mymimosa.Pickers.DateOfBirthPicker;
-import zw.co.mimosa.mymimosa.Pickers.EffectiveDatePicker;
 import zw.co.mimosa.mymimosa.R;
-import zw.co.mimosa.mymimosa.data.acting_allowance_data.ActingAllowanceRequest;
 import zw.co.mimosa.mymimosa.data.covid_return_data.CovidReturnRequest;
-import zw.co.mimosa.mymimosa.ui.hr.acting_allowance.ActingAllowanceActivity2;
-import zw.co.mimosa.mymimosa.ui.hr.acting_allowance.ActingAllowanceHelper;
 
-public class CovidReturnToWork extends AppCompatActivity {
+public class CovidScreening extends AppCompatActivity {
     TextInputLayout inputLayoutDateOfBirth, inputLayoutIdNumber, inputLayoutCellNumber, inputLayoutNextOfKin, inputLayoutAddress;
     TextInputEditText etFirstName, etSurname, etMineNumber, etDepartment, etDesignation;
     Spinner spinnerSection;
     TextInputEditText etDateOfBirth, etIdNumber, etCellNumber, etNextOfKin, etAddress;
-    RadioGroup radioGroupgender;
+    RadioGroup radioGroupGender;
     RadioButton radioButtonGender;
+    ProgressBar pgBarSubmit;
     Button btnSubmit;
-    CovidReturnToWorkHelper creturn = CovidReturnToWorkHelper.getCovidReturnToWorkHelperInstance();
+    CovidReturnScreeningHelper creturn = CovidReturnScreeningHelper.getCovidReturnToWorkHelperInstance();
     long DateOfBirthLong;
     CovidReturnRequest covidReturnRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_covid_return_to_work);
+        setContentView(R.layout.activity_covid_screeening);
 
         etFirstName = findViewById(R.id.et_creturn_first_name);
         etSurname = findViewById(R.id.et_creturn_surname);
@@ -76,9 +78,11 @@ public class CovidReturnToWork extends AppCompatActivity {
         etNextOfKin = findViewById(R.id.et_creturn_next_of_kin);
         etAddress = findViewById(R.id.et_creturn_address);
 
-        radioGroupgender = findViewById(R.id.radio_creturn_gender);
+        radioGroupGender = findViewById(R.id.radio_creturn_gender);
 
         spinnerSection = findViewById(R.id.spinner_creturn_section);
+
+        pgBarSubmit = findViewById(R.id.progress_bar_covid_submit);
 
         btnSubmit = findViewById(R.id.button_creturn_submit);
 
@@ -102,6 +106,7 @@ public class CovidReturnToWork extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(validateDOB() && validateIdNumber() && validateCellNumber() && validateNextOfKin() && validateAddress() && validateRadioGender() && validateSpinnerSection()){
                 String dob = etDateOfBirth.getText().toString();
                 SimpleDateFormat dateOfBirthFormat = new SimpleDateFormat("yyyy/mm/dd");
                 try {
@@ -110,7 +115,7 @@ public class CovidReturnToWork extends AppCompatActivity {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                int selectedId = radioGroupgender.getCheckedRadioButtonId();
+                int selectedId = radioGroupGender.getCheckedRadioButtonId();
                 radioButtonGender = findViewById(selectedId);
                 creturn.setGender(radioButtonGender.getText().toString());
                 creturn.setSection(spinnerSection.getSelectedItem().toString());
@@ -133,23 +138,24 @@ public class CovidReturnToWork extends AppCompatActivity {
                 String designation = creturn.getDesignation();
                 long dateOfEngagement;
                 long dateOfBirth = creturn.getDateOfBirth();
-                String gender= creturn.getGender();
-                String companyName= "Mimosa Mining Company"; //creturn.getCompanyName();
-                String idNumber= creturn.getIdNumber();
-                String cellNumber= creturn.getCellNumber();
-                String nextOfKin= creturn.getNextOfKin();
-                String address= creturn.getAddress();
+                String gender = creturn.getGender();
+                String companyName = "Mimosa Mining Company"; //creturn.getCompanyName();
+                String idNumber = creturn.getIdNumber();
+                String cellNumber = creturn.getCellNumber();
+                String nextOfKin = creturn.getNextOfKin();
+                String address = creturn.getAddress();
 
                 zw.co.mimosa.mymimosa.data.covid_return_data.UdfDate686 udfDate686 = new zw.co.mimosa.mymimosa.data.covid_return_data.UdfDate686(dateOfBirth);
                 zw.co.mimosa.mymimosa.data.covid_return_data.Template templateObj = new zw.co.mimosa.mymimosa.data.covid_return_data.Template(template);
                 zw.co.mimosa.mymimosa.data.covid_return_data.Requester requesterObj = new zw.co.mimosa.mymimosa.data.covid_return_data.Requester(requester);
                 zw.co.mimosa.mymimosa.data.covid_return_data.UdfFields udfFields = new zw.co.mimosa.mymimosa.data.covid_return_data.UdfFields(udfDate686, firstname, surname, designation, gender, companyName, idNumber, cellNumber, nextOfKin, address);
-                zw.co.mimosa.mymimosa.data.covid_return_data.Request request = new zw.co.mimosa.mymimosa.data.covid_return_data.Request(description,  requesterObj, subject, templateObj, udfFields);
+                zw.co.mimosa.mymimosa.data.covid_return_data.Request request = new zw.co.mimosa.mymimosa.data.covid_return_data.Request(description, requesterObj, subject, templateObj, udfFields);
 
                 covidReturnRequest = new CovidReturnRequest(request);
 
                 new AdvanceQueryTask().execute();
             }
+        }
         });
     }
 
@@ -179,7 +185,7 @@ public class CovidReturnToWork extends AppCompatActivity {
                             // do anything with response
                             System.out.println("response");
 
-                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(CovidReturnToWork.this);
+                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(CovidScreening.this);
                             dialogBuilder.setMessage("You have successfully applied for advance")
                                     .setTitle("Submitted")
                                     .setPositiveButton(android.R.string.ok, null)
@@ -187,7 +193,7 @@ public class CovidReturnToWork extends AppCompatActivity {
                             dialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent(CovidReturnToWork.this, MainActivity.class);
+                                    Intent intent = new Intent(CovidScreening.this, MainActivity.class);
                                     startActivity(intent);
                                 }
                             });
@@ -201,7 +207,9 @@ public class CovidReturnToWork extends AppCompatActivity {
                             Log.d("TAG", "onError errorBody : " + error.getErrorBody());
                             Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
 
-                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(CovidReturnToWork.this);
+                            pgBarSubmit.setVisibility(View.INVISIBLE);
+                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(CovidScreening.this);
 //                                dialogBuilder.setMessage("Your application was not sent because of bad network, the system will resend when network is detected. No need to redo the request.")
                             dialogBuilder.setMessage("Your application was not sent because of bad network. Please retry.")
                                     .setTitle("Not Submitted")
@@ -239,7 +247,125 @@ public class CovidReturnToWork extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            pgBarSubmit.setVisibility(View.VISIBLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
+        }
+    }
+
+    private boolean validateDOB() {
+        String val = inputLayoutDateOfBirth.getEditText().getText().toString().trim();
+        String checkspaces = "Aw{1,20}z";
+
+        if (val.isEmpty()) {
+            inputLayoutDateOfBirth.setError("D.O.B cannot be empty");
+            etDateOfBirth.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etDateOfBirth, InputMethodManager.SHOW_IMPLICIT);
+            return false;
+        }
+
+        else {
+            inputLayoutDateOfBirth.setError(null);
+            inputLayoutDateOfBirth.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateIdNumber() {
+        String val = inputLayoutIdNumber.getEditText().getText().toString().trim();
+        String checkspaces = "Aw{1,20}z";
+
+        if (val.isEmpty()) {
+            inputLayoutIdNumber.setError("ID/Passport cannot be empty");
+            etIdNumber.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etIdNumber, InputMethodManager.SHOW_IMPLICIT);
+            return false;
+        }
+
+        else {
+            inputLayoutIdNumber.setError(null);
+            inputLayoutIdNumber.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateCellNumber() {
+        String val = inputLayoutCellNumber.getEditText().getText().toString().trim();
+        String checkspaces = "Aw{1,20}z";
+
+        if (val.isEmpty()) {
+            inputLayoutCellNumber.setError("Cell number cannot be empty");
+            etCellNumber.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etCellNumber, InputMethodManager.SHOW_IMPLICIT);
+            return false;
+        }
+
+        else {
+            inputLayoutCellNumber.setError(null);
+            inputLayoutCellNumber.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateNextOfKin() {
+        String val = inputLayoutNextOfKin.getEditText().getText().toString().trim();
+        String checkspaces = "Aw{1,20}z";
+
+        if (val.isEmpty()) {
+            inputLayoutNextOfKin.setError("Days Acted(in figures) cannot be empty");
+            etNextOfKin.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etNextOfKin, InputMethodManager.SHOW_IMPLICIT);
+            return false;
+        }
+
+        else {
+            inputLayoutNextOfKin.setError(null);
+            inputLayoutNextOfKin.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateAddress() {
+        String val = inputLayoutAddress.getEditText().getText().toString().trim();
+        String checkspaces = "Aw{1,20}z";
+
+        if (val.isEmpty()) {
+            inputLayoutAddress.setError("Address cannot be empty");
+            etAddress.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etAddress, InputMethodManager.SHOW_IMPLICIT);
+            return false;
+        }
+
+        else {
+            inputLayoutAddress.setError(null);
+            inputLayoutAddress.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerSection() {
+        if (spinnerSection.getSelectedItemPosition() == 0) {
+            Toast.makeText(this, "Please Select Section", Toast.LENGTH_SHORT).show();
+            Log.d("TAG", "validateSpinnerSection:Nothing selected ");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateRadioGender() {
+        if (radioGroupGender.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "Please Select Gender", Toast.LENGTH_SHORT).show();
+            Log.d("TAG", "validateGender:Nothing selected ");
+            return false;
+        } else {
+            return true;
         }
     }
 }

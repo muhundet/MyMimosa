@@ -1,15 +1,13 @@
-package zw.co.mimosa.mymimosa.ui.medical_services.covid_return;
+package zw.co.mimosa.mymimosa.ui.medical_services.covid_screening;
 
-import zw.co.mimosa.mymimosa.ui.hr.acting_allowance.ActingAllowanceHelper;
+public class CovidReturnScreeningHelper {
+    private static CovidReturnScreeningHelper mCovidReturnScreeningHelper = null;
 
-public class CovidReturnToWorkHelper {
-    private static CovidReturnToWorkHelper mCovidReturnToWorkHelper = null;
-
-    public static CovidReturnToWorkHelper getCovidReturnToWorkHelperInstance(){
-        if(mCovidReturnToWorkHelper == null){
-            mCovidReturnToWorkHelper = new CovidReturnToWorkHelper();
+    public static CovidReturnScreeningHelper getCovidReturnToWorkHelperInstance(){
+        if(mCovidReturnScreeningHelper == null){
+            mCovidReturnScreeningHelper = new CovidReturnScreeningHelper();
         }
-        return (CovidReturnToWorkHelper) mCovidReturnToWorkHelper;
+        return (CovidReturnScreeningHelper) mCovidReturnScreeningHelper;
     }
 
     String firstname;
@@ -31,12 +29,12 @@ public class CovidReturnToWorkHelper {
     String description;
 
 
-    public static CovidReturnToWorkHelper getmCovidReturnToWorkHelper() {
-        return mCovidReturnToWorkHelper;
+    public static CovidReturnScreeningHelper getmCovidReturnScreeningHelper() {
+        return mCovidReturnScreeningHelper;
     }
 
-    public static void setmCovidReturnToWorkHelper(CovidReturnToWorkHelper mCovidReturnToWorkHelper) {
-        CovidReturnToWorkHelper.mCovidReturnToWorkHelper = mCovidReturnToWorkHelper;
+    public static void setmCovidReturnScreeningHelper(CovidReturnScreeningHelper mCovidReturnScreeningHelper) {
+        CovidReturnScreeningHelper.mCovidReturnScreeningHelper = mCovidReturnScreeningHelper;
     }
 
     public String getDescription() {

@@ -3,18 +3,25 @@ package zw.co.mimosa.mymimosa.ui.harare_office.petty_cash_authorisation_harare_o
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -34,12 +41,14 @@ import zw.co.mimosa.mymimosa.data.petty_cash_authorisation_harare_data.PettyCash
 import zw.co.mimosa.mymimosa.data.petty_cash_authorisation_mine_data.PettyCashAuthorisationMineRequest;
 import zw.co.mimosa.mymimosa.ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationHelper;
 import zw.co.mimosa.mymimosa.ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationMine;
+import zw.co.mimosa.mymimosa.utilities.NumberToWordsConverter;
 
 public class PettyCashAuthorisationHarare extends AppCompatActivity {
     TextInputLayout inputLayoutAmountInFigures, inputLayoutAmountInWords, inputLayoutReasonForAdvance;
     TextInputEditText etFirstName, etSurname, etMineNumber, etDepartment, etDesignation;
     Spinner spinnerSection, spinnerCostCentre;
     TextInputEditText etAmountInFigures, etAmountInWords, etReasonForAdvance;
+    ProgressBar pgBarSubmit;
     Button btnSubmit;
     RadioGroup radioGroupCurrency;
     RadioButton radioButtonCurrency;
@@ -75,6 +84,8 @@ public class PettyCashAuthorisationHarare extends AppCompatActivity {
 
         radioGroupCurrency = findViewById(R.id.radio_pcah_currency);
 
+        pgBarSubmit = findViewById(R.id.progress_bar_pcah_submit);
+
         btnSubmit = findViewById(R.id.button_pcah_submit);
 
         ArrayAdapter<CharSequence> sectionAdapter = ArrayAdapter.createFromResource(this, R.array.section_array, android.R.layout.simple_spinner_item);
@@ -85,9 +96,36 @@ public class PettyCashAuthorisationHarare extends AppCompatActivity {
         sectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCostCentre.setAdapter(costCentreAdapter);
 
+        etAmountInFigures.addTextChangedListener(new TextWatcher() {
+            String  ntwc;
+            int figures = 0;
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(etAmountInFigures.getText().toString().isEmpty()){
+                    ntwc = "Zero";
+                    figures = 0;
+                }else {
+                    figures = Integer.parseInt(etAmountInFigures.getText().toString());
+                    ntwc =   NumberToWordsConverter.convert(figures);
+                }
+                etAmountInWords.setText(ntwc + " dollars only");
+            }
+        });
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(validateAmountInFigures() && validateReasonForAdvance() && validateSpinnerSection() && validateSpinnerCostCentre() && validateRadioCurrency()){
                 int selectedId = radioGroupCurrency.getCheckedRadioButtonId();
                 radioButtonCurrency = findViewById(selectedId);
                 pcah.setCurrency(radioButtonCurrency.getText().toString());
@@ -119,12 +157,13 @@ public class PettyCashAuthorisationHarare extends AppCompatActivity {
                 zw.co.mimosa.mymimosa.data.petty_cash_authorisation_harare_data.Res2431 res2431Obj = new zw.co.mimosa.mymimosa.data.petty_cash_authorisation_harare_data.Res2431(amountFiguresObj, amountWordsObj, currencyobj);
                 zw.co.mimosa.mymimosa.data.petty_cash_authorisation_harare_data.Resources reqsourcesObj = new zw.co.mimosa.mymimosa.data.petty_cash_authorisation_harare_data.Resources(res2431Obj);
                 zw.co.mimosa.mymimosa.data.petty_cash_authorisation_harare_data.UdfFields udfFields = new zw.co.mimosa.mymimosa.data.petty_cash_authorisation_harare_data.UdfFields(costCentre);
-                zw.co.mimosa.mymimosa.data.petty_cash_authorisation_harare_data.Request request = new zw.co.mimosa.mymimosa.data.petty_cash_authorisation_harare_data.Request(description,  requesterObj, subject, templateObj, udfFields, reqsourcesObj);
+                zw.co.mimosa.mymimosa.data.petty_cash_authorisation_harare_data.Request request = new zw.co.mimosa.mymimosa.data.petty_cash_authorisation_harare_data.Request(description, requesterObj, subject, templateObj, udfFields, reqsourcesObj);
 
                 pettyCashAuthorisationHarareRequest = new PettyCashAuthorisationHarareRequest(request);
 
                 new AdvanceQueryTask().execute();
             }
+        }
         });
     }
 
@@ -149,7 +188,6 @@ public class PettyCashAuthorisationHarare extends AppCompatActivity {
                         public void onResponse(JSONObject response) {
                             // do anything with response
                             System.out.println("response");
-
                             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(PettyCashAuthorisationHarare.this);
                             dialogBuilder.setMessage("You have successfully applied for advance")
                                     .setTitle("Submitted")
@@ -172,6 +210,8 @@ public class PettyCashAuthorisationHarare extends AppCompatActivity {
                             Log.d("TAG", "onError errorBody : " + error.getErrorBody());
                             Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
 
+                            pgBarSubmit.setVisibility(View.INVISIBLE);
+                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(PettyCashAuthorisationHarare.this);
 //                                dialogBuilder.setMessage("Your application was not sent because of bad network, the system will resend when network is detected. No need to redo the request.")
                             dialogBuilder.setMessage("Your application was not sent because of bad network. Please retry.")
@@ -210,7 +250,97 @@ public class PettyCashAuthorisationHarare extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            pgBarSubmit.setVisibility(View.VISIBLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
+        }
+    }
+
+    private boolean validateAmountInFigures() {
+        String val = inputLayoutAmountInFigures.getEditText().getText().toString().trim();
+        String checkspaces = "Aw{1,20}z";
+
+        if (val.isEmpty()) {
+            inputLayoutAmountInFigures.setError("Amount in Figures cannot be empty");
+            etAmountInFigures.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etAmountInFigures, InputMethodManager.SHOW_IMPLICIT);
+            return false;
+        }
+
+        else {
+            inputLayoutAmountInFigures.setError(null);
+            inputLayoutAmountInFigures.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateAmountInWords() {
+        String val = inputLayoutAmountInWords.getEditText().getText().toString().trim();
+        String checkspaces = "Aw{1,20}z";
+
+        if (val.isEmpty()) {
+            inputLayoutAmountInWords.setError("Amount in words cannot be empty");
+            etAmountInWords.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etAmountInWords, InputMethodManager.SHOW_IMPLICIT);
+            return false;
+        }
+
+        else {
+            inputLayoutAmountInWords.setError(null);
+            inputLayoutAmountInWords.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateReasonForAdvance() {
+        String val = inputLayoutReasonForAdvance.getEditText().getText().toString().trim();
+        String checkspaces = "Aw{1,20}z";
+
+        if (val.isEmpty()) {
+            inputLayoutReasonForAdvance.setError("Reason for advance cannot be empty");
+            etReasonForAdvance.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etReasonForAdvance, InputMethodManager.SHOW_IMPLICIT);
+            return false;
+        }
+
+        else {
+            inputLayoutReasonForAdvance.setError(null);
+            inputLayoutReasonForAdvance.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateRadioCurrency() {
+        if (radioGroupCurrency.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "Please Select Currency", Toast.LENGTH_SHORT).show();
+            Log.d("TAG", "validateCurrency:Nothing selected ");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerSection() {
+        if (spinnerSection.getSelectedItemPosition() == 0) {
+            Toast.makeText(this, "Please Select Your Section", Toast.LENGTH_SHORT).show();
+            Log.d("TAG", "validateSpinnerSection:Nothing selected ");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateSpinnerCostCentre() {
+        if (spinnerCostCentre.getSelectedItemPosition() == 0) {
+            Toast.makeText(this, "Please Select Cost Centre", Toast.LENGTH_SHORT).show();
+            Log.d("TAG", "validateSpinnerCostCentre:Nothing selected ");
+            return false;
+        } else {
+            return true;
         }
     }
 }

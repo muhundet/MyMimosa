@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -220,7 +221,7 @@ public class AdvanceActivity extends AppCompatActivity {
         String checkspaces = "Aw{1,20}z";
 
         if (val.isEmpty()) {
-            inputLayoutAdvanceAmount.setError("Days acrued can notbe empty");
+            inputLayoutAdvanceAmount.setError("Days acrued cannot be empty");
             return false;
         } else if (val.length() > 100) {
             inputLayoutAdvanceAmount.setError("Days acrued is too large!");
@@ -395,7 +396,7 @@ public class AdvanceActivity extends AppCompatActivity {
                             Log.d("TAG", "onError errorBody : " + error.getErrorBody());
                             Log.d("TAG", "onError errorDetail : " + error.getErrorDetail());
                             String advanceJsonString = "advanceid_";
-                            String currentDate = new SimpleDateFormat("ddMMyyyy", Locale.getDefault()).format(new Date());
+                            String currentDate = new SimpleDateFormat("ddMMyyyyhhmmss", Locale.getDefault()).format(new Date());
                             System.out.println(currentDate);
                             advanceJsonString = advanceJsonString + currentDate + ".json";
                             saveJson(advanceJsonString);
@@ -424,7 +425,10 @@ public class AdvanceActivity extends AppCompatActivity {
 
         private void saveJson(String jsonFileName){
             try {
-                File file = new File(AdvanceActivity.this.getFilesDir(), jsonFileName);
+                File fileMain = new File(AdvanceActivity.this.getFilesDir(), String.valueOf(Context.MODE_PRIVATE));
+                boolean isDirMade = fileMain.mkdir();
+                System.out.println("Directory made: " + isDirMade );
+                File file = new File(fileMain, jsonFileName);
                 FileWriter fileWriter = new FileWriter(file);
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
                 bufferedWriter.write(jsonStr);

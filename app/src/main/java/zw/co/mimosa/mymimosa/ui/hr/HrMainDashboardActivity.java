@@ -47,6 +47,7 @@ public class HrMainDashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hr_main_dashboard);
+        setTitle("HR Forms");
         materialCardViewLeave = findViewById(R.id.cv_leave_menu);
         materialCardViewEducationalAssistance = findViewById(R.id.cv_educational_assistance_menu);
         materialCardViewActingAllowance = findViewById(R.id.cv_acting_allowance_menu);
