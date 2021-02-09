@@ -38,9 +38,10 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
-
+        System.out.println("Registration of broadcast");
         Intent service = new Intent(this, NetworkStateChecker.class);
         this.startService(service);
+
 //        registerReceiver(new NetworkStateChecker(), new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         Intent intent = getIntent();
