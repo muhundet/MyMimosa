@@ -27,21 +27,23 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ea_designation"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="190dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:hint="Designation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/advance_amount"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ea_department">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_advance_designation"
-            android:enabled="false"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:enabled="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -131,7 +133,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/advance_amount"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="190dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -142,7 +144,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ea_mine_number">
+        app:layout_constraintTop_toBottomOf="@+id/advance_date_of_last_advance">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_advance_amount"
@@ -151,6 +153,43 @@
             android:inputType="number"
             android:maxLength="4" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <RadioGroup
+        android:id="@+id/radio_advance_currency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:buttonTint="@color/purple_500"
+        android:checked="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/advance_amount">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Currency">
+
+        </TextView>
+
+        <RadioButton
+            android:id="@+id/radio_zwl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="ZWL" />
+
+
+        <RadioButton
+            android:id="@+id/radio_usd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="USD" />
+
+
+    </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/advance_date_of_last_advance"
@@ -162,7 +201,7 @@
         android:layout_marginTop="8dp"
         android:hint="Date of Last advance"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/advance_amount">
+        app:layout_constraintTop_toBottomOf="@+id/ea_designation">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_advance_date_of_last_advance"
@@ -176,8 +215,6 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
@@ -201,13 +238,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:hint="Reason for advance payment"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/advance_date_of_last_advance">
+        app:layout_constraintTop_toBottomOf="@+id/radio_advance_currency"
+        tools:layout_editor_absoluteY="412dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_advance_reason"

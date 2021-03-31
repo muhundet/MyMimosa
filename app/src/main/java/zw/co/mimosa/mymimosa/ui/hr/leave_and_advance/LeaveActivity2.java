@@ -668,8 +668,9 @@ public class LeaveActivity2 extends AppCompatActivity {
                                 dialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-//                                        Intent intent = new Intent(LeaveActivity2.this, MainActivity.class);
-//                                        startActivity(intent);
+                                        Intent intent = new Intent(LeaveActivity2.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
                                     }
                                 });
                                 dialogBuilder.show();

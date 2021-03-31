@@ -17,11 +17,13 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.card.MaterialCardView;
 
 import zw.co.mimosa.mymimosa.R;
+import zw.co.mimosa.mymimosa.ui.finance.FinanceDashboardActivity;
 import zw.co.mimosa.mymimosa.ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationMine;
 import zw.co.mimosa.mymimosa.ui.harare_office.petty_cash_authorisation_harare_office.HarareDashboardActivity;
 import zw.co.mimosa.mymimosa.ui.hr.HrDashboardActivity;
 import zw.co.mimosa.mymimosa.ui.hr.HrMainDashboardActivity;
 import zw.co.mimosa.mymimosa.ui.medical_services.MedicalServicesDashboardActivity;
+import zw.co.mimosa.mymimosa.ui.transport.TransportDashboardActivity;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -107,7 +109,15 @@ public class FormsFragment extends Fragment  {
         materialCardViewFinanceMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PettyCashAuthorisationMine.class);
+                Intent intent = new Intent(getContext(), FinanceDashboardActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        materialCardViewTransportMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), TransportDashboardActivity.class);
                 startActivity(intent);
             }
         });

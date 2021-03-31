@@ -131,37 +131,42 @@ android:label="Petty Cash Authorisation"
     app:layout_constraintTop_toBottomOf="@+id/pcah_designation"
     android:background="@drawable/spinner_border"/>
 
-<RadioGroup
-    android:id="@+id/radio_pcah_currency"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    app:layout_constraintTop_toBottomOf="@+id/spinner_pcah_section"
-    >
-
-
-    <RadioButton
-        android:id="@+id/radio_pcah_zwl"
-        android:layout_width="0dp"
-        android:layout_weight="1"
+    <RadioGroup
+        android:id="@+id/radio_pcah_currency"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="RTGS" />
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_pcah_section">
 
-    <RadioButton
-        android:id="@+id/radio_pcah_usd"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:text="USD" />
 
-    <RadioButton
-        android:id="@+id/radio_pcah_zar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="ZAR" />
-</RadioGroup>
+        <RadioButton
+            android:id="@+id/radio_pcah_zwl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="RTGS" />
+
+        <RadioButton
+            android:id="@+id/radio_pcah_usd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="USD" />
+
+        <RadioButton
+            android:id="@+id/radio_pcah_zar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ZAR" />
+    </RadioGroup>
 
 <com.google.android.material.textfield.TextInputLayout
     android:id="@+id/pcah_amount_in_figures"

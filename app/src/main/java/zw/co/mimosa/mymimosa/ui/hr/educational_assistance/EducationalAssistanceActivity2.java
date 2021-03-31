@@ -151,6 +151,8 @@ public class EducationalAssistanceActivity2 extends AppCompatActivity {
                     long childDob = educationalAssistanceHelper.getChildDob();
                     String childSchoolName = educationalAssistanceHelper.getChildSchoolName();
                     String childLevel = educationalAssistanceHelper.getChildLevel();
+                    String term = "1";
+                    String applicationType = "Refund for Fees Paid";
                     String approver = educationalAssistanceHelper.getApprover();
                     String udf_sline_349 = educationalAssistanceHelper.getApproverStage1();
                     long dateOfEngagement = educationalAssistanceHelper.getDateOfEngagement();
@@ -166,7 +168,7 @@ public class EducationalAssistanceActivity2 extends AppCompatActivity {
                     zw.co.mimosa.mymimosa.data.educational_assistance_data.UdfDate324 udfDate324 = new zw.co.mimosa.mymimosa.data.educational_assistance_data.UdfDate324(1551462180000L);
                     zw.co.mimosa.mymimosa.data.educational_assistance_data.Template templateObj = new zw.co.mimosa.mymimosa.data.educational_assistance_data.Template(template);
                     zw.co.mimosa.mymimosa.data.educational_assistance_data.Requester requesterObj = new zw.co.mimosa.mymimosa.data.educational_assistance_data.Requester(requester);
-                    zw.co.mimosa.mymimosa.data.educational_assistance_data.UdfFields udfFields = new zw.co.mimosa.mymimosa.data.educational_assistance_data.UdfFields(firstname, surname, employeeId, department, section, designation, invoiceValue, receiptValue, childFirstName, childSurname, childSchoolName, childLevel, jobGrade, currency, approver, attachements, udfDate324, udfDate686, udf_sline_349);
+                    zw.co.mimosa.mymimosa.data.educational_assistance_data.UdfFields udfFields = new zw.co.mimosa.mymimosa.data.educational_assistance_data.UdfFields(firstname, surname, employeeId, department, section, designation, invoiceValue, receiptValue, childFirstName, childSurname, childSchoolName, childLevel, jobGrade, currency, term, applicationType, approver, attachements, udfDate324, udfDate686, udf_sline_349);
                     zw.co.mimosa.mymimosa.data.educational_assistance_data.Request request = new zw.co.mimosa.mymimosa.data.educational_assistance_data.Request(subject, description, requesterObj, templateObj, udfFields);
                     educationalAssistanceRequest = new EducationalAssistanceRequest(request);
                     new EducationalAssistanceQueryTask().execute();

@@ -408,12 +408,19 @@ public class AdvanceActivity extends AppCompatActivity {
                                 dialogBuilder.setMessage("Your application was not sent because of bad network. Please retry.")
                                         .setTitle("Not Submitted")
                                         .setPositiveButton(android.R.string.ok, null)
+                                        .setNegativeButton(android.R.string.cancel, null)
                                         .setIcon(R.drawable.cancel);
                                 dialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-//                                        Intent intent = new Intent(LeaveActivity2.this, MainActivity.class);
-//                                        startActivity(intent);
+
+                                    }
+                                });
+                                dialogBuilder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(AdvanceActivity.this, MainActivity.class);
+                                        startActivity(intent);
                                     }
                                 });
                                 dialogBuilder.show();

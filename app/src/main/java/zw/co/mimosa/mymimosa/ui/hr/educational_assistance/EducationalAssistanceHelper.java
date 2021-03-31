@@ -27,6 +27,9 @@ public class EducationalAssistanceHelper {
     long childDob;
     String childSchoolName;
     String childLevel;
+    String term;
+    String applicationType;
+    String approver;
 
     public String getApproverStage1() {
         return ApproverStage1;
@@ -36,7 +39,6 @@ public class EducationalAssistanceHelper {
         ApproverStage1 = approverStage1;
     }
 
-    String approver;
     long dateOfEngagement;
     String currency;
     String[] attachements;
@@ -96,6 +98,23 @@ public class EducationalAssistanceHelper {
 
     public void setInvoiceFilePath(String invoiceFilePath) {
         this.invoiceFilePath = invoiceFilePath;
+    }
+
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
+
+    public String getApplicationType() {
+        return applicationType;
+    }
+
+    public void setApplicationType(String applicationType) {
+        this.applicationType = applicationType;
     }
 
     public String getFirstname() {

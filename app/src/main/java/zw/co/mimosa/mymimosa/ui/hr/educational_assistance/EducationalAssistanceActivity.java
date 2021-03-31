@@ -27,7 +27,7 @@ import zw.co.mimosa.mymimosa.R;
 public class EducationalAssistanceActivity extends AppCompatActivity {
     TextInputLayout inputLayoutChildFirstName, inputLayoutChildSurname, inputLayoutSchoolName, inputLayoutChildDob;
     TextInputEditText etFirstName, etSurname, etMineNumber, etDepartment, etDesignation;
-    Spinner spinnerChildLevel, spinnerSection;
+    Spinner spinnerChildLevel, spinnerSection, spinnerTerm, spinnerApplicationType;
     TextInputEditText etChildFirstName, etChildSurname, etChildSchoolName, etChildDob;
     Button btnNext;
     EducationalAssistanceHelper eah = EducationalAssistanceHelper.getEducationalAssistanceInstance();
@@ -58,6 +58,9 @@ public class EducationalAssistanceActivity extends AppCompatActivity {
 
         spinnerSection = findViewById(R.id.spinner_ea_section);
         spinnerChildLevel = findViewById(R.id.spinner_child_level);
+        spinnerTerm = findViewById(R.id.spinner_term);
+        spinnerApplicationType = findViewById(R.id.spinner_application_type);
+
         etFirstName.setText(eah.getFirstname());
         etSurname.setText(eah.getSurname());
         etMineNumber.setText(eah.getEmployeeId());
@@ -71,6 +74,14 @@ public class EducationalAssistanceActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> sectionAdapter = ArrayAdapter.createFromResource(this, R.array.section_array, android.R.layout.simple_spinner_item);
         childLevelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSection.setAdapter(sectionAdapter);
+
+        ArrayAdapter<CharSequence> termAdapter = ArrayAdapter.createFromResource(this, R.array.term_array, android.R.layout.simple_spinner_item);
+        childLevelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerTerm.setAdapter(termAdapter);
+
+        ArrayAdapter<CharSequence> applicationTypeAdapter = ArrayAdapter.createFromResource(this, R.array.application_type_array, android.R.layout.simple_spinner_item);
+        childLevelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerApplicationType.setAdapter(applicationTypeAdapter);
 
         etChildDob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +108,8 @@ public class EducationalAssistanceActivity extends AppCompatActivity {
                     eah.setChildSchoolName(etChildSchoolName.getText().toString());
                     eah.setChildDob(childDobLong);
                     eah.setChildLevel(spinnerChildLevel.getSelectedItem().toString());
+                    eah.setTerm(spinnerTerm.getSelectedItem().toString());
+                    eah.setTerm(spinnerApplicationType.getSelectedItem().toString());
                     Intent intent = new Intent(EducationalAssistanceActivity.this, EducationalAssistanceActivity2.class);
                     startActivity(intent);
                 }

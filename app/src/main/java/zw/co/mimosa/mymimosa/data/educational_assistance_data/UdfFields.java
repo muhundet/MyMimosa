@@ -49,6 +49,12 @@ public class UdfFields {
     @SerializedName("udf_pick_737")
     @Expose
     private String udfPick737;
+    @SerializedName("udf_pick_4204")
+    @Expose
+    private String udfPick4204;
+    @SerializedName("udf_pick_3010")
+    @Expose
+    private String udfPick3010;
     @SerializedName("udf_pick_727")
     @Expose
     private String udfPick727;
@@ -65,7 +71,7 @@ public class UdfFields {
     @Expose
     private UdfDate686 udfDate686;
 
-    public UdfFields(String udfSline29, String udfSline30, String udfSline31, String udfPick325, String udfPick38, String udfSline32, Integer udfLong3004, Integer udfLong3005, String udfSline728, String udfSline729, String udfSline731, String udfPick919, String udfPick737, String udfPick727, String udfPick1202, List<String> udfMultiselect3001, UdfDate324 udfDate324, UdfDate686 udfDate686, String udfSline349) {
+    public UdfFields(String udfSline29, String udfSline30, String udfSline31, String udfPick325, String udfPick38, String udfSline32, Integer udfLong3004, Integer udfLong3005, String udfSline728, String udfSline729, String udfSline731, String udfPick919, String udfPick737, String udfPick727, String udfPick4204, String udfPick3010, String udfPick1202, List<String> udfMultiselect3001, UdfDate324 udfDate324, UdfDate686 udfDate686, String udfSline349) {
         this.udfSline29 = udfSline29;
         this.udfSline30 = udfSline30;
         this.udfSline31 = udfSline31;
@@ -80,6 +86,8 @@ public class UdfFields {
         this.udfPick919 = udfPick919;
         this.udfPick737 = udfPick737;
         this.udfPick727 = udfPick727;
+        this.udfPick4204 = udfPick4204;
+        this.udfPick3010 = udfPick3010;
         this.udfPick1202 = udfPick1202;
         this.udfMultiselect3001 = udfMultiselect3001;
         this.udfDate324 = udfDate324;

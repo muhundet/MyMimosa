@@ -90,56 +90,6 @@ public class NetworkStateChecker extends Service {
         };
     }
 
-//    public void onReceive(Context context, Intent intent) {
-//        this.context = context;
-//
-//        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-//        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-//
-//        if (activeNetwork != null) {
-//            //if connected to wifi or mobile data plan
-//            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI || activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-//
-//                List<String> jsonFileList = new ArrayList<>();
-//                File folder = new File(String.valueOf(context.getFilesDir()));
-//                File[] filesInFolder = folder.listFiles();
-//                for (File file : filesInFolder) {
-//                    if (!file.isDirectory()) {
-//                        jsonFileList.add(file.getPath());
-//                    }
-//                }
-//
-//                if(jsonFileList.size() == 0){
-//                    System.out.println("no json files");
-//                }else{
-//                    for(int i = 0; i<jsonFileList.size(); i++){
-//                        String jsonFilePath = jsonFileList.get(i);
-//                        System.out.println(jsonFilePath);
-//                        try {
-//                            File file = new File(context.getFilesDir(), "TestAdvance.json");
-//                            FileReader fileReader = new FileReader(file);
-//                            BufferedReader bufferedReader = new BufferedReader(fileReader);
-//                            StringBuilder stringBuilder = new StringBuilder();
-//                            String line = bufferedReader.readLine();
-//                            while (line != null) {
-//                                stringBuilder.append(line).append("\n");
-//                                line = bufferedReader.readLine();
-//                            }
-//                            bufferedReader.close();
-//                            jsonString = stringBuilder.toString();
-//                        }catch(Exception e){
-//                            e.printStackTrace();
-//                        }
-//                        new AdvanceQueryTask().execute();
-//                    }
-//
-//                }
-//            }
-//        }
-
-//    }
-
-
 
 
 
