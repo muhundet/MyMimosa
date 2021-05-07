@@ -39,20 +39,25 @@ import java.util.Date;
 
 import zw.co.mimosa.mymimosa.MainActivity;
 import zw.co.mimosa.mymimosa.Pickers.DateOfBirthPicker;
+import zw.co.mimosa.mymimosa.Pickers.EndDatePicker;
+import zw.co.mimosa.mymimosa.Pickers.ReturnDatePicker;
+import zw.co.mimosa.mymimosa.Pickers.StartDatePicker;
+import zw.co.mimosa.mymimosa.Pickers.TravelDatePicker;
 import zw.co.mimosa.mymimosa.R;
 import zw.co.mimosa.mymimosa.data.covid_return_data.CovidReturnRequest;
 
 public class CovidScreening extends AppCompatActivity {
-    TextInputLayout inputLayoutDateOfBirth, inputLayoutIdNumber, inputLayoutCellNumber, inputLayoutNextOfKin, inputLayoutAddress;
+    TextInputLayout inputLayoutDateOfBirth, inputLayoutIdNumber, inputLayoutCellNumber, inputLayoutNextOfKin, inputLayoutAddress,
+            inputLayoutTravelDate, inputLayoutReturnDate, inputLayoutDestination;
     TextInputEditText etFirstName, etSurname, etMineNumber, etDepartment, etDesignation;
     Spinner spinnerSection;
-    TextInputEditText etDateOfBirth, etIdNumber, etCellNumber, etNextOfKin, etAddress;
-    RadioGroup radioGroupGender;
-    RadioButton radioButtonGender;
+    TextInputEditText etDateOfBirth, etIdNumber, etCellNumber, etNextOfKin, etAddress, etTravelDate, etReturnDate, etDestination;
+    RadioGroup radioGroupGender, radioVehicleType;
+    RadioButton radioButtonGender, radioFormOfTransport;
     ProgressBar pgBarSubmit;
     Button btnSubmit;
     CovidReturnScreeningHelper creturn = CovidReturnScreeningHelper.getCovidReturnToWorkHelperInstance();
-    long DateOfBirthLong;
+    long DateOfBirthLong, travelDateLong, returnDateLong;
     CovidReturnRequest covidReturnRequest;
 
     @Override
@@ -71,14 +76,21 @@ public class CovidScreening extends AppCompatActivity {
         inputLayoutCellNumber = findViewById(R.id.creturn_cell_number);
         inputLayoutNextOfKin = findViewById(R.id.creturn_next_of_kin);
         inputLayoutAddress = findViewById(R.id.creturn_address);
+        inputLayoutTravelDate = findViewById(R.id.creturn_travel_date);
+        inputLayoutReturnDate = findViewById(R.id.creturn_return_date);
+        inputLayoutDestination = findViewById(R.id.creturn_destination);
 
         etDateOfBirth = findViewById(R.id.et_creturn_date_of_birth);
         etIdNumber = findViewById(R.id.et_creturn_id_number);
         etCellNumber = findViewById(R.id.et_creturn_cell_number);
         etNextOfKin = findViewById(R.id.et_creturn_next_of_kin);
         etAddress = findViewById(R.id.et_creturn_address);
+        etTravelDate = findViewById(R.id.et_creturn_travel_date);
+        etReturnDate = findViewById(R.id.et_creturn_return_date);
+        etDestination = findViewById(R.id.et_creturn_destination);
 
         radioGroupGender = findViewById(R.id.radio_creturn_gender);
+        radioVehicleType = findViewById(R.id.radio_creturn_vehicle_type);
 
         spinnerSection = findViewById(R.id.spinner_creturn_section);
 
@@ -99,6 +111,22 @@ public class CovidScreening extends AppCompatActivity {
             }
         });
 
+        etTravelDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTravelDatePickerDialog(v);
+            }
+        });
+
+        etReturnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showReturnDatePickerDialog(v);
+            }
+        });
+
+
+
         ArrayAdapter<CharSequence> sectionAdapter = ArrayAdapter.createFromResource(this, R.array.section_array, android.R.layout.simple_spinner_item);
         sectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSection.setAdapter(sectionAdapter);
@@ -115,8 +143,31 @@ public class CovidScreening extends AppCompatActivity {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+
+                    String travelDate = etTravelDate.getText().toString();
+                    SimpleDateFormat travelDateFormat = new SimpleDateFormat("yyyy/mm/dd");
+                    try {
+                        Date d = travelDateFormat.parse(travelDate);
+                        travelDateLong = d.getTime();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    String returnDate = etReturnDate.getText().toString();
+                    SimpleDateFormat returnDateFormat = new SimpleDateFormat("yyyy/mm/dd");
+                    try {
+                        Date d = returnDateFormat.parse(returnDate);
+                        returnDateLong = d.getTime();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+
                 int selectedId = radioGroupGender.getCheckedRadioButtonId();
                 radioButtonGender = findViewById(selectedId);
+                    int selectedTransport = radioVehicleType.getCheckedRadioButtonId();
+                    radioFormOfTransport = findViewById(selectedTransport);
+
                 creturn.setGender(radioButtonGender.getText().toString());
                 creturn.setSection(spinnerSection.getSelectedItem().toString());
                 creturn.setDateOfBirth(DateOfBirthLong);
@@ -125,14 +176,14 @@ public class CovidScreening extends AppCompatActivity {
                 creturn.setNextOfKin(etNextOfKin.getText().toString());
                 creturn.setAddress(etAddress.getText().toString());
 
-                String template = creturn.getTemplate();
+                String template = "Request To Travel and Covid-19 Screening";
                 String requester = creturn.getFirstname() + " " + creturn.getSurname();
                 String subject = "COVID-19 SCREENING FORM for " + creturn.getFirstname() + " " + creturn.getSurname() + " (from android device)";
-                String description = creturn.getDescription();
+                String description = "Reason for travel";
                 String firstname = creturn.getFirstname();
                 String surname = creturn.getSurname();
                 String employeeId = creturn.employeeId;
-                String department = creturn.getDepartment();
+                String department = "ICT";
                 String section = creturn.getSection();
                 String emailId = creturn.getEmailId();
                 String designation = creturn.getDesignation();
@@ -144,16 +195,23 @@ public class CovidScreening extends AppCompatActivity {
                 String cellNumber = creturn.getCellNumber();
                 String nextOfKin = creturn.getNextOfKin();
                 String address = creturn.getAddress();
+                String requestType = radioFormOfTransport.getText().toString();
+                long travelDateLong1 = travelDateLong;
+                long returnDateLong1 = returnDateLong;
+                String destination = etDestination.getText().toString();
+
 
                 zw.co.mimosa.mymimosa.data.covid_return_data.UdfDate686 udfDate686 = new zw.co.mimosa.mymimosa.data.covid_return_data.UdfDate686(dateOfBirth);
+                zw.co.mimosa.mymimosa.data.covid_return_data.UdfDate4509 udfDate4509 = new zw.co.mimosa.mymimosa.data.covid_return_data.UdfDate4509(travelDateLong1);
+                zw.co.mimosa.mymimosa.data.covid_return_data.UdfDate4510 udfDate4510 = new zw.co.mimosa.mymimosa.data.covid_return_data.UdfDate4510(returnDateLong1);
                 zw.co.mimosa.mymimosa.data.covid_return_data.Template templateObj = new zw.co.mimosa.mymimosa.data.covid_return_data.Template(template);
                 zw.co.mimosa.mymimosa.data.covid_return_data.Requester requesterObj = new zw.co.mimosa.mymimosa.data.covid_return_data.Requester(requester);
-                zw.co.mimosa.mymimosa.data.covid_return_data.UdfFields udfFields = new zw.co.mimosa.mymimosa.data.covid_return_data.UdfFields(udfDate686, firstname, surname, designation, gender, companyName, idNumber, cellNumber, nextOfKin, address);
+                zw.co.mimosa.mymimosa.data.covid_return_data.UdfFields udfFields = new zw.co.mimosa.mymimosa.data.covid_return_data.UdfFields(firstname, surname, employeeId, department, department, section, udfDate686, gender, idNumber, cellNumber, nextOfKin, address, designation, requestType, destination, udfDate4509, udfDate4510,  companyName, "approverHOD", "approverGM", "Personal Travel");
                 zw.co.mimosa.mymimosa.data.covid_return_data.Request request = new zw.co.mimosa.mymimosa.data.covid_return_data.Request(description, requesterObj, subject, templateObj, udfFields);
 
                 covidReturnRequest = new CovidReturnRequest(request);
 
-                new AdvanceQueryTask().execute();
+                new CovidScreeningQueryTask().execute();
             }
         }
         });
@@ -164,7 +222,17 @@ public class CovidScreening extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-    public class AdvanceQueryTask extends AsyncTask<URL, Void, String> {
+    public void showTravelDatePickerDialog(View v) {
+        DialogFragment newFragment = new TravelDatePicker();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public void showReturnDatePickerDialog(View v) {
+        DialogFragment newFragment = new ReturnDatePicker();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public class CovidScreeningQueryTask extends AsyncTask<URL, Void, String> {
         String result;
         Gson gson = new Gson();
         String jsonStr = gson.toJson(covidReturnRequest);
@@ -172,6 +240,7 @@ public class CovidScreening extends AppCompatActivity {
 
         @Override
         protected String doInBackground(URL... urls) {
+            System.out.println(jsonStr);
             AndroidNetworking.post("https://servicedesk.mimosa.co.zw:8090/api/v3/requests")
                     .addHeaders("TECHNICIAN_KEY", "5775EFB0-AAB8-437A-8888-A330875F2B8D")
                     .addBodyParameter("input_data",jsonStr)
@@ -186,7 +255,7 @@ public class CovidScreening extends AppCompatActivity {
                             System.out.println("response");
 
                             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(CovidScreening.this);
-                            dialogBuilder.setMessage("You have successfully applied for advance")
+                            dialogBuilder.setMessage(" Screening Details Submitted Successfully")
                                     .setTitle("Submitted")
                                     .setPositiveButton(android.R.string.ok, null)
                                     .setIcon(R.drawable.checkmark);

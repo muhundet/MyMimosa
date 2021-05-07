@@ -4,374 +4,369 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".ui.transport.buss_pass_application.BusPassApplication">
+tools:context=".ui.medical_services.covid_screening.CovidScreeningBusiness">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:label="Bus Pass Application"
     >
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/bpa_designation"
+        android:id="@+id/cbus_designation"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:enabled="false"
         android:hint="Designation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bpa_department">
+        app:layout_constraintTop_toBottomOf="@+id/cbus_department">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_bpa_designation"
+            android:id="@+id/et_cbus_designation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Spinner
-        android:id="@+id/spinner_bpa_section"
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bpa_designation"
-        android:background="@drawable/spinner_border"/>
-
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/bpa_department"
+        android:id="@+id/cbus_department"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:enabled="false"
         android:hint="Department"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bpa_mine_number"
-        app:layout_constraintTop_toBottomOf="@+id/bpa_surname">
+        app:layout_constraintStart_toEndOf="@+id/cbus_mine_number"
+        app:layout_constraintTop_toBottomOf="@+id/cbus_surname">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_bpa_department"
+            android:id="@+id/et_cbus_department"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/bpa_mine_number"
+        android:id="@+id/cbus_surname"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:enabled="false"
-        android:hint="Mine Number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bpa_firstname">
+        android:hint="Surname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cbus_firstname"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_bpa_mine_number"
+            android:id="@+id/et_cbus_surname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/bpa_firstname"
+        android:id="@+id/cbus_firstname"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:enabled="false"
         android:hint="Firstname"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_bpa_first_name"
+            android:id="@+id/et_cbus_first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/bpa_surname"
+        android:id="@+id/cbus_mine_number"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:enabled="false"
-        android:hint="Surname"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bpa_firstname"
-        app:layout_constraintTop_toTopOf="parent">
+        android:hint="Mine Number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbus_firstname">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_bpa_surname"
+
+            android:id="@+id/et_cbus_mine_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
+
+    <Spinner
+        android:id="@+id/spinner_cbus_section"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="@drawable/spinner_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbus_designation" />
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/bpa_id_number"
+        android:id="@+id/cbus_date_of_birth"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:hint="ID Number"
+        android:hint="Date Of Birth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_bpa_section">
+        app:layout_constraintTop_toBottomOf="@+id/spinner_cbus_section">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_bpa_id_number"
+            android:id="@+id/et_creturn_date_of_birth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cbus_id_number"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="true"
+        android:hint="ID/Passport Number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbus_date_of_birth">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_cbus_id_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/bpa_company_name"
+        android:id="@+id/cbus_cell_number"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="true"
+        android:hint="Cell Number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbus_id_number">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_cbus_cell_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cbus_next_of_kin"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="true"
+        android:hint="Next of kin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbus_cell_number">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_cbus_next_of_kin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cbus_address"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="true"
+        android:hint="Address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbus_next_of_kin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_cbus_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cbus_destination"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:hint="Company name"
+        android:enabled="true"
+        android:hint="Destination"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bpa_id_number">
+        app:layout_constraintTop_toBottomOf="@+id/cbus_address">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_bpa_company_name"
+            android:id="@+id/et_cbus_destination"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cbus_travel_date"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="167dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:hint="Date of Travel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbus_destination">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_creturn_travel_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cbus_return_date"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="207dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:hint="Return Date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbus_destination">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_creturn_return_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <RadioGroup
-        android:id="@+id/radio_group_bpa_type"
+        android:id="@+id/radio_cbus_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="200dp"
+        android:layout_marginRight="200dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/bpa_company_name">
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbus_travel_date">
 
         <RadioButton
-            android:id="@+id/radio_new"
-            android:layout_width="wrap_content"
+            android:id="@+id/radio_cbus_male"
+            android:layout_width="8dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="new" />
+            android:text="male" />
 
         <RadioButton
-            android:id="@+id/radio_replacement"
-            android:layout_width="wrap_content"
+            android:id="@+id/radio_cbus_female"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="replacement" />
-
-        <RadioButton
-        android:id="@+id/radio_lost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-            android:layout_weight="1"
-        android:text="lost" />
-
+            android:text="female" />
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/radio_group_bpa_applicant"
+        android:id="@+id/radio_cbus_vehicle_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_bpa_type">
+        app:layout_constraintTop_toBottomOf="@+id/radio_cbus_gender">
 
-            <RadioButton
-                android:id="@+id/radio_permanent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Permanent" />
 
-            <RadioButton
-                android:id="@+id/radio_contractor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Contractor" />
+        <RadioButton
+            android:id="@+id/radio_cbus_pav"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="PAV" />
 
-            <RadioButton
-                android:id="@+id/radio_dependant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Dependant" />
+        <RadioButton
+            android:id="@+id/radio_cbus_personal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Personal" />
 
-            <RadioButton
-                android:id="@+id/radio_community"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Community" />
+        <RadioButton
+            android:id="@+id/radio_cbus_pool"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Pool" />
+
+        <RadioButton
+            android:id="@+id/radio_cbus_public"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Public" />
 
 
     </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/bpa_applyfor_id_dob"
+        android:id="@+id/cbus_vehicle_reg"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:hint="ID Number/DOB"
+        android:enabled="true"
+        android:hint="Reg Number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bpa_applyfor_name">
+        app:layout_constraintTop_toBottomOf="@+id/radio_cbus_vehicle_type">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_bpa_applyfor_id_dob"
+            android:id="@+id/et_cbus_vehicle_reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/bpa_applyfor_name"
+        android:id="@+id/cbus_distance"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:hint="Apply for.. (Full Name)"
+        android:enabled="true"
+        android:hint="Estimated Distance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_bpa_applicant">
+        app:layout_constraintTop_toBottomOf="@+id/cbus_vehicle_reg">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_bpa_applyfor_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/bpa_applyfor_relationship"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:hint="Relationship"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bpa_applyfor_id_dob">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_bpa_applyfor_relationship"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/bpa_applyfor_school"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:hint="School"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bpa_applyfor_relationship">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_bpa_applyfor_school"
+            android:id="@+id/et_cbus_distance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_bpa_attach"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Attach"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bpa_applyfor_school" />
-
-    <Spinner
-        android:id="@+id/spinner_bpa_level"
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_bpa_attach"
-        android:background="@drawable/spinner_border"/>
-
-    <Spinner
-        android:id="@+id/spinner_bpa_hr_approver"
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_bpa_level"
-        android:background="@drawable/spinner_border"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_bpa_submit"
+        android:id="@+id/button_cbus_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -383,10 +378,10 @@ tools:context=".ui.transport.buss_pass_application.BusPassApplication">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_bpa_hr_approver" />
+        app:layout_constraintTop_toBottomOf="@+id/cbus_distance" />
 
     <ProgressBar
-        android:id="@+id/progress_bar_bpa_submit"
+        android:id="@+id/progress_bar_cbus_submit"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -397,15 +392,5 @@ tools:context=".ui.transport.buss_pass_application.BusPassApplication">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_bpa_attach"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="No file attached"
-        app:layout_constraintStart_toEndOf="@+id/button_bpa_attach"
-        app:layout_constraintTop_toBottomOf="@+id/bpa_applyfor_school" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

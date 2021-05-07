@@ -26,6 +26,7 @@ import zw.co.mimosa.mymimosa.ui.hr.educational_assistance.EducationalAssistanceH
 import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.AdvanceActivity;
 import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.LeaveActivity;
 import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.LeaveFormHelper;
+import zw.co.mimosa.mymimosa.ui.hr.overtime_authorisation.OvertimeAuthorisation;
 import zw.co.mimosa.mymimosa.utilities.LoggedInUserAccessUtility;
 
 public class HrMainDashboardActivity extends AppCompatActivity {
@@ -264,7 +265,8 @@ public class HrMainDashboardActivity extends AppCompatActivity {
         materialCardViewOvertimeAuthorisation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intentOvertimeAuthorisation = new Intent(mContext, OvertimeAuthorisation.class);
+                mContext.startActivity(intentOvertimeAuthorisation);
             }
         });
         materialCardViewStatusChange.setOnClickListener(new View.OnClickListener() {

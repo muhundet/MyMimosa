@@ -17,7 +17,7 @@ tools:context=".ui.medical_services.MedicalServicesDashboardActivity">
     <com.google.android.material.card.MaterialCardView
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
-        android:id="@+id/routine_menu"
+        android:id="@+id/personal_menu"
         android:layout_width="160dp"
         android:layout_height="190dp"
         android:layout_margin="10dp">
@@ -37,7 +37,7 @@ tools:context=".ui.medical_services.MedicalServicesDashboardActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="COVID-19-Routine Screening"
+                android:text="COVID-19 Screening - Personal"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -52,13 +52,13 @@ tools:context=".ui.medical_services.MedicalServicesDashboardActivity">
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Return to work from Isolation"
+                android:text="Personal travel"
                 android:textColor="@android:color/darker_gray" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/drivers_menu"
+        android:id="@+id/business_menu"
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:layout_width="160dp"
@@ -80,7 +80,7 @@ tools:context=".ui.medical_services.MedicalServicesDashboardActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="COVID-19-Driver Screening"
+                android:text="COVID-19-Business"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -96,7 +96,7 @@ tools:context=".ui.medical_services.MedicalServicesDashboardActivity">
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Routine Screening form"
+                android:text="Business Travel"
                 android:textColor="@android:color/darker_gray" />
 
         </LinearLayout>
@@ -104,57 +104,102 @@ tools:context=".ui.medical_services.MedicalServicesDashboardActivity">
 
 </LinearLayout>
 
-<LinearLayout
-    android:clipToPadding="false"
-    android:gravity="center"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/return_to_work_menu"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:layout_width="340dp"
-        android:layout_height="150dp"
-        android:layout_margin="10dp">
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-
-                android:src="@drawable/covid_screening"
-                android:padding="10dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="COVID-19 - Return from Isolation"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
-            <View
+    <LinearLayout
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.card.MaterialCardView
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:id="@+id/driver_menu"
+            android:layout_width="160dp"
+            android:layout_height="190dp"
+            android:layout_margin="10dp">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
 
-                android:layout_margin="10dp"/>
+                    android:src="@drawable/covid_screening"
+                    android:padding="10dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="Driver Screening Form"
-                android:textColor="@android:color/darker_gray" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="COVID-19 Screening - Driver"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:gravity="center_horizontal" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="10dp"/>
 
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Driver Screening"
+                    android:textColor="@android:color/darker_gray" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/contractor_menu"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="160dp"
+            android:layout_height="190dp"
+            android:layout_margin="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+
+                    android:src="@drawable/covid_screening"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="COVID-19-Contractor"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:gravity="center_horizontal" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Contractor Coming on Site"
+                    android:textColor="@android:color/darker_gray" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
 
 
-</LinearLayout>
 
 </LinearLayout>

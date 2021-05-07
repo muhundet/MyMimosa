@@ -66,7 +66,7 @@ public class LeaveActivity extends AppCompatActivity {
                 switch(checkedId){
                     case R.id.radio_time_in_lieu:
                         lfh.setSickSelected(false);
-                        System.out.println("vacation seleceted");
+                        System.out.println("time in lieu seleceted");
                         break;
                     case R.id.radio_sick:
         //                if (checkedId == R.id.radio_sick) {

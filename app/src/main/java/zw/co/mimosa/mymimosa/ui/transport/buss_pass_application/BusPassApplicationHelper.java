@@ -31,6 +31,7 @@ public class BusPassApplicationHelper {
     String applyForLevel;
     String  ApproverStage1;
     String  ApproverStage2;
+    String filePath;
 
     public static BusPassApplicationHelper getmBusPassApplicationHelper() {
         return mBusPassApplicationHelper;
@@ -38,6 +39,14 @@ public class BusPassApplicationHelper {
 
     public static void setmBusPassApplicationHelper(BusPassApplicationHelper mBusPassApplicationHelper) {
         BusPassApplicationHelper.mBusPassApplicationHelper = mBusPassApplicationHelper;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     public String getFirstname() {

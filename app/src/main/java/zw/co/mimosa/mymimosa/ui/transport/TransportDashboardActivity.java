@@ -17,6 +17,7 @@ import zw.co.mimosa.mymimosa.database.CipherOpenHelper;
 import zw.co.mimosa.mymimosa.ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationHelper;
 import zw.co.mimosa.mymimosa.ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationMine;
 import zw.co.mimosa.mymimosa.ui.transport.buss_pass_application.BusPassApplication;
+import zw.co.mimosa.mymimosa.ui.transport.buss_pass_application.BusPassApplicationHelper;
 import zw.co.mimosa.mymimosa.utilities.LoggedInUserAccessUtility;
 
 public class TransportDashboardActivity extends AppCompatActivity {
@@ -80,12 +81,12 @@ public class TransportDashboardActivity extends AppCompatActivity {
     }
 
     private void setUserFieldsToBusPassApplication() {
-        PettyCashAuthorisationHelper pcam = PettyCashAuthorisationHelper.getPettyCashAuthorisationInstance();
-        pcam.setFirstname(firstName[0]);
-        pcam.setSurname(lastName[0]);
-        pcam.setEmployeeId(empId[0]);
-        pcam.setDepartment(departmentName[0]);
-        pcam.setDesignation(jobTitle[0]);
-        pcam.setEmailId(emailId[0]);
+        BusPassApplicationHelper bpa = BusPassApplicationHelper.getBusPassApplicationInstance();
+        bpa.setFirstname(firstName[0]);
+        bpa.setSurname(lastName[0]);
+        bpa.setEmployeeId(empId[0]);
+        bpa.setDepartment(departmentName[0]);
+        bpa.setDesignation(jobTitle[0]);
+        bpa.setEmailId(emailId[0]);
     }
 }

@@ -20,7 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMimosa"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.transport.buss_pass_application.BusPassApplication"></activity>
+        <activity android:name=".ui.medical_services.covid_screening.CovidScreeningBusiness"></activity>
+        <activity android:name=".ui.medical_services.covid_screening.CovidScreeningContractor" />
+        <activity android:name=".ui.hr.overtime_authorisation.OvertimeAuthorisation" />
+        <activity android:name=".ui.harare_office.fuel_request.FuelRequest" />
+        <activity android:name=".ui.transport.buss_pass_application.BusPassApplication" />
         <activity android:name=".ui.transport.TransportDashboardActivity" />
         <activity android:name=".ui.finance.FinanceDashboardActivity" />
         <activity android:name=".ui.harare_office.petty_cash_authorisation_harare_office.HarareDashboardActivity" />

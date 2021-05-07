@@ -16,6 +16,8 @@ import zw.co.mimosa.mymimosa.R;
 import zw.co.mimosa.mymimosa.database.CipherOpenHelper;
 import zw.co.mimosa.mymimosa.ui.medical_services.covid_screening.CovidScreening;
 import zw.co.mimosa.mymimosa.ui.medical_services.covid_screening.CovidReturnScreeningHelper;
+import zw.co.mimosa.mymimosa.ui.medical_services.covid_screening.CovidScreeningBusiness;
+import zw.co.mimosa.mymimosa.ui.medical_services.covid_screening.CovidScreeningContractor;
 import zw.co.mimosa.mymimosa.utilities.LoggedInUserAccessUtility;
 
 public class MedicalServicesDashboardActivity extends AppCompatActivity {
@@ -37,9 +39,9 @@ public class MedicalServicesDashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medical_services_dashboard);
 
-        materialCardViewReturn = findViewById(R.id.return_to_work_menu);
-        materialCardViewRoutine = findViewById(R.id.routine_menu);
-        materialCardViewdrivers = findViewById(R.id.drivers_menu);
+        materialCardViewReturn = findViewById(R.id.personal_menu);
+        materialCardViewRoutine = findViewById(R.id.business_menu);
+        materialCardViewdrivers = findViewById(R.id.driver_menu);
 
         materialCardViewReturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +73,7 @@ public class MedicalServicesDashboardActivity extends AppCompatActivity {
                 String empIdFromLUAU = luau.getEmployeeId();
                 getUserFromDatabase(empIdFromLUAU);
                 setUserFieldsToCovidReturnToWork();
-                Intent intentCovidReturnToWork = new Intent(MedicalServicesDashboardActivity.this, CovidScreening.class);
+                Intent intentCovidReturnToWork = new Intent(MedicalServicesDashboardActivity.this, CovidScreeningBusiness.class);
                 intentCovidReturnToWork.putExtra("DEPARTMENTID", departmentName);
                 intentCovidReturnToWork.putExtra("EMPID", empId);
                 intentCovidReturnToWork.putExtra("JOBTITLE", jobTitle);
@@ -92,7 +94,7 @@ public class MedicalServicesDashboardActivity extends AppCompatActivity {
                 String empIdFromLUAU = luau.getEmployeeId();
                 getUserFromDatabase(empIdFromLUAU);
                 setUserFieldsToCovidReturnToWork();
-                Intent intentCovidReturnToWork = new Intent(MedicalServicesDashboardActivity.this, CovidScreening.class);
+                Intent intentCovidReturnToWork = new Intent(MedicalServicesDashboardActivity.this, CovidScreeningContractor.class);
                 intentCovidReturnToWork.putExtra("DEPARTMENTID", departmentName);
                 intentCovidReturnToWork.putExtra("EMPID", empId);
                 intentCovidReturnToWork.putExtra("JOBTITLE", jobTitle);
