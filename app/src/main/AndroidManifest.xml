@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMimosa"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.medical_services.covid_screening.CovidScreeningBusiness"></activity>
+        <activity android:name=".ui.main.ListMenuActivity"></activity>
+        <activity android:name=".ui.medical_services.covid_screening.CovidScreeningBusiness" />
         <activity android:name=".ui.medical_services.covid_screening.CovidScreeningContractor" />
         <activity android:name=".ui.hr.overtime_authorisation.OvertimeAuthorisation" />
         <activity android:name=".ui.harare_office.fuel_request.FuelRequest" />

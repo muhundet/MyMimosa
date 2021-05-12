@@ -56,6 +56,7 @@ public class HarareDashboardActivity extends AppCompatActivity {
                 mContext.startActivity(intentPettyCashAuthorisationHarare);
             }
         });
+
         materialCardViewFuelRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

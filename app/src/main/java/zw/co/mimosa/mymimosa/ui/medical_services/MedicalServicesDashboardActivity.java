@@ -21,7 +21,7 @@ import zw.co.mimosa.mymimosa.ui.medical_services.covid_screening.CovidScreeningC
 import zw.co.mimosa.mymimosa.utilities.LoggedInUserAccessUtility;
 
 public class MedicalServicesDashboardActivity extends AppCompatActivity {
-    MaterialCardView materialCardViewReturn, materialCardViewRoutine, materialCardViewdrivers;
+    MaterialCardView materialCardViewReturn, materialCardViewRoutine, materialCardViewdrivers, materialCardViewContractor;
     Context mContext = this;
     CovidReturnScreeningHelper creturn = CovidReturnScreeningHelper.getCovidReturnToWorkHelperInstance();
     LoggedInUserAccessUtility luau;
@@ -42,6 +42,7 @@ public class MedicalServicesDashboardActivity extends AppCompatActivity {
         materialCardViewReturn = findViewById(R.id.personal_menu);
         materialCardViewRoutine = findViewById(R.id.business_menu);
         materialCardViewdrivers = findViewById(R.id.driver_menu);
+        materialCardViewContractor = findViewById(R.id.contractor_menu);
 
         materialCardViewReturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +91,27 @@ public class MedicalServicesDashboardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 creturn.setTemplate("COVID-19 DRIVERS SCREENING FORM");
                 creturn.setDescription("COVID-19 SCREENING FORM- Drivers Description");
+                luau = LoggedInUserAccessUtility.getInstance();
+                String empIdFromLUAU = luau.getEmployeeId();
+                getUserFromDatabase(empIdFromLUAU);
+                setUserFieldsToCovidReturnToWork();
+                Intent intentCovidReturnToWork = new Intent(MedicalServicesDashboardActivity.this, CovidScreeningContractor.class);
+                intentCovidReturnToWork.putExtra("DEPARTMENTID", departmentName);
+                intentCovidReturnToWork.putExtra("EMPID", empId);
+                intentCovidReturnToWork.putExtra("JOBTITLE", jobTitle);
+                intentCovidReturnToWork.putExtra("EMAILID", emailId);
+                intentCovidReturnToWork.putExtra("FIRSTNAME", firstName);
+                intentCovidReturnToWork.putExtra("LASTNAME", lastName);
+                mContext.startActivity(intentCovidReturnToWork);
+
+            }
+        });
+
+        materialCardViewContractor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                creturn.setTemplate("COVID-19 DRIVERS SCREENING FORM");
+                creturn.setDescription("COVID-19 SCREENING FORM- Contractor coming on site");
                 luau = LoggedInUserAccessUtility.getInstance();
                 String empIdFromLUAU = luau.getEmployeeId();
                 getUserFromDatabase(empIdFromLUAU);

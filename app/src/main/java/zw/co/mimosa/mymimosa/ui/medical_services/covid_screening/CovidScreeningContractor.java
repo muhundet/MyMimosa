@@ -24,13 +24,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import zw.co.mimosa.mymimosa.Pickers.DateOfBirthPicker;
+import zw.co.mimosa.mymimosa.Pickers.ReturnDatePicker;
+import zw.co.mimosa.mymimosa.Pickers.TravelDatePicker;
 import zw.co.mimosa.mymimosa.R;
 import zw.co.mimosa.mymimosa.data.covid_return_data.CovidReturnRequest;
 
 public class CovidScreeningContractor extends AppCompatActivity {
 
-    TextInputLayout inputLayoutDateOfBirth, inputLayoutIdNumber, inputLayoutCellNumber, inputLayoutNextOfKin, inputLayoutAddress, inputLayoutAccomodation;
-    TextInputEditText etFirstName, etSurname, etMineNumber, etDepartment, etDesignation, etAccomodation;
+    TextInputLayout inputLayoutDateOfBirth, inputLayoutIdNumber, inputLayoutCellNumber, inputLayoutNextOfKin, inputLayoutAddress, inputLayoutAccomodation,
+    inputLayoutReason, inputLayoutTravelDate, inputLayoutReturnDate;
+    TextInputEditText etFirstName, etSurname, etMineNumber, etDepartment, etDesignation, etAccomodation,  etReason, etTravelDate, etReturnDate;
     Spinner spinnerSection;
     TextInputEditText etDateOfBirth, etIdNumber, etCellNumber, etNextOfKin, etAddress;
     RadioGroup radioGroupGender;
@@ -38,7 +41,7 @@ public class CovidScreeningContractor extends AppCompatActivity {
     ProgressBar pgBarSubmit;
     Button btnSubmit;
     CovidReturnScreeningHelper creturn = CovidReturnScreeningHelper.getCovidReturnToWorkHelperInstance();
-    long DateOfBirthLong;
+    long DateOfBirthLong, travelDateLong, returnDateLong;
     CovidReturnRequest covidReturnRequest;
 
     @Override
@@ -58,12 +61,17 @@ public class CovidScreeningContractor extends AppCompatActivity {
         inputLayoutNextOfKin = findViewById(R.id.covidcont_next_of_kin);
         inputLayoutAddress = findViewById(R.id.covidcont_address);
         inputLayoutAccomodation = findViewById(R.id.covidcont_accomodation);
+        inputLayoutAccomodation= findViewById(R.id.covidcont_reason);
+        inputLayoutTravelDate = findViewById(R.id.covidcont_to_date);
+        inputLayoutReturnDate = findViewById(R.id.covidcont_from_date);
 
         etDateOfBirth = findViewById(R.id.et_covidcont_date_of_birth);
         etIdNumber = findViewById(R.id.et_covidcont_id_number);
         etCellNumber = findViewById(R.id.et_covidcont_cell_number);
         etNextOfKin = findViewById(R.id.et_covidcont_next_of_kin);
         etAddress = findViewById(R.id.et_covidcont_address);
+        etAccomodation = findViewById(R.id.et_covidcont_accomodation);
+        etReason = findViewById(R.id.et_covidcont_reason);
 
         radioGroupGender = findViewById(R.id.radio_covidcont_gender);
 
@@ -79,6 +87,11 @@ public class CovidScreeningContractor extends AppCompatActivity {
         etDepartment.setText(creturn.getDepartment());
         etDesignation.setText(creturn.getDesignation());
 
+
+        ArrayAdapter<CharSequence> sectionAdapter = ArrayAdapter.createFromResource(this, R.array.section_array, android.R.layout.simple_spinner_item);
+        sectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSection.setAdapter(sectionAdapter);
+
         etDateOfBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,19 +99,47 @@ public class CovidScreeningContractor extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<CharSequence> sectionAdapter = ArrayAdapter.createFromResource(this, R.array.section_array, android.R.layout.simple_spinner_item);
-        sectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerSection.setAdapter(sectionAdapter);
+        etTravelDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTravelDatePickerDialog(v);
+            }
+        });
+
+        etReturnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showReturnDatePickerDialog(v);
+            }
+        });
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validateDOB() && validateIdNumber() && validateCellNumber() && validateNextOfKin() && validateAddress() && validateRadioGender() && validateSpinnerSection()) {
+                if(validateDOB() && validateIdNumber() && validateCellNumber() && validateNextOfKin() && validateAddress() && validateRadioGender() && validateSpinnerSection() && validateAccomodation() && validateReason()) {
                     String dob = etDateOfBirth.getText().toString();
                     SimpleDateFormat dateOfBirthFormat = new SimpleDateFormat("yyyy/mm/dd");
                     try {
                         Date d = dateOfBirthFormat.parse(dob);
                         DateOfBirthLong = d.getTime();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    String travelDate = etTravelDate.getText().toString();
+                    SimpleDateFormat travelDateFormat = new SimpleDateFormat("yyyy/mm/dd");
+                    try {
+                        Date d = travelDateFormat.parse(travelDate);
+                        travelDateLong = d.getTime();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    String returnDate = etReturnDate.getText().toString();
+                    SimpleDateFormat returnDateFormat = new SimpleDateFormat("yyyy/mm/dd");
+                    try {
+                        Date d = returnDateFormat.parse(returnDate);
+                        returnDateLong = d.getTime();
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -131,7 +172,9 @@ public class CovidScreeningContractor extends AppCompatActivity {
                     String cellNumber = creturn.getCellNumber();
                     String nextOfKin = creturn.getNextOfKin();
                     String address = creturn.getAddress();
-                    String requestType = "Business Travel";
+                    String requestType = "Contractor Coming on site";
+
+
                 }
             }
         });
@@ -139,6 +182,16 @@ public class CovidScreeningContractor extends AppCompatActivity {
 
     public void showDateOfBirthPickerDialog(View v) {
         DialogFragment newFragment = new DateOfBirthPicker();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public void showTravelDatePickerDialog(View v) {
+        DialogFragment newFragment = new TravelDatePicker();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public void showReturnDatePickerDialog(View v) {
+        DialogFragment newFragment = new ReturnDatePicker();
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
@@ -242,16 +295,35 @@ public class CovidScreeningContractor extends AppCompatActivity {
         String checkspaces = "Aw{1,20}z";
 
         if (val.isEmpty()) {
-            inputLayoutAddress.setError("Accomodation cannot be empty");
-            etAddress.requestFocus();
+            inputLayoutAccomodation.setError("Accomodation cannot be empty");
+            etAccomodation.requestFocus();
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(etAddress, InputMethodManager.SHOW_IMPLICIT);
+            imm.showSoftInput(etAccomodation, InputMethodManager.SHOW_IMPLICIT);
             return false;
         }
 
         else {
-            inputLayoutAddress.setError(null);
-            inputLayoutAddress.setErrorEnabled(false);
+            inputLayoutAccomodation.setError(null);
+            inputLayoutAccomodation.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateReason() {
+        String val = inputLayoutReason.getEditText().getText().toString().trim();
+        String checkspaces = "Aw{1,20}z";
+
+        if (val.isEmpty()) {
+            inputLayoutReason.setError("Accomodation cannot be empty");
+            etReason.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etReason, InputMethodManager.SHOW_IMPLICIT);
+            return false;
+        }
+
+        else {
+            inputLayoutReason.setError(null);
+            inputLayoutReason.setErrorEnabled(false);
             return true;
         }
     }
