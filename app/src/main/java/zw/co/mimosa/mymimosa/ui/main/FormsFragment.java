@@ -33,6 +33,8 @@ import zw.co.mimosa.mymimosa.database.CipherOpenHelper;
 import zw.co.mimosa.mymimosa.ui.finance.FinanceDashboardActivity;
 import zw.co.mimosa.mymimosa.ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationHelper;
 import zw.co.mimosa.mymimosa.ui.finance.petty_cash_authorisation_mine.PettyCashAuthorisationMine;
+import zw.co.mimosa.mymimosa.ui.harare_office.fuel_request.FuelRequest;
+import zw.co.mimosa.mymimosa.ui.harare_office.fuel_request.FuelRequestHelper;
 import zw.co.mimosa.mymimosa.ui.harare_office.petty_cash_authorisation_harare_office.HarareDashboardActivity;
 import zw.co.mimosa.mymimosa.ui.harare_office.petty_cash_authorisation_harare_office.PettyCashAuthorisationHarare;
 import zw.co.mimosa.mymimosa.ui.harare_office.petty_cash_authorisation_harare_office.PettyCashAuthorisationHarareHelper;
@@ -47,7 +49,14 @@ import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.LeaveActivity;
 import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.LeaveFormHelper;
 import zw.co.mimosa.mymimosa.ui.hr.overtime_authorisation.OvertimeAuthorisation;
 import zw.co.mimosa.mymimosa.ui.medical_services.MedicalServicesDashboardActivity;
+import zw.co.mimosa.mymimosa.ui.medical_services.covid_screening.CovidReturnScreeningHelper;
+import zw.co.mimosa.mymimosa.ui.medical_services.covid_screening.CovidScreening;
+import zw.co.mimosa.mymimosa.ui.medical_services.covid_screening.CovidScreeningBusiness;
+import zw.co.mimosa.mymimosa.ui.medical_services.covid_screening.CovidScreeningContractor;
+import zw.co.mimosa.mymimosa.ui.medical_services.covid_screening.CovidScreeningDriver;
 import zw.co.mimosa.mymimosa.ui.transport.TransportDashboardActivity;
+import zw.co.mimosa.mymimosa.ui.transport.buss_pass_application.BusPassApplication;
+import zw.co.mimosa.mymimosa.ui.transport.buss_pass_application.BusPassApplicationHelper;
 import zw.co.mimosa.mymimosa.utilities.LoggedInUserAccessUtility;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
@@ -343,6 +352,116 @@ public class FormsFragment extends Fragment  {
             }
         });
 
+        btnBusPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                luau = LoggedInUserAccessUtility.getInstance();
+                empIdFromLUAU = luau.getEmployeeId();
+                getUserFromDatabase(empIdFromLUAU);
+                setUserFieldsToBusPassApplication();
+                Intent intentBusPassApplication = new Intent(mContext, BusPassApplication.class);
+                intentBusPassApplication.putExtra("DEPARTMENTID", departmentName[0]);
+                intentBusPassApplication.putExtra("EMPID", empId[0]);
+                intentBusPassApplication.putExtra("JOBTITLE", jobTitle[0]);
+                intentBusPassApplication.putExtra("EMAILID", emailId[0]);
+                intentBusPassApplication.putExtra("FIRSTNAME", firstName[0]);
+                intentBusPassApplication.putExtra("LASTNAME", lastName[0]);
+                mContext.startActivity(intentBusPassApplication);
+            }
+        });
+
+        btnCovidPersonal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                creturn.setTemplate("COVID-19 SCREENING FORM- Return From Isolation");
+//                creturn.setTemplate("COVID-19 SCREENING FORM- Return From Isolation Description");
+                luau = LoggedInUserAccessUtility.getInstance();
+                String empIdFromLUAU = luau.getEmployeeId();
+                getUserFromDatabase(empIdFromLUAU);
+                setUserFieldsToCovidReturnToWork();
+                Intent intentCovidReturnToWork = new Intent(mContext, CovidScreening.class);
+                intentCovidReturnToWork.putExtra("DEPARTMENTID", departmentName);
+                intentCovidReturnToWork.putExtra("EMPID", empId);
+                intentCovidReturnToWork.putExtra("JOBTITLE", jobTitle);
+                intentCovidReturnToWork.putExtra("EMAILID", emailId);
+                intentCovidReturnToWork.putExtra("FIRSTNAME", firstName);
+                intentCovidReturnToWork.putExtra("LASTNAME", lastName);
+                mContext.startActivity(intentCovidReturnToWork);
+            }
+        });
+
+        btnCovidBusiness.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                luau = LoggedInUserAccessUtility.getInstance();
+                String empIdFromLUAU = luau.getEmployeeId();
+                getUserFromDatabase(empIdFromLUAU);
+                setUserFieldsToCovidReturnToWork();
+                Intent intentCovidReturnToWork = new Intent(mContext, CovidScreeningBusiness.class);
+                intentCovidReturnToWork.putExtra("DEPARTMENTID", departmentName);
+                intentCovidReturnToWork.putExtra("EMPID", empId);
+                intentCovidReturnToWork.putExtra("JOBTITLE", jobTitle);
+                intentCovidReturnToWork.putExtra("EMAILID", emailId);
+                intentCovidReturnToWork.putExtra("FIRSTNAME", firstName);
+                intentCovidReturnToWork.putExtra("LASTNAME", lastName);
+                mContext.startActivity(intentCovidReturnToWork);
+            }
+        });
+
+        btnCovidContractor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                luau = LoggedInUserAccessUtility.getInstance();
+                String empIdFromLUAU = luau.getEmployeeId();
+                getUserFromDatabase(empIdFromLUAU);
+                setUserFieldsToCovidReturnToWork();
+                Intent intentCovidReturnToWork = new Intent(mContext, CovidScreeningContractor.class);
+                intentCovidReturnToWork.putExtra("DEPARTMENTID", departmentName);
+                intentCovidReturnToWork.putExtra("EMPID", empId);
+                intentCovidReturnToWork.putExtra("JOBTITLE", jobTitle);
+                intentCovidReturnToWork.putExtra("EMAILID", emailId);
+                intentCovidReturnToWork.putExtra("FIRSTNAME", firstName);
+                intentCovidReturnToWork.putExtra("LASTNAME", lastName);
+                mContext.startActivity(intentCovidReturnToWork);
+            }
+        });
+
+        btnCovidDriver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                luau = LoggedInUserAccessUtility.getInstance();
+                String empIdFromLUAU = luau.getEmployeeId();
+                getUserFromDatabase(empIdFromLUAU);
+                setUserFieldsToCovidReturnToWork();
+                Intent intentCovidReturnToWork = new Intent(mContext, CovidScreeningDriver.class);
+                intentCovidReturnToWork.putExtra("DEPARTMENTID", departmentName);
+                intentCovidReturnToWork.putExtra("EMPID", empId);
+                intentCovidReturnToWork.putExtra("JOBTITLE", jobTitle);
+                intentCovidReturnToWork.putExtra("EMAILID", emailId);
+                intentCovidReturnToWork.putExtra("FIRSTNAME", firstName);
+                intentCovidReturnToWork.putExtra("LASTNAME", lastName);
+                mContext.startActivity(intentCovidReturnToWork);
+            }
+        });
+
+        btnFuelRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                luau = LoggedInUserAccessUtility.getInstance();
+                String empIdFromLUAU = luau.getEmployeeId();
+                getUserFromDatabase(empIdFromLUAU);
+                setUserFieldsToFuelRequest();
+                Intent intentFuelRequest = new Intent(mContext, FuelRequest.class);
+                intentFuelRequest.putExtra("DEPARTMENTID", departmentName);
+                intentFuelRequest.putExtra("EMPID", empId);
+                intentFuelRequest.putExtra("JOBTITLE", jobTitle);
+                intentFuelRequest.putExtra("EMAILID", emailId);
+                intentFuelRequest.putExtra("FIRSTNAME", firstName);
+                intentFuelRequest.putExtra("LASTNAME", lastName);
+                mContext.startActivity(intentFuelRequest);
+            }
+        });
+
         return root;
     }
 
@@ -452,6 +571,36 @@ public class FormsFragment extends Fragment  {
         pcam.setDepartment(departmentName[0]);
         pcam.setDesignation(jobTitle[0]);
         pcam.setEmailId(emailId[0]);
+    }
+
+    private void setUserFieldsToBusPassApplication() {
+        BusPassApplicationHelper bpa = BusPassApplicationHelper.getBusPassApplicationInstance();
+        bpa.setFirstname(firstName[0]);
+        bpa.setSurname(lastName[0]);
+        bpa.setEmployeeId(empId[0]);
+        bpa.setDepartment(departmentName[0]);
+        bpa.setDesignation(jobTitle[0]);
+        bpa.setEmailId(emailId[0]);
+    }
+
+    private void setUserFieldsToCovidReturnToWork() {
+        CovidReturnScreeningHelper creturn = CovidReturnScreeningHelper.getCovidReturnToWorkHelperInstance();
+        creturn.setFirstname(firstName[0]);
+        creturn.setSurname(lastName[0]);
+        creturn.setEmployeeId(empId[0]);
+        creturn.setDepartment(departmentName[0]);
+        creturn.setDesignation(jobTitle[0]);
+        creturn.setEmailId(emailId[0]);
+    }
+
+    private void setUserFieldsToFuelRequest() {
+        FuelRequestHelper fr = FuelRequestHelper.getRequestInstance();
+        fr.setFirstname(firstName[0]);
+        fr.setSurname(lastName[0]);
+        fr.setEmployeeId(empId[0]);
+        fr.setDepartment(departmentName[0]);
+        fr.setDesignation(jobTitle[0]);
+        fr.setEmailId(emailId[0]);
     }
 
 

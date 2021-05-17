@@ -34,7 +34,7 @@ tools:context=".ui.harare_office.fuel_request.FuelRequest">
     </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
-        android:id="@+id/spinner_fr_fuel_request_type"
+        android:id="@+id/spinner_fr_grade"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
@@ -46,6 +46,20 @@ tools:context=".ui.harare_office.fuel_request.FuelRequest">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fr_designation" />
+
+    <Spinner
+        android:id="@+id/spinner_fr_fuel_request_type"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/spinner_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_fr_grade" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fr_department"
@@ -140,7 +154,6 @@ tools:context=".ui.harare_office.fuel_request.FuelRequest">
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:enabled="false"
         android:hint="Vehicle Reg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -148,6 +161,48 @@ tools:context=".ui.harare_office.fuel_request.FuelRequest">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_fr_vehicle_reg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fr_quantity"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:hint="Quantity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fr_vehicle_reg">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_fr_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fr_account"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:hint="Account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fr_quantity">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_fr_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -165,7 +220,7 @@ tools:context=".ui.harare_office.fuel_request.FuelRequest">
         android:hint="Reason for Application"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fr_vehicle_reg">
+        app:layout_constraintTop_toBottomOf="@+id/fr_account">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_fr_reason_for_application"

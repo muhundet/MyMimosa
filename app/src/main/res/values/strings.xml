@@ -390,6 +390,14 @@
         <item>  U</item>
     </string-array>
 
+    <string-array name="fuel_request_type">
+        <item>--Select Fuel Request Type--</item>
+        <item>Monthly Allocation</item>
+        <item>Personal Emergency</item>
+        <item>Standby</item>
+        <item>Coupons</item>
+    </string-array>
+
     <string-array name="management_accounting_array">
         <item>--Choose Approver--</item>
         <item>Innocent Mavi</item>
