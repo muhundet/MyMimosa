@@ -48,6 +48,7 @@ import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.AdvanceActivity;
 import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.LeaveActivity;
 import zw.co.mimosa.mymimosa.ui.hr.leave_and_advance.LeaveFormHelper;
 import zw.co.mimosa.mymimosa.ui.hr.overtime_authorisation.OvertimeAuthorisation;
+import zw.co.mimosa.mymimosa.ui.hr.overtime_authorisation.OvertimeAuthorisationHelper;
 import zw.co.mimosa.mymimosa.ui.medical_services.MedicalServicesDashboardActivity;
 import zw.co.mimosa.mymimosa.ui.medical_services.covid_screening.CovidReturnScreeningHelper;
 import zw.co.mimosa.mymimosa.ui.medical_services.covid_screening.CovidScreening;
@@ -311,8 +312,18 @@ public class FormsFragment extends Fragment  {
         btnOvertimeAuth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentOvertimeAuthorisation = new Intent(mContext, OvertimeAuthorisation.class);
-                mContext.startActivity(intentOvertimeAuthorisation);
+                luau = LoggedInUserAccessUtility.getInstance();
+                empIdFromLUAU = luau.getEmployeeId();
+                getUserFromDatabase(empIdFromLUAU);
+                setUserFieldsToOvertimeAuthorisation();
+                Intent intentOvertimeAuth = new Intent(mContext, OvertimeAuthorisation.class);
+                intentOvertimeAuth.putExtra("DEPARTMENTID", departmentName[0]);
+                intentOvertimeAuth.putExtra("EMPID", empId[0]);
+                intentOvertimeAuth.putExtra("JOBTITLE", jobTitle[0]);
+                intentOvertimeAuth.putExtra("EMAILID", emailId[0]);
+                intentOvertimeAuth.putExtra("FIRSTNAME", firstName[0]);
+                intentOvertimeAuth.putExtra("LASTNAME", lastName[0]);
+                mContext.startActivity(intentOvertimeAuth);
             }
         });
 
@@ -601,6 +612,16 @@ public class FormsFragment extends Fragment  {
         fr.setDepartment(departmentName[0]);
         fr.setDesignation(jobTitle[0]);
         fr.setEmailId(emailId[0]);
+    }
+
+    private void setUserFieldsToOvertimeAuthorisation() {
+        OvertimeAuthorisationHelper oa = OvertimeAuthorisationHelper.getOvertimeAuthorisationInstance();
+        oa.setFirstname(firstName[0]);
+        oa.setSurname(lastName[0]);
+        oa.setEmployeeId(empId[0]);
+        oa.setDepartment(departmentName[0]);
+        oa.setDesignation(jobTitle[0]);
+        oa.setEmailId(emailId[0]);
     }
 
 

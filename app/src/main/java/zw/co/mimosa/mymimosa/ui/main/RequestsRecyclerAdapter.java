@@ -50,13 +50,16 @@ public class RequestsRecyclerAdapter extends RecyclerView.Adapter<RequestsRecycl
     public class RequestViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         //        TextView textMeetingId;
-        TextView tvRequestSubject, tvRequestStatus;
+        TextView tvRequestSubject, tvRequestStatus, tvRequestId, tvApproverName, tvDateRaised;
 
 
         public RequestViewHolder(View itemView) {
             super(itemView);
-            tvRequestSubject = (TextView) itemView.findViewById(R.id.tv_request_subject);
-            tvRequestStatus = (TextView) itemView.findViewById(R.id.tv_request_status);
+            tvRequestSubject =  itemView.findViewById(R.id.tv_request_subject);
+            tvRequestStatus = itemView.findViewById(R.id.tv_request_status);
+            tvRequestId = itemView.findViewById(R.id.request_id);
+            tvApproverName = itemView.findViewById(R.id.approver_name);
+            tvDateRaised = itemView.findViewById(R.id.date_raised);
 
             itemView.setOnClickListener(this);
 
@@ -65,6 +68,9 @@ public class RequestsRecyclerAdapter extends RecyclerView.Adapter<RequestsRecycl
 //            textMeetingId.setText(meeting.meetingId);
             tvRequestSubject.setText(requestModel.getRequestSubject());
             tvRequestStatus.setText(requestModel.getRequestStatus());
+            tvRequestId.setText(requestModel.getRequestId());
+            tvApproverName.setText(requestModel.getPendingApprover());
+            tvDateRaised.setText(requestModel.getDateRaised());
         }
 
 

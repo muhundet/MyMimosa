@@ -24,6 +24,15 @@ public class Request {
     @Expose
     private Resources resources;
 
+    public Request(String description, Requester requester, String subject, Template template, UdfFields udfFields, Resources resources) {
+        this.description = description;
+        this.requester = requester;
+        this.subject = subject;
+        this.template = template;
+        this.udfFields = udfFields;
+        this.resources = resources;
+    }
+
     public String getDescription() {
         return description;
     }

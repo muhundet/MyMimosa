@@ -10,22 +10,27 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 >
 
-<com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/creturn_designation"
-    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:enabled="false"
-    android:hint="Designation"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/creturn_department">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/creturn_designation"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:enabled="false"
+        android:hint="Designation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/creturn_department">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_creturn_designation"
-        android:layout_width="match_parent"
-        android:layout_height="59dp" />
-</com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_creturn_designation"
+            android:layout_width="match_parent"
+            android:layout_height="59dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 <com.google.android.material.textfield.TextInputLayout
     android:id="@+id/creturn_department"
@@ -95,21 +100,29 @@ android:layout_height="match_parent"
 </com.google.android.material.textfield.TextInputLayout>
 
 
-
-<Spinner
-    android:id="@+id/spinner_creturn_section"
-    android:layout_width="match_parent"
-    android:layout_height="36dp"
-    android:background="@drawable/spinner_border"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/creturn_designation" />
+    <Spinner
+        android:id="@+id/spinner_creturn_section"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/spinner_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/creturn_designation" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/creturn_date_of_birth"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:hint="Date Of Birth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +132,7 @@ android:layout_height="match_parent"
             android:id="@+id/et_creturn_date_of_birth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="false"/>
+            android:focusable="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -127,6 +140,10 @@ android:layout_height="match_parent"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:enabled="true"
         android:hint="ID/Passport Number"
         app:layout_constraintEnd_toEndOf="parent"
@@ -144,6 +161,11 @@ android:layout_height="match_parent"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:enabled="true"
         android:hint="Cell Number"
         app:layout_constraintEnd_toEndOf="parent"
@@ -161,6 +183,11 @@ android:layout_height="match_parent"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:enabled="true"
         android:hint="Next of kin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -178,6 +205,11 @@ android:layout_height="match_parent"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:enabled="true"
         android:hint="Address"
         app:layout_constraintEnd_toEndOf="parent"
@@ -186,6 +218,28 @@ android:layout_height="match_parent"
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_creturn_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/creturn_reason"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:enabled="true"
+        android:hint="Reason for travel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/creturn_address">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_creturn_reason"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -204,7 +258,7 @@ android:layout_height="match_parent"
         android:hint="Destination"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/creturn_address">
+        app:layout_constraintTop_toBottomOf="@+id/creturn_reason">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_creturn_destination"

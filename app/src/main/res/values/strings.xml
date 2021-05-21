@@ -2,7 +2,7 @@
     <string name="app_name">MyMimosa©</string>
     <string name="tab_text_1">FORMS</string>
     <string name="tab_text_2">CHECKLIST</string>
-    <string name="tab_text_3">REQUESTS</string>
+    <string name="tab_text_3">MY REQUESTS</string>
     <string name="tab_text_4">APPROVAL</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -13,6 +13,10 @@ public class Res3606 {
         return qstnText2101;
     }
 
+    public Res3606(QstnText2101 qstnText2101) {
+        this.qstnText2101 = qstnText2101;
+    }
+
     public void setQstnText2101(QstnText2101 qstnText2101) {
         this.qstnText2101 = qstnText2101;
     }

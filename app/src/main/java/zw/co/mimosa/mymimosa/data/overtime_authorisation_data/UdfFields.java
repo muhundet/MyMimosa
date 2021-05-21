@@ -27,6 +27,16 @@ public class UdfFields {
     @Expose
     private UdfDate306 udfDate306;
 
+    public UdfFields(String udfPick38, String udfSline307, String udfSline349, String udfPick1202, String udfSline350, String udfPick639, UdfDate306 udfDate306) {
+        this.udfPick38 = udfPick38;
+        this.udfSline307 = udfSline307;
+        this.udfSline349 = udfSline349;
+        this.udfPick1202 = udfPick1202;
+        this.udfSline350 = udfSline350;
+        this.udfPick639 = udfPick639;
+        this.udfDate306 = udfDate306;
+    }
+
     public String getUdfPick38() {
         return udfPick38;
     }

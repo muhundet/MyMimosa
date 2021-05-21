@@ -17,7 +17,7 @@ import zw.co.mimosa.mymimosa.R;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3, R.string.tab_text_4 };
+    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3 };
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -36,8 +36,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return CheckListsFragment.newInstance(1);
             case 2:
                 return MyRequestsFragment.newInstance(2);
-            case 3 :
-                return MyApprovalsFragment.newInstance(3);
         }
         return null;
     }
@@ -50,7 +48,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
-        return 4;
+        // Show 3 total pages.
+        return 3;
     }
 }

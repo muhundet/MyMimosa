@@ -27,6 +27,7 @@ public class CovidReturnScreeningHelper {
     String address;
     String template;
     String description;
+    String reason;
 
 
     public static CovidReturnScreeningHelper getmCovidReturnScreeningHelper() {
@@ -35,6 +36,14 @@ public class CovidReturnScreeningHelper {
 
     public static void setmCovidReturnScreeningHelper(CovidReturnScreeningHelper mCovidReturnScreeningHelper) {
         CovidReturnScreeningHelper.mCovidReturnScreeningHelper = mCovidReturnScreeningHelper;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     public String getDescription() {

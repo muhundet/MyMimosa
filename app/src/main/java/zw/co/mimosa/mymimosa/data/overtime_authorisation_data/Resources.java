@@ -58,6 +58,21 @@ public class Resources {
         this.res3606 = res3606;
     }
 
+    public Resources(Res310 res310, Res3606 res3606, Res311 res311, Res312 res312, Res313 res313, Res303 res303, Res304 res304, Res305 res305, Res306 res306, Res307 res307, Res308 res308, Res309 res309) {
+        this.res310 = res310;
+        this.res3606 = res3606;
+        this.res311 = res311;
+        this.res312 = res312;
+        this.res313 = res313;
+        this.res303 = res303;
+        this.res304 = res304;
+        this.res305 = res305;
+        this.res306 = res306;
+        this.res307 = res307;
+        this.res308 = res308;
+        this.res309 = res309;
+    }
+
     public Res311 getRes311() {
         return res311;
     }

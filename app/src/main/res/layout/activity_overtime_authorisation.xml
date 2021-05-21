@@ -131,6 +131,26 @@ tools:context=".ui.hr.overtime_authorisation.OvertimeAuthorisation">
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/oa_description"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:hint="Work Description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_oa_section">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_oa_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/oa_supervisor"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
@@ -142,7 +162,7 @@ tools:context=".ui.hr.overtime_authorisation.OvertimeAuthorisation">
         android:hint="Supervisor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_oa_section">
+        app:layout_constraintTop_toBottomOf="@+id/oa_description">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_oa_supervisor"
@@ -165,6 +185,57 @@ tools:context=".ui.hr.overtime_authorisation.OvertimeAuthorisation">
         android:background="@drawable/spinner_border"/>
 
     <TableLayout
+        android:id="@+id/table_layout_overtime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_oa_hos">
+
+        <TableRow
+            android:id="@+id/table_row_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/overtime_date_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/overtime_hours_from_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/overtime_hours_to_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/overtime_total_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                android:textSize="15sp" />
+        </TableRow>
+
+
+
+    </TableLayout>
+
+    <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -173,7 +244,7 @@ tools:context=".ui.hr.overtime_authorisation.OvertimeAuthorisation">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_oa_hos"
+        app:layout_constraintTop_toBottomOf="@+id/table_layout_overtime"
         app:layout_constraintVertical_bias="0.0" >
 
 

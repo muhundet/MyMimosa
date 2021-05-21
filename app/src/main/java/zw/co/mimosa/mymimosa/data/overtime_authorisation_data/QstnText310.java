@@ -9,6 +9,10 @@ public class QstnText310 {
     @Expose
     private String value;
 
+    public QstnText310(String value) {
+        this.value = value;
+    }
+
     public String getValue() {
         return value;
     }

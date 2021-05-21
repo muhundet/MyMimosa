@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,11 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +32,7 @@ import zw.co.mimosa.mymimosa.R;
 import zw.co.mimosa.mymimosa.models.RequestModel;
 import zw.co.mimosa.mymimosa.ui.hr.HrFormRecyclerAdapter;
 import zw.co.mimosa.mymimosa.ui.hr.HrMenuModel;
+import zw.co.mimosa.mymimosa.utilities.LoggedInUserAccessUtility;
 import zw.co.mimosa.mymimosa.utilities.NetworkStateChecker3;
 
 /**
@@ -35,18 +42,31 @@ import zw.co.mimosa.mymimosa.utilities.NetworkStateChecker3;
  */
 public class MyRequestsFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
-    // TODO: Rename parameter arguments, choose names that match
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     RecyclerView rvRequests;
     TextView tvNoRequests;
 
+    LoggedInUserAccessUtility luau = LoggedInUserAccessUtility.getInstance();
+    String empIdFromLUAU = luau.getEmployeeId();
+
     ArrayList<RequestModel> rmodel;
+
+   // private static String ip = "10.3.200.146";
+   private static String ip = "192.168.2.144";
+    private static String port = "1433";
+    private static String Classes = "net.sourceforge.jtds.jdbc.Driver";
+    private static String database = "servicedesk";
+    private static String username = "servicedesk";
+    private static String password = "Mimosa123";
+    private static String url = "jdbc:jtds:sqlserver://"+ip+"/"+database;
+
+    private Connection connection = null;
 
     public MyRequestsFragment() {
         // Required empty public constructor
@@ -70,6 +90,20 @@ public class MyRequestsFragment extends Fragment {
 //            mParam2 = getArguments().getString(ARG_PARAM2);
 
 //        }
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            Class.forName(Classes);
+            connection = DriverManager.getConnection(url, username,password);
+            System.out.println("SQL Server connected success");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("SQL Server not connected success");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("SQL Server not success with error");
+        }
     }
 
     @Override
@@ -79,15 +113,11 @@ public class MyRequestsFragment extends Fragment {
         // Inflate the layout for this fragment
         rvRequests = root.findViewById(R.id.rv_requests);
         tvNoRequests = root.findViewById(R.id.tv_no_requests);
-        RequestModel rm1 = new RequestModel("LEAVE AND TEMPORARY EARNINGS FOR ------------","Not Submitted");
-        RequestModel rm2 = new RequestModel("LEAVE AND TEMPORARY EARNINGS FOR ------------","Not Submitted");
-        RequestModel rm3 = new RequestModel("LEAVE AND TEMPORARY EARNINGS FOR ------------","Not Submitted");
 
         rmodel = new ArrayList<>();
-//        rmodel.add(rm1);
-//        rmodel.add(rm2);
-//        rmodel.add(rm3);
+
         getRequestsNotSubmitted();
+        getRequestsSubmitted();
         RequestsRecyclerAdapter adapter = new RequestsRecyclerAdapter(rmodel);
         rvRequests.setLayoutManager(new LinearLayoutManager(getContext()));
         rvRequests.setAdapter(adapter);
@@ -131,7 +161,7 @@ public class MyRequestsFragment extends Fragment {
                     JSONObject jobj = obj.getJSONObject("request");
                     String result = jobj.get("subject").toString();
                     System.out.println("Subject: " + result);
-                    rmodel.add(new RequestModel(result, "Not Submitted"));
+                    rmodel.add(new RequestModel(result, "Not Submitted", "No Request Id", "Not Sent to approver", "Date"));
 
                 }catch(Exception e){
                     e.printStackTrace();
@@ -141,4 +171,29 @@ public class MyRequestsFragment extends Fragment {
 
         }
     }
+
+    public void getRequestsSubmitted(){
+        if (connection!=null){
+            Statement statement = null;
+            try {
+                statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery("select [WORKORDERID]\n" +
+                        ",[Pending Approver]\n" +
+                        ",[TEMPLATENAME]\n" +
+                        ",[Date Raised], [STATUSNAME]\n" +
+                        "\n" +
+                        ",[TITLE]from [dbo].[pendingapproval] ('"+empIdFromLUAU+"');");
+                while (resultSet.next()){
+                    System.out.println(resultSet.getString(1));
+                    rmodel.add(new RequestModel(resultSet.getString(3), resultSet.getString(5), resultSet.getString(1), resultSet.getString(2), resultSet.getString(4)));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            System.out.println("Connection is null");
+        }
+    }
+
 }

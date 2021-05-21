@@ -12,6 +12,11 @@ public class QstnRadio316 {
     @Expose
     private String id;
 
+    public QstnRadio316(String name, String id) {
+        this.name = name;
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }

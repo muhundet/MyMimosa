@@ -3,33 +3,46 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@drawable/border">
 
     <EditText
         android:id="@+id/overtime_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="0.25" />
+        android:layout_weight="0.25"
+        android:textSize="15sp"
+        android:focusable="false"
+        android:background="@drawable/border"/>
 
     <EditText
         android:id="@+id/overtime_hours_from"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="0.25" />
+        android:layout_weight="0.25"
+        android:textSize="15sp"
+        android:focusable="false"
+        android:background="@drawable/border"/>
 
     <EditText
         android:id="@+id/overtime_hours_to"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="0.25" />
+        android:layout_weight="0.25"
+        android:textSize="15sp"
+        android:focusable="false"
+        android:background="@drawable/border"/>
 
     <EditText
         android:id="@+id/overtime_total"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="0.25" />
+        android:layout_weight="0.25"
+        android:textSize="15sp"
+        android:focusable="false"
+        android:background="@drawable/border"/>
 </TableRow>

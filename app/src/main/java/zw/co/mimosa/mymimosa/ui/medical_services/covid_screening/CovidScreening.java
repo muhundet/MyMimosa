@@ -48,10 +48,10 @@ import zw.co.mimosa.mymimosa.data.covid_return_data.CovidReturnRequest;
 
 public class CovidScreening extends AppCompatActivity {
     TextInputLayout inputLayoutDateOfBirth, inputLayoutIdNumber, inputLayoutCellNumber, inputLayoutNextOfKin, inputLayoutAddress,
-            inputLayoutTravelDate, inputLayoutReturnDate, inputLayoutDestination;
+            inputLayoutTravelDate, inputLayoutReturnDate, inputLayoutDestination, inputLayoutReason;
     TextInputEditText etFirstName, etSurname, etMineNumber, etDepartment, etDesignation;
     Spinner spinnerSection;
-    TextInputEditText etDateOfBirth, etIdNumber, etCellNumber, etNextOfKin, etAddress, etTravelDate, etReturnDate, etDestination;
+    TextInputEditText etDateOfBirth, etIdNumber, etCellNumber, etNextOfKin, etAddress, etTravelDate, etReturnDate, etDestination, etReason;
     RadioGroup radioGroupGender, radioVehicleType;
     RadioButton radioButtonGender, radioFormOfTransport;
     ProgressBar pgBarSubmit;
@@ -79,6 +79,7 @@ public class CovidScreening extends AppCompatActivity {
         inputLayoutTravelDate = findViewById(R.id.creturn_travel_date);
         inputLayoutReturnDate = findViewById(R.id.creturn_return_date);
         inputLayoutDestination = findViewById(R.id.creturn_destination);
+        inputLayoutReason  = findViewById(R.id.creturn_reason);
 
         etDateOfBirth = findViewById(R.id.et_creturn_date_of_birth);
         etIdNumber = findViewById(R.id.et_creturn_id_number);
@@ -88,6 +89,7 @@ public class CovidScreening extends AppCompatActivity {
         etTravelDate = findViewById(R.id.et_creturn_travel_date);
         etReturnDate = findViewById(R.id.et_creturn_return_date);
         etDestination = findViewById(R.id.et_creturn_destination);
+        etReason = findViewById(R.id.et_creturn_reason);
 
         radioGroupGender = findViewById(R.id.radio_creturn_gender);
         radioVehicleType = findViewById(R.id.radio_creturn_vehicle_type);
@@ -134,7 +136,7 @@ public class CovidScreening extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validateDOB() && validateIdNumber() && validateCellNumber() && validateNextOfKin() && validateAddress() && validateRadioGender() && validateSpinnerSection()){
+                if(validateDOB() && validateIdNumber() && validateCellNumber() && validateNextOfKin() && validateAddress() && validateReason() && validateRadioGender() && validateSpinnerSection()){
                 String dob = etDateOfBirth.getText().toString();
                 SimpleDateFormat dateOfBirthFormat = new SimpleDateFormat("yyyy/mm/dd");
                 try {
@@ -175,11 +177,12 @@ public class CovidScreening extends AppCompatActivity {
                 creturn.setCellNumber(etCellNumber.getText().toString());
                 creturn.setNextOfKin(etNextOfKin.getText().toString());
                 creturn.setAddress(etAddress.getText().toString());
+                creturn.setReason(etReason.getText().toString());
 
                 String template = "Request To Travel and Covid-19 Screening";
                 String requester = creturn.getFirstname() + " " + creturn.getSurname();
                 String subject = "COVID-19 SCREENING FORM for " + creturn.getFirstname() + " " + creturn.getSurname() + " (from android device)";
-                String description = "Reason for travel";
+                String description = creturn.getReason();
                 String firstname = creturn.getFirstname();
                 String surname = creturn.getSurname();
                 String employeeId = creturn.employeeId;
@@ -414,6 +417,25 @@ public class CovidScreening extends AppCompatActivity {
         else {
             inputLayoutAddress.setError(null);
             inputLayoutAddress.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateReason() {
+        String val = inputLayoutReason.getEditText().getText().toString().trim();
+        String checkspaces = "Aw{1,20}z";
+
+        if (val.isEmpty()) {
+            inputLayoutReason.setError("Address cannot be empty");
+            etReason.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(etReason, InputMethodManager.SHOW_IMPLICIT);
+            return false;
+        }
+
+        else {
+            inputLayoutReason.setError(null);
+            inputLayoutReason.setErrorEnabled(false);
             return true;
         }
     }

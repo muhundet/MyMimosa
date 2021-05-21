@@ -13,6 +13,10 @@ public class QstnText313 {
         return value;
     }
 
+    public QstnText313(String value) {
+        this.value = value;
+    }
+
     public void setValue(String value) {
         this.value = value;
     }

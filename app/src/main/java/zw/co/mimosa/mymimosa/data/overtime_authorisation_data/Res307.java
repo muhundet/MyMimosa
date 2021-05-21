@@ -34,6 +34,17 @@ public class Res307 {
         return qstnText315;
     }
 
+    public Res307(QstnText315 qstnText315, QstnText658 qstnText658, QstnText309 qstnText309, QstnRadio316 qstnRadio316, QstnText310 qstnText310, QstnText312 qstnText312, QstnText314 qstnText314, QstnText313 qstnText313) {
+        this.qstnText315 = qstnText315;
+        this.qstnText658 = qstnText658;
+        this.qstnText309 = qstnText309;
+        this.qstnRadio316 = qstnRadio316;
+        this.qstnText310 = qstnText310;
+        this.qstnText312 = qstnText312;
+        this.qstnText314 = qstnText314;
+        this.qstnText313 = qstnText313;
+    }
+
     public void setQstnText315(QstnText315 qstnText315) {
         this.qstnText315 = qstnText315;
     }

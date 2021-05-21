@@ -7,13 +7,17 @@ public class UdfDate306 {
 
     @SerializedName("value")
     @Expose
-    private String value;
+    private long value;
 
-    public String getValue() {
+    public UdfDate306(long value) {
+        this.value = value;
+    }
+
+    public long getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(long value) {
         this.value = value;
     }
 

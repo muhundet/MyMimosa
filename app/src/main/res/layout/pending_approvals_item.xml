@@ -22,7 +22,7 @@ android:weightSum="100">
         android:layout_weight="100"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/tv_request_subject"
+            android:id="@+id/template_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TEMPLATE NAME"
@@ -60,7 +60,7 @@ android:weightSum="100">
                 android:textAlignment="textStart" />
 
             <TextView
-                android:id="@+id/tv_request_status"
+                android:id="@+id/status"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"

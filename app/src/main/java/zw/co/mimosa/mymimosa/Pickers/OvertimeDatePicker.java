@@ -35,8 +35,6 @@ public class OvertimeDatePicker extends DialogFragment implements DatePickerDial
 
     public OvertimeDatePicker(View v) {
         this.v = v;
-        viewId = v.getId();
-
     }
 
     @Override
@@ -44,8 +42,9 @@ public class OvertimeDatePicker extends DialogFragment implements DatePickerDial
 
         int actualMonth = month + 1;
         // Do something with the date chosen by the user
-        EditText overtime_date =  (EditText) getActivity().findViewById(v.getId());
+        EditText overtime_date =  (EditText) getActivity().findViewById(R.id.overtime_date_1);
         System.out.println(v.getId());
+        System.out.println(month);
         if(actualMonth<10 && dayOfMonth<10){
             overtime_date.setText(year + "/0" + actualMonth + "/" + "0"+ dayOfMonth);
 

@@ -9,6 +9,10 @@ public class OvertimeAuthorisationRequest {
         @Expose
         private Request request;
 
+        public OvertimeAuthorisationRequest(Request request) {
+                this.request = request;
+        }
+
         public Request getRequest() {
                 return request;
         }
